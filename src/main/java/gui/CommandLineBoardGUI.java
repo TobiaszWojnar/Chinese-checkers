@@ -10,6 +10,7 @@ public class CommandLineBoardGUI {
     public CommandLineBoardGUI(int numberOfPlayers){
         board = new ChineseCheckersBoard(numberOfPlayers);
     }
+
     public void show(){
 
         for(Field[] row: board.getBoard()){

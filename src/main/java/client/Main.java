@@ -1,9 +1,9 @@
 package client;
 
+import gui.ChineseCheckersMenu;
 import gui.CommandLineBoardGUI;
 
 public class Main {
-
     public static void main(String[] args) {
         CommandLineBoardGUI testGui;
         testGui = new CommandLineBoardGUI(2);
@@ -14,6 +14,7 @@ public class Main {
         testGui.show();
         testGui = new CommandLineBoardGUI(6);
         testGui.show();
+
+        javax.swing.SwingUtilities.invokeLater(() -> new ChineseCheckersMenu().MenuWindow());
     }
-    
 }
