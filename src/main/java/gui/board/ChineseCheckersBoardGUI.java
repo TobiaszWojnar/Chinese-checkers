@@ -13,11 +13,10 @@ import java.util.EnumMap;
 public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private Board board;
     private final Color backgroundColor = new Color(238,238,238);
-    private int canvasHeight;
-    private int canvasWidth;
-    private int pawnSize = 10;
+    private final int pawnSize = 35;
+    private final int xOffset = 50;
     EnumMap<Field, Color> colors;
-    private Listener listener;
+    private BoardGuiListener boardGuiListener;
 
     public ChineseCheckersBoardGUI (Board board){
         this.board=board;
@@ -29,39 +28,82 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         colors.put(Field.Player3, Color.GREEN);
         colors.put(Field.Player4, Color.BLUE);
         colors.put(Field.Player5, Color.ORANGE);
-        colors.put(Field.Player6, Color.WHITE);
+        colors.put(Field.Player6, Color.PINK);
         colors.put(Field.Possible, Color.WHITE);
+
+        addMouseListener(this);
     }
 
     public void paint(Graphics g){
         g.setColor(backgroundColor);
-        g.fillRect(0, 0, canvasWidth, canvasHeight);
+        g.fillRect(0, 0, getX(), getY());
         g.setColor(Color.BLACK);
 
-        for(int y = 0; y<board.getBoard().length;y++){//TODO do we need methods board.getWidth() board.getHeight()
+        for(int y = 0; y<board.getBoard().length;y++){//TODO do we need methods board.getWidth() board.getHeight()?
             for(int x = 0; x<board.getBoard()[0].length;x++) {
-                paintElement(g,x,y);
+                if(isValidField(x,y))
+                    paintElement(g,x,y);
             }
         }
-        //TODO paint all fields
-        //TODO cover not 'fields' between fields
-        //TODO cover external part
+    }
+
+    private boolean isValidField(int x, int y){
+        if((x+y)%2==0){
+            switch (y){
+                case 0:
+                case 16:
+                    return x == 12;
+                case 1:
+                case 15:
+                    return x > 10 && x < 14;
+                case 2:
+                case 14:
+                    return x > 9 && x < 15;
+                case 3:
+                case 13:
+                    return x > 8 && x < 16;
+                case 4:
+                case 12:
+                    return true;
+                case 5:
+                case 11:
+                    return x > 0 && x < 24;
+                case 6:
+                case 10:
+                    return x > 1 && x < 23;
+                case 7:
+                case 9:
+                    return x > 2 && x < 22;
+                case 8:
+                    return x > 3 && x < 21;
+                default:
+                    return false;
+            }
+        }
+        return false;
     }
 
     private void paintElement (Graphics g, int x, int y){
         g.setColor(colors.get(board.getBoard()[y][x]));
-        g.fillOval(x*pawnSize,y*pawnSize,pawnSize,pawnSize);
+
+        g.fillOval((int)(xOffset + x*pawnSize*0.6),y* pawnSize, pawnSize, pawnSize);
     }
 
     public void boardUpdate (ChineseCheckersBoard board){
         this.board=board;
+        repaint();
     }
 
     @Override
     public void mouseClicked(MouseEvent mE) {
-        //TODO wyrzuca wskazanie na konkretne pole
-        //if()
-        listener.onClicked(mE.getX(),mE.getY());
+        int x;
+        int y = mE.getY()/pawnSize;
+        if(y%2==0)
+            x = 2*(int)((mE.getX()-xOffset)/(pawnSize*1.2));
+        else
+            x = 2*(int)((mE.getX()-xOffset-pawnSize*0.6)/(pawnSize*1.2))+1;
+        if(isValidField(x,y))
+            boardGuiListener.onClicked(x,y);
     }
 
     @Override
@@ -76,11 +118,11 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent mE) {}
 
-    public void setListener(Listener listener){
-        this.listener=listener;
+    public void setListener(BoardGuiListener boardGuiListener){
+        this.boardGuiListener = boardGuiListener;
     }
 
-    public interface Listener {
+    public interface BoardGuiListener {
         void onClicked(int x, int y);
     }
 }
