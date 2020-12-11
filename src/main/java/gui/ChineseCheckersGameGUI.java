@@ -15,7 +15,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     //Is created by client
     public ChineseCheckersGameGUI(int numberOfPlayers, String roomId) {
 
-        setTitle("ChineseCheckersGame room= " + roomId);
+        setTitle("ChineseCheckersGame room: " + roomId);
         setSize(new Dimension(650,650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,7 +40,7 @@ public class ChineseCheckersGameGUI extends JFrame {
             public void resign() {
                 //TODO catch request and do sth
                 //gameGuiListener.onResigned();
-                System.out.println("TO server I resign");
+                System.out.println("To server I resign");
             }
 
             @Override
@@ -57,9 +57,15 @@ public class ChineseCheckersGameGUI extends JFrame {
         });
 
     }
+
+    /**
+     * updates local board and repaints
+     * @param board updated board
+     */
     public void updateBoard(ChineseCheckersBoard board){
         boardGui.boardUpdate(board);
     }
+
     /**
      * Possible messages 'You lose', 'You win', 'It is a tie'
      */
@@ -72,8 +78,9 @@ public class ChineseCheckersGameGUI extends JFrame {
     }
 
     public interface GameGuiListener {
-        void onClicked(int x, int y);
-        void onSkipped();
-        void onResigned();
+        void onClicked(int x, int y);//Waits for board or message or both
+        void onSkipped();            //Waits for board or message or both
+        void onResigned();           //Waits for message
+        //Liczba graczy co jakiś czas
     }
 }

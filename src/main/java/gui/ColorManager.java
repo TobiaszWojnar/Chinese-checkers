@@ -28,37 +28,26 @@ public class ColorManager {
 
     private void prepareForTwoPlayers() {
         colorMap.put(Field.Empty, Color.LIGHT_GRAY);
-        colorMap.put(Field.Player1, Color.YELLOW);
-        colorMap.put(Field.Player2, Color.BLUE);
+        colorMap.put(Field.Player1, Color.BLUE);
+        colorMap.put(Field.Player2, Color.RED);
         colorMap.put(Field.Possible, Color.WHITE);
     }
 
     private void prepareForThreePlayers() {
-        colorMap.put(Field.Empty, Color.LIGHT_GRAY);
-        colorMap.put(Field.Player1, Color.BLUE);
-        colorMap.put(Field.Player2, Color.RED);
+        prepareForTwoPlayers();
         colorMap.put(Field.Player3, Color.YELLOW);
-        colorMap.put(Field.Possible, Color.WHITE);
     }
 
     private void prepareForFourPlayers() {
-        colorMap.put(Field.Empty, Color.LIGHT_GRAY);
-        colorMap.put(Field.Player1, Color.BLUE);
-        colorMap.put(Field.Player2, Color.RED);
+        prepareForTwoPlayers();
         colorMap.put(Field.Player3, Color.GREEN);
         colorMap.put(Field.Player4, Color.YELLOW);
-        colorMap.put(Field.Possible, Color.WHITE);
     }
 
     private void prepareForSixPlayers() {
-        colorMap.put(Field.Empty, Color.LIGHT_GRAY);
-        colorMap.put(Field.Player1, Color.YELLOW);
-        colorMap.put(Field.Player2, Color.RED);
-        colorMap.put(Field.Player3, Color.GREEN);
-        colorMap.put(Field.Player4, Color.BLUE);
-        colorMap.put(Field.Player5, Color.ORANGE);
-        colorMap.put(Field.Player6, Color.PINK);
-        colorMap.put(Field.Possible, Color.WHITE);
+        prepareForFourPlayers();
+        colorMap.put(Field.Player5, Color.CYAN);
+        colorMap.put(Field.Player6, Color.ORANGE);
     }
 
 

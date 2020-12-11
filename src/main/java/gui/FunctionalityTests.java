@@ -1,9 +1,9 @@
-package client;
+package gui;
 
 import gui.ChineseCheckersGameGUI;
 import gui.CommandLineBoardGUI;
 
-public class Main {
+public class FunctionalityTests {
     public static void main(String[] args) {
         CommandLineBoardGUI testGui;
         //for(int i:new int[] {6}){
