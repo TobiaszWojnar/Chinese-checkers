@@ -2,42 +2,31 @@ package gui.board;
 
 import board.Board;
 import board.ChineseCheckersBoard;
-import board.Field;
+import gui.ColorManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.EnumMap;
 
 public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private Board board;
-    private final Color backgroundColor = new Color(238,238,238);
     private final int pawnSize = 35;
-    private final int xOffset = 50;
-    EnumMap<Field, Color> colors;
+    private final int xOffset = 55;
+    private final ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
 
-    public ChineseCheckersBoardGUI (Board board){
+    public ChineseCheckersBoardGUI (Board board, ColorManager colorManager){
         this.board=board;
-        colors = new EnumMap<>(Field.class);
-
-        colors.put(Field.Empty, Color.GRAY);
-        colors.put(Field.Player1, Color.YELLOW);
-        colors.put(Field.Player2, Color.RED);
-        colors.put(Field.Player3, Color.GREEN);
-        colors.put(Field.Player4, Color.BLUE);
-        colors.put(Field.Player5, Color.ORANGE);
-        colors.put(Field.Player6, Color.PINK);
-        colors.put(Field.Possible, Color.WHITE);
+        this.colorManager=colorManager;
 
         addMouseListener(this);
     }
 
     public void paint(Graphics g){
-        g.setColor(backgroundColor);
-        g.fillRect(0, 0, getX(), getY());
-        g.setColor(Color.BLACK);
+        g.setColor(colorManager.getBackgroundColor());
+        System.out.println(g.getColor());
+        g.fillRect(0, 0, getWidth(), getHeight());
 
         for(int y = 0; y<board.getBoard().length;y++){//TODO do we need methods board.getWidth() board.getHeight()?
             for(int x = 0; x<board.getBoard()[0].length;x++) {
@@ -84,7 +73,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     }
 
     private void paintElement (Graphics g, int x, int y){
-        g.setColor(colors.get(board.getBoard()[y][x]));
+        g.setColor(colorManager.getMappedColor(board.getBoard()[y][x]));
 
         g.fillOval((int)(xOffset + x*pawnSize*0.6),y* pawnSize, pawnSize, pawnSize);
     }
@@ -93,6 +82,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         this.board=board;
         repaint();
     }
+
 
     @Override
     public void mouseClicked(MouseEvent mE) {

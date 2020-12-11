@@ -13,30 +13,48 @@ public class ChineseCheckersGameGUI extends JFrame {
     private GameGuiListener gameGuiListener;
 
     //Is created by client
-    public ChineseCheckersGameGUI(Board board, String roomId) {
+    public ChineseCheckersGameGUI(int numberOfPlayers, String roomId) {
 
         setTitle("ChineseCheckersGame room= " + roomId);
-        setSize(new Dimension(640,640));
+        setSize(new Dimension(650,650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
 
+        Board board = new ChineseCheckersBoard(numberOfPlayers);
+        ColorManager colorManager = new ColorManager(numberOfPlayers);
+
         //TODO po utworzeniu możesz nie mieć kompletu graczy
-        boardGui = new ChineseCheckersBoardGUI(board);
+        boardGui = new ChineseCheckersBoardGUI(board, colorManager);
         add(boardGui);
-        boardGui.setListener(new ChineseCheckersBoardGUI.BoardGuiListener() {
-            @Override
-            public void onClicked(int x, int y) {
-                System.out.println("Server clicked x = " + x + "; y = " + y);
-                //TODO catch request and do sth
-                //gameGuiListener.onClicked(x,y);
-                showMessage("Server clicked x = " + x + "; y = " + y);
-            }
+        boardGui.setListener((x, y) -> {
+            System.out.println("Server clicked x = " + x + "; y = " + y);
+            //TODO catch request and do sth
+            //gameGuiListener.onClicked(x,y);
         });
 
-        //TODO menu for sending to requests 'Surrender', 'wait - no move'
+        ChineseCheckersMenuBar menuBar = new ChineseCheckersMenuBar(colorManager, numberOfPlayers);
+        setJMenuBar(menuBar);
+        menuBar.setListener(new ChineseCheckersMenuBar.MenuBarListener() {
+            @Override
+            public void resign() {
+                //TODO catch request and do sth
+                //gameGuiListener.onResigned();
+                System.out.println("TO server I resign");
+            }
 
-        //TODO menu for changing colors
+            @Override
+            public void skip() {
+                //TODO catch request and do sth
+                //gameGuiListener.onSkipped();
+                System.out.println("To server I skip");
+            }
+
+            @Override
+            public void updateColors() {
+                boardGui.repaint();
+            }
+        });
 
     }
     public void updateBoard(ChineseCheckersBoard board){
@@ -45,7 +63,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     /**
      * Possible messages 'You lose', 'You win', 'It is a tie'
      */
-    public void showMessage(String message){//TODO enum for types of messages
+    public void showMessage(String message){
         JOptionPane.showMessageDialog(this, message,"Info",JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -55,5 +73,7 @@ public class ChineseCheckersGameGUI extends JFrame {
 
     public interface GameGuiListener {
         void onClicked(int x, int y);
+        void onSkipped();
+        void onResigned();
     }
 }
