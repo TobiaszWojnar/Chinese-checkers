@@ -1,6 +1,6 @@
 package client;
 
-import gui.ChineseCheckersMenu;
+import gui.menu.ChineseCheckersMenu;
 import gui.CommandLineBoardGUI;
 
 public class Main {
