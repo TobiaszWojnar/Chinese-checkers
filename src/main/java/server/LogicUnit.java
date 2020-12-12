@@ -15,12 +15,12 @@ public class LogicUnit {
     }
 
     void setPossible(int x, int y) {
-        if (board.isValidEmptyField(x, y))
+        if (board.isValidField(x, y) && board.isEmpty(x, y))
             board.setField(x, y, Field.Possible);
     }
 
     void setPossibleJump(int x_mid, int y_mid, int x, int y) {
-        if (board.isValidEmptyField(x, y) && board.hasPawn(x_mid, y_mid) && !visited[x][y]) {
+        if (board.isValidField(x, y) && board.isEmpty(x, y) && board.hasPawn(x_mid, y_mid) && !visited[x][y]) {
             visited[x][y] = true;
             setPossible(x, y);
             highlightJumpsRecursive(x, y);

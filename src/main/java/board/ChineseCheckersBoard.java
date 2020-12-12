@@ -168,4 +168,24 @@ public class ChineseCheckersBoard extends Board{
         setField(24,12,field);
 
     }
+    public boolean hasPawn(int x, int y) {
+        return getField(x, y) != Field.Chosen && getField(x, y) != Field.Empty && getField(x, y) != Field.Possible;
+    }
+
+    public boolean isEmpty(int x, int y) {
+        return getField(x, y) == Field.Empty;
+    }
+
+    public void deselect(Field player) {
+    for (int i = 0; i < getWidth(); i++)
+        for (int j = 0; j < getHeight(); j++) {
+            if (getField(i, j) == Field.Possible)
+                setField(i, j, Field.Empty);
+            if (getField(i, j) == Field.Chosen) {
+                setField(i, j, player);
+            }
+        }
+
+    }
+
 }
