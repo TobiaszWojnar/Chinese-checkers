@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Chinese-checkers" />
+        <module name="My-Chinese-checkers" />
       </profile>
     </annotationProcessing>
   </component>
