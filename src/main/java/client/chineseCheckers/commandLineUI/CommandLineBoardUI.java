@@ -1,13 +1,13 @@
-package gui;
+package client.chineseCheckers.commandLineUI;
 
 import board.Board;
 import board.ChineseCheckersBoard;
 import board.Field;
 
-public class CommandLineBoardGUI {
+public class CommandLineBoardUI {
     private final Board board;//TODO names is board a matrix of Field objects or is it a Board object
 
-    public CommandLineBoardGUI(int numberOfPlayers){
+    public CommandLineBoardUI(int numberOfPlayers){
         board = new ChineseCheckersBoard(numberOfPlayers);
     }
 

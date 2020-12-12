@@ -1,8 +1,7 @@
-package gui;
+package client.chineseCheckers.GUI;
 
 import board.Board;
 import board.ChineseCheckersBoard;
-import gui.board.ChineseCheckersBoardGUI;
 
 import javax.swing.*;
 import java.awt.*;
