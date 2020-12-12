@@ -1,4 +1,4 @@
-package gui;
+package client.chineseCheckers.GUI;
 
 import board.Field;
 
@@ -58,6 +58,10 @@ public class ColorManager {
         return colorMap.get(Field.values()[indexInEnum]);
     }
 
+    public void putMap(Field value, Color color) {
+        colorMap.put(value,color);
+    }
+
     public Color getBackgroundColor() {
         return backgroundColor;
     }
@@ -65,20 +69,4 @@ public class ColorManager {
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
-
-    public void putMap(Field value, Color color) {
-        colorMap.put(value,color);
-    }
 }
-/*
-        colors = new EnumMap<>(Field.class);
-//TODO wywal do klasy na kolory
-        colors.put(Field.Empty, Color.GRAY);
-        colors.put(Field.Player1, Color.YELLOW);
-        colors.put(Field.Player2, Color.RED);
-        colors.put(Field.Player3, Color.GREEN);
-        colors.put(Field.Player4, Color.BLUE);
-        colors.put(Field.Player5, Color.ORANGE);
-        colors.put(Field.Player6, Color.PINK);
-        colors.put(Field.Possible, Color.WHITE);
- */

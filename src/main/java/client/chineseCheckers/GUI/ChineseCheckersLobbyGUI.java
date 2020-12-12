@@ -1,4 +1,4 @@
-package gui.menu;
+package client.chineseCheckers.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,15 +7,14 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 
-public class ChineseCheckersMenu implements ActionListener {
+public class ChineseCheckersLobbyGUI implements ActionListener {
 
     private final JTextField roomIdTextField = new JTextField("Room Id");
 
     private final String[] numberOfPlayers = new String[]{"2","3","4","6"};
     private final JComboBox<String> numberOfPlayersList = new JComboBox<>(numberOfPlayers);
 
-    //TODO abstract lobby
-    //TODO refactor na lobby/launcher
+
     //TODO communicate with server has list of games
     //TODO creates games
     public void MenuWindow(){//TODO make look nice

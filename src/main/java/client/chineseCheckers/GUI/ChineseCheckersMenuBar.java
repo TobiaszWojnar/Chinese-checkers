@@ -1,4 +1,4 @@
-package gui;
+package client.chineseCheckers.GUI;
 
 import board.Field;
 
