@@ -1,5 +1,7 @@
 package board;
 
+import board.corners.*;
+
 import java.util.Arrays;
 
 public class ChineseCheckersBoard extends Board{
@@ -69,104 +71,38 @@ public class ChineseCheckersBoard extends Board{
     }
 
     private void setUpper(Field field){
-        setField(12,0,field);
-
-        setField(11,1,field);
-        setField(13,1,field);
-
-        setField(10,2,field);
-        setField(12,2,field);
-        setField(14,2,field);
-
-        setField(9,3,field);
-        setField(11,3,field);
-        setField(13,3,field);
-        setField(15,3,field);
+        for (IntPoint point : UpperCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
 
     private void setUpperRight(Field field){
-        setField(18, 4, field);
-        setField(20, 4, field);
-        setField(22, 4, field);
-        setField(24, 4, field);
-
-        setField(19, 5, field);
-        setField(21, 5, field);
-        setField(23, 5, field);
-
-        setField(20, 6, field);
-        setField(22, 6, field);
-
-        setField(21, 7, field);
-
+        for (IntPoint point : UpperRightCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
     private void setUpperLeft(Field field){
-        setField(0,4, field);
-        setField(2,4, field);
-        setField(4,4, field);
-        setField(6,4, field);
-
-        setField(1,5, field);
-        setField(3,5, field);
-        setField(5,5, field);
-
-        setField(2,6, field);
-        setField(4,6, field);
-
-        setField(3,7, field);
-
+        for (IntPoint point : UpperLeftCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
 
     private void setLower(Field field){
-
-        setField(9,13,field);
-        setField(11,13,field);
-        setField(13,13,field);
-        setField(15,13,field);
-
-        setField(10,14,field);
-        setField(12,14,field);
-        setField(14,14,field);
-
-        setField(11,15,field);
-        setField(13,15,field);
-
-        setField(12,16,field);
+        for (IntPoint point : LowerCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
 
     private void setLowerLeft(Field field){
-        setField(3,9,field);
-
-        setField(2,10,field);
-        setField(4,10,field);
-
-        setField(1,11,field);
-        setField(3,11,field);
-        setField(5,11,field);
-
-        setField(0,12,field);
-        setField(2,12,field);
-        setField(4,12,field);
-        setField(6,12,field);
-
+        for (IntPoint point : LowerLeftCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
 
     private void setLowerRight(Field field){
-
-        setField(21,9,field);
-
-        setField(20,10,field);
-        setField(22,10,field);
-
-        setField(19,11,field);
-        setField(21,11,field);
-        setField(23,11,field);
-
-        setField(18,12,field);
-        setField(20,12,field);
-        setField(22,12,field);
-        setField(24,12,field);
-
+        for (IntPoint point : LowerRightCorner.getInstance().points) {
+            setField(point.getX(), point.getY(), field);
+        }
     }
     public boolean hasPawn(int x, int y) {
         return getField(x, y) != Field.Chosen && getField(x, y) != Field.Empty && getField(x, y) != Field.Possible;
@@ -175,17 +111,4 @@ public class ChineseCheckersBoard extends Board{
     public boolean isEmpty(int x, int y) {
         return getField(x, y) == Field.Empty;
     }
-
-    public void deselect(Field player) {
-    for (int i = 0; i < getWidth(); i++)
-        for (int j = 0; j < getHeight(); j++) {
-            if (getField(i, j) == Field.Possible)
-                setField(i, j, Field.Empty);
-            if (getField(i, j) == Field.Chosen) {
-                setField(i, j, player);
-            }
-        }
-
-    }
-
 }

@@ -11,11 +11,11 @@ public class BoardLogicTest {
 
     @Test
     public void highlightTest() {
-        // Tests if LogicUnit finds possible moves for a pawn correctly
+        // Tests if LogicUnit perfmorms every step of moving a pawn correctly
 
         Board testBoard = new ChineseCheckersBoard(6);
 
-        LogicUnit logic = new LogicUnit(testBoard);
+        LogicUnit logic = new LogicUnit(testBoard, null);
 
         testBoard.setField(11,7, Field.Player1);
         testBoard.setField(9,7, Field.Player1);
@@ -26,7 +26,7 @@ public class BoardLogicTest {
         testBoard.setField(11,5, Field.Player1);
         testBoard.setField(11,11, Field.Player1);
 
-        testBoard.setField(12,8, Field.Chosen);
+        testBoard.setField(12,8, Field.Player1);
 
         Board checkBoard = new ChineseCheckersBoard(6);
 
@@ -53,14 +53,16 @@ public class BoardLogicTest {
         checkBoard.setField(12, 12, Field.Possible);
 
         // Run function which should set testBoard to match checkBoard
-        logic.highlightPossible(12, 8);
+        logic.highlightPossible(12, 8, Field.Player1);
 
         // Check every field
         for (int x = 0; x < 25; x++)
-            for (int y = 0; y < 17; y += 2)
+            for (int y = 0; y < 17; y += 2) {
+                //System.out.println("x " + x + " " + y);
                 assertEquals(checkBoard.getField(x, y), testBoard.getField(x, y));
+            }
 
-        logic.deselect(Field.Player1);
+        logic.deselect(12, 8, Field.Player1);
 
         Board checkBoard2 = new ChineseCheckersBoard(6);
 
@@ -74,6 +76,18 @@ public class BoardLogicTest {
         checkBoard2.setField(11,11, Field.Player1);
 
         checkBoard2.setField(12,8, Field.Player1);
+
+        for (int x = 0; x < 25; x++)
+            for (int y = 0; y < 17; y += 2) {
+                //System.out.println("x " + x + " " + y);
+                assertEquals(checkBoard2.getField(x, y), testBoard.getField(x, y));
+            }
+
+        checkBoard2.setField(12, 8, Field.Empty);
+        checkBoard2.setField(8, 8, Field.Player1);
+
+        logic.highlightPossible(12, 8, Field.Player1);
+        logic.move(8, 8, 12, 8, Field.Player1);
 
         for (int x = 0; x < 25; x++)
             for (int y = 0; y < 17; y += 2) {

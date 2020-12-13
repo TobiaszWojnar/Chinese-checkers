@@ -21,9 +21,15 @@ public class Protocol {
         out.println("HIGHLIGHTED FOR " + x + " " + y);
     }
 
-    void moveMade() {
-        out.println("MOVEMADE");
+    void deselected(int x, int y) {
+        out.println("DESELECTED " + x + " " + y);
     }
 
+    void moveMade(int x, int y) {
+        out.println("MOVEMADE " + x + " " + y);
+    }
 
+    void winner(String player) {
+        out.println("WINNER: " + player);
+    }
 }
