@@ -20,9 +20,11 @@ public class PlayerList {
         return new PlayerIterator(numOfPlayers);
     }
 
+/*
     public Game.Player get(int i) {
         return players.get(i);
     }
+*/
 
     public List<Game.Player> getList() {
         return players;
