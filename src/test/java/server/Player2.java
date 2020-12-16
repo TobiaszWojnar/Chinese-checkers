@@ -4,7 +4,7 @@ import client.model.GameClient;
 
 public class Player2 {
 
-    // hwo to start a player thread
+    // how to start a player thread
     public static void main(String[] args) {
         GameClient player = new GameClient();
         new Thread(() -> {

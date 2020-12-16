@@ -13,8 +13,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class GameClient {
-    private Board board;
+public class GameClient {//TODO make abstaract class and move implementation to ChineseCheckersGameClient
+
     private BufferedReader input;
     private PrintWriter output;
     private Socket socket;
@@ -22,6 +22,7 @@ public class GameClient {
     private int numOfPlayers;
     private boolean highlighted;
     private boolean initialized;
+    private Board board;
 
     private ChineseCheckersGameGUI gameGUI;
 
@@ -78,6 +79,7 @@ public class GameClient {
                             ColorManager colorManager = new ColorManager(numOfPlayers);
                             board = new ChineseCheckersBoard(numOfPlayers);
                             gameGUI = new ChineseCheckersGameGUI(numOfPlayers, player, board, colorManager);
+
                             gameGUI.setListener(new Listener());
                             initialized = true;
                         }
