@@ -19,30 +19,30 @@ public class BoardLogicTest {
 
         LogicUnitAllFilled logic = new LogicUnitAllFilled(testBoard, new CornerMap(6));
 
-        testBoard.setField(11,7, Field.Player1);
-        testBoard.setField(9,7, Field.Player1);
-        testBoard.setField(11,9, Field.Player3);
-        testBoard.setField(13,7, Field.Player2);
-        testBoard.setField(14,8, Field.Player5);
-        testBoard.setField(14,6, Field.Player6);
-        testBoard.setField(11,5, Field.Player1);
-        testBoard.setField(11,11, Field.Player1);
+        testBoard.setField(11, 7, Field.Player1);
+        testBoard.setField(9, 7, Field.Player1);
+        testBoard.setField(11, 9, Field.Player3);
+        testBoard.setField(13, 7, Field.Player2);
+        testBoard.setField(14, 8, Field.Player5);
+        testBoard.setField(14, 6, Field.Player6);
+        testBoard.setField(11, 5, Field.Player1);
+        testBoard.setField(11, 11, Field.Player1);
 
-        testBoard.setField(12,8, Field.Player1);
+        testBoard.setField(12, 8, Field.Player1);
 
         Board checkBoard = new ChineseCheckersBoard(6);
 
         // Clone testBoard
-        checkBoard.setField(11,7, Field.Player1);
-        checkBoard.setField(9,7, Field.Player1);
-        checkBoard.setField(11,9, Field.Player3);
-        checkBoard.setField(13,7, Field.Player2);
-        checkBoard.setField(14,8, Field.Player5);
-        checkBoard.setField(14,6, Field.Player6);
-        checkBoard.setField(11,5, Field.Player1);
-        checkBoard.setField(11,11, Field.Player1);
+        checkBoard.setField(11, 7, Field.Player1);
+        checkBoard.setField(9, 7, Field.Player1);
+        checkBoard.setField(11, 9, Field.Player3);
+        checkBoard.setField(13, 7, Field.Player2);
+        checkBoard.setField(14, 8, Field.Player5);
+        checkBoard.setField(14, 6, Field.Player6);
+        checkBoard.setField(11, 5, Field.Player1);
+        checkBoard.setField(11, 11, Field.Player1);
 
-        checkBoard.setField(12,8, Field.Chosen);
+        checkBoard.setField(12, 8, Field.Chosen);
 
         // Set expected values
         checkBoard.setField(13, 9, Field.Possible);
@@ -68,16 +68,16 @@ public class BoardLogicTest {
 
         Board checkBoard2 = new ChineseCheckersBoard(6);
 
-        checkBoard2.setField(11,7, Field.Player1);
-        checkBoard2.setField(9,7, Field.Player1);
-        checkBoard2.setField(11,9, Field.Player3);
-        checkBoard2.setField(13,7, Field.Player2);
-        checkBoard2.setField(14,8, Field.Player5);
-        checkBoard2.setField(14,6, Field.Player6);
-        checkBoard2.setField(11,5, Field.Player1);
-        checkBoard2.setField(11,11, Field.Player1);
+        checkBoard2.setField(11, 7, Field.Player1);
+        checkBoard2.setField(9, 7, Field.Player1);
+        checkBoard2.setField(11, 9, Field.Player3);
+        checkBoard2.setField(13, 7, Field.Player2);
+        checkBoard2.setField(14, 8, Field.Player5);
+        checkBoard2.setField(14, 6, Field.Player6);
+        checkBoard2.setField(11, 5, Field.Player1);
+        checkBoard2.setField(11, 11, Field.Player1);
 
-        checkBoard2.setField(12,8, Field.Player1);
+        checkBoard2.setField(12, 8, Field.Player1);
 
         for (int x = 0; x < 25; x++)
             for (int y = 0; y < 17; y += 2) {

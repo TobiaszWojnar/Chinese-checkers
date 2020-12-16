@@ -56,7 +56,7 @@ public abstract class LogicUnitAbstract {
             for (IntPoint point : offsets) {
                 if (temp.has(x + 2 * point.getX(), y + 2 * point.getY())) {
                     setPossibleJump(x + point.getX(), y + point.getY(),
-                                x + 2 * point.getX(), y + 2 * point.getY(), temp);
+                            x + 2 * point.getX(), y + 2 * point.getY(), temp);
                 }
             }
         }

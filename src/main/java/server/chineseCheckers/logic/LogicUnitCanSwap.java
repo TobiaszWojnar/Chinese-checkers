@@ -13,7 +13,6 @@ public class LogicUnitCanSwap extends LogicUnitAbstract {
     }
 
 
-
     @Override
     public boolean isWinner(Field player) {
         return false;
