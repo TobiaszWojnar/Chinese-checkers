@@ -14,12 +14,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     //Is created by client
     public ChineseCheckersGameGUI(int numberOfPlayers, String roomId, Board board, ColorManager colorManager) {
 
-        setTitle("ChineseCheckersGame room: " + roomId);
-        setSize(new Dimension(650,650));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setVisible(true);
-
+        System.out.println("Creating board gui");
         //TODO po utworzeniu możesz nie mieć kompletu graczy
         boardGui = new ChineseCheckersBoardGUI(board, colorManager);
         add(boardGui);
@@ -29,6 +24,7 @@ public class ChineseCheckersGameGUI extends JFrame {
             gameGuiListener.onClicked(x, y);
         });
 
+        System.out.println("Creating menubar");
         ChineseCheckersMenuBar menuBar = new ChineseCheckersMenuBar(colorManager, numberOfPlayers);
         setJMenuBar(menuBar);
         menuBar.setListener(new ChineseCheckersMenuBar.MenuBarListener() {
@@ -52,6 +48,12 @@ public class ChineseCheckersGameGUI extends JFrame {
             }
         });
 
+        System.out.println("Creating window");
+        setTitle("ChineseCheckersGame room: " + roomId);
+        setSize(new Dimension(650,650));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setVisible(true);
     }
 
     /**
