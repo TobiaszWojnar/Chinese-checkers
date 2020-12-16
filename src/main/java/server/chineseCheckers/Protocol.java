@@ -16,8 +16,8 @@ public class Protocol {
     }
 */
 
-    void gameStarted() {
-        out.println("ALLCONNECTED_GAMESTARTED");
+    void gameStarted(String currentplayer) {
+        out.println("ALLCONNECTED_GAMESTARTED " + currentplayer);
         out.flush();
     }
 

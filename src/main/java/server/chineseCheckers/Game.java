@@ -109,7 +109,7 @@ public class Game extends GameAbstract {
                                 currentPlayer = playerIterator.next();
                             }
                             gameStarted();
-                            System.out.println("ALLCONNECTED_GAMESTARTED");
+                            System.out.println("ALLCONNECTED_GAMESTARTED " + currentPlayer.getPlayer());
                             System.out.println("STARTING_PLAYER: " + currentPlayer.getPlayer());
                         }
 
@@ -140,7 +140,7 @@ public class Game extends GameAbstract {
 
     private void gameStarted() {
         for (Player player : players.getList()) {
-            player.protocol.gameStarted();
+            player.protocol.gameStarted(currentPlayer.getPlayer());
         }
     }
 

@@ -82,8 +82,8 @@ public class GameClient {//TODO make abstaract class and move implementation to 
                             ColorManager colorManager = new ColorManager(numOfPlayers);
                             board = new ChineseCheckersBoard(numOfPlayers);
                             gameGUI = new ChineseCheckersGameGUI(numOfPlayers, player, board, colorManager);
-
                             gameGUI.setListener(new Listener());
+                            currentPlayer = words[1];
                             initialized = true;
                         }
                         break;
