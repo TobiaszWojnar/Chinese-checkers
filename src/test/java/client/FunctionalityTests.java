@@ -1,4 +1,4 @@
-package client.chineseCheckers;
+package client;
 
 import client.chineseCheckers.GUI.ChineseCheckersGameGUI;
 import client.chineseCheckers.commandLineUI.CommandLineBoardUI;

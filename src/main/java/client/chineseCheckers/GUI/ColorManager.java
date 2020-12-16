@@ -55,6 +55,7 @@ public class ColorManager {
     public Color getMappedColor(Field field){
         return colorMap.get(field);
     }
+
     public Color getMappedColor(int indexInEnum){
         return colorMap.get(Field.values()[indexInEnum]);
     }

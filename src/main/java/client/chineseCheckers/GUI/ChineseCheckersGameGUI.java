@@ -10,9 +10,15 @@ public class ChineseCheckersGameGUI extends JFrame {
 
     private final ChineseCheckersBoardGUI boardGui;
     private GameGuiListener gameGuiListener;
+    private final ChineseCheckersMenuBar menuBar;
+    private String currentPlayer;
 
-    //Is created by client
-    public ChineseCheckersGameGUI(int numberOfPlayers, String roomId, Board board, ColorManager colorManager) {
+    public ChineseCheckersGameGUI(
+            int numberOfPlayers, String playerNumber, Board board, String currentPlayer) {//TODO roomId?
+
+        this.currentPlayer=currentPlayer;
+
+        ColorManager colorManager = new ColorManager(numberOfPlayers);
 
         System.out.println("Creating board gui");
         boardGui = new ChineseCheckersBoardGUI(board, colorManager);
@@ -22,8 +28,8 @@ public class ChineseCheckersGameGUI extends JFrame {
             gameGuiListener.onClicked(x, y);
         });
 
-        System.out.println("Creating menubar");
-        ChineseCheckersMenuBar menuBar = new ChineseCheckersMenuBar(colorManager, numberOfPlayers);
+        System.out.println("Creating menuBar");
+        menuBar = new ChineseCheckersMenuBar(colorManager, numberOfPlayers, currentPlayer);
         setJMenuBar(menuBar);
         menuBar.setListener(new ChineseCheckersMenuBar.MenuBarListener() {
             @Override
@@ -47,7 +53,7 @@ public class ChineseCheckersGameGUI extends JFrame {
         });
 
         System.out.println("Creating window");
-        setTitle("ChineseCheckersGame room: " + roomId);
+        setTitle("Chinese Checkers Game. You are " + playerNumber);
         setSize(new Dimension(650,650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,12 +79,8 @@ public class ChineseCheckersGameGUI extends JFrame {
         this.gameGuiListener = gameGuiListener;
     }
 
-/*
-    public interface GameGuiListener {
-        void onClicked(int x, int y);//Waits for board or message or both
-        void onSkipped();            //Waits for board or message or both
-        void onResigned();           //Waits for message
-        //Liczba graczy co jakiś czas
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
+        menuBar.setCurrentPlayer(currentPlayer);
     }
-*/
 }
