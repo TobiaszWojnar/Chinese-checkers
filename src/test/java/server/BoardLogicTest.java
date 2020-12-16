@@ -4,6 +4,7 @@ import board.Board;
 import board.ChineseCheckersBoard;
 import board.Field;
 import org.junit.Test;
+import server.chineseCheckers.logic.LogicUnitAllFilled;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +16,7 @@ public class BoardLogicTest {
 
         Board testBoard = new ChineseCheckersBoard(6);
 
-        LogicUnit logic = new LogicUnit(testBoard, null);
+        LogicUnitAllFilled logic = new LogicUnitAllFilled(testBoard, null);
 
         testBoard.setField(11,7, Field.Player1);
         testBoard.setField(9,7, Field.Player1);

@@ -4,7 +4,7 @@ import board.corners.*;
 
 import java.util.Arrays;
 
-public class ChineseCheckersBoard extends Board{
+public class ChineseCheckersBoard extends Board {
 
     public ChineseCheckersBoard(int numberOfPlayers){
         board = new Field[17][25];
@@ -12,18 +12,22 @@ public class ChineseCheckersBoard extends Board{
         prepareForPlayers(numberOfPlayers);
     }
 
-    public Board prepareForPlayers(int numberOfPlayers) {
+    protected void prepareForPlayers(int numberOfPlayers) {
         switch(numberOfPlayers){
             case 2:
-                return prepareForTwoPlayers();
+                prepareForTwoPlayers();
+                break;
             case 3:
-                return prepareForThreePlayers();
+                prepareForThreePlayers();
+                break;
             case 4:
-                return prepareForFourPlayers();
+                prepareForFourPlayers();
+                break;
             case 6:
-                return prepareForSixPlayers();
+                prepareForSixPlayers();
+                break;
             default:
-                return this;
+                break;
                 //TODO error handling
         }
     }
@@ -40,45 +44,41 @@ public class ChineseCheckersBoard extends Board{
         */ //Does not set values
     }
 
-    private Board prepareForTwoPlayers(){
-        setUpper(Field.Player1);
+    private void prepareForTwoPlayers(){
+        setUpper();
         setLower(Field.Player2);
-        return this;
     }
 
-    private Board prepareForThreePlayers(){
-        setUpper(Field.Player1);
+    private void prepareForThreePlayers(){
+        setUpper();
         setLowerRight(Field.Player2);
         setLowerLeft(Field.Player3);
-        return this;
     }
 
-    private Board prepareForFourPlayers(){
+    private void prepareForFourPlayers(){
         setUpperLeft(Field.Player1);
-        setUpperRight(Field.Player2);
+        setUpperRight();
         setLowerRight(Field.Player3);
         setLowerLeft(Field.Player4);
-        return this;
     }
-    private Board prepareForSixPlayers(){
-        setUpper(Field.Player1);
-        setUpperRight(Field.Player2);
+    private void prepareForSixPlayers(){
+        setUpper();
+        setUpperRight();
         setLowerRight(Field.Player3);
         setLower(Field.Player4);
         setLowerLeft(Field.Player5);
         setUpperLeft(Field.Player6);
-        return this;
     }
 
-    private void setUpper(Field field){
+    private void setUpper(){
         for (IntPoint point : UpperCorner.getInstance().points) {
-            setField(point.getX(), point.getY(), field);
+            setField(point.getX(), point.getY(), Field.Player1);
         }
     }
 
-    private void setUpperRight(Field field){
+    private void setUpperRight(){
         for (IntPoint point : UpperRightCorner.getInstance().points) {
-            setField(point.getX(), point.getY(), field);
+            setField(point.getX(), point.getY(), Field.Player2);
         }
     }
     private void setUpperLeft(Field field){

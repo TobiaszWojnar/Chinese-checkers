@@ -1,4 +1,4 @@
-package server;
+package server.chineseCheckers.datastructures;
 
 import board.Field;
 import board.corners.*;

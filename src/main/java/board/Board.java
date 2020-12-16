@@ -8,13 +8,13 @@ public abstract class Board {
 
     protected abstract void cleanBoard();
 
-    public abstract Board prepareForPlayers(int numberOfPlayers);
+    protected abstract void prepareForPlayers(int numberOfPlayers);
 
     public void setBoard(Field[][] board) {
         this.board = board;
     }
 
-    public void setField(int x, int y, Field field){
+    public void setField(int x, int y, Field field) {
         board[y][x] = field;
     }
 
@@ -22,7 +22,7 @@ public abstract class Board {
         return board[y][x];
     }
 
-    public Field[][] getBoard(){
+    public Field[][] getBoard() {
         return board;
     }
 
@@ -34,9 +34,9 @@ public abstract class Board {
         return board.length;
     }
 
-    public boolean isValidField(int x, int y){
-        if((x+y)%2==0){
-            switch (y){
+    public boolean isValidField(int x, int y) {
+        if ((x + y) % 2 == 0) {
+            switch (y) {
                 case 0:
                 case 16:
                     return x == 12;
@@ -51,7 +51,7 @@ public abstract class Board {
                     return x > 8 && x < 16;
                 case 4:
                 case 12:
-                    return true;
+                    return x >= 0 && x <= 24;
                 case 5:
                 case 11:
                     return x > 0 && x < 24;

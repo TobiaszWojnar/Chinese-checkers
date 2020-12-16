@@ -1,4 +1,6 @@
-package server;
+package server.chineseCheckers.datastructures;
+
+import server.chineseCheckers.Game;
 
 import java.util.ArrayList;
 import java.util.Iterator;

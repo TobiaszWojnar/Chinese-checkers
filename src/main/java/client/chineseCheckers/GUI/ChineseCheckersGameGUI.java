@@ -15,12 +15,10 @@ public class ChineseCheckersGameGUI extends JFrame {
     public ChineseCheckersGameGUI(int numberOfPlayers, String roomId, Board board, ColorManager colorManager) {
 
         System.out.println("Creating board gui");
-        //TODO po utworzeniu możesz nie mieć kompletu graczy
         boardGui = new ChineseCheckersBoardGUI(board, colorManager);
         add(boardGui);
         boardGui.setListener((x, y) -> {
             System.out.println("Server clicked x = " + x + "; y = " + y);
-            //TODO catch request and do sth
             gameGuiListener.onClicked(x, y);
         });
 

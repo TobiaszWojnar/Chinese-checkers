@@ -1,4 +1,4 @@
-package server;
+package server.chineseCheckers;
 
 import java.io.PrintWriter;
 
@@ -33,10 +33,10 @@ public class Protocol {
         System.out.println("DESELECTED " + x + " " + y);
     }
 
-    void moveMade(String player, int x, int y) {
+    void moveMade(String me, String player, int x, int y) {
         out.println("MOVEMADE " + player + " " + x + " " + y);
         out.flush();
-        System.out.println("MOVEMADE " + player + " " + x + " " + y);
+        System.out.println(me + ": MOVEMADE " + player + " " + x + " " + y);
     }
 
     void winner(String player) {

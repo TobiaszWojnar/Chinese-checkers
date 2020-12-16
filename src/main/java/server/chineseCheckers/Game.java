@@ -1,9 +1,15 @@
-package server;
+package server.chineseCheckers;
 
-import board.Board;
 import board.ChineseCheckersBoard;
 import board.Field;
 import board.IntPoint;
+import server.chineseCheckers.datastructures.CornerMap;
+import server.GameAbstract;
+import server.chineseCheckers.datastructures.PlayerList;
+import server.chineseCheckers.logic.LogicUnitAbstract;
+import server.chineseCheckers.logic.LogicUnitAllFilled;
+import server.chineseCheckers.logic.LogicUnitAtLeastOneFilled;
+import server.chineseCheckers.logic.LogicUnitCanSwap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +21,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
-public class Game implements Runnable {
+public class Game extends GameAbstract {
     private final ChineseCheckersBoard board;
     private int numOfPlayers;
     private Player currentPlayer;
-    private final LogicUnit logic;
+    private LogicUnitAbstract logic;
     private final PlayerList players;
     private final Iterator<Player> playerIterator;
     private boolean started;
@@ -28,20 +34,24 @@ public class Game implements Runnable {
     private static final int PORT = 8081;
 
     // for testing only
-    public Board getBoard() {
+    /*public Board getBoard() {
         return board;
-    }
+    }*/
 
-    public Game(int numOfPlayers) {
+    public Game(int numOfPlayers, int variant) {
         started = false;
         serverSocket = null;
         if (!Arrays.asList(2, 3, 4, 6).contains(numOfPlayers)) {
             throw new IllegalArgumentException("Illegal number of players");
         }
+        if (variant < 1 || variant > 3) {
+            throw new IllegalArgumentException("Illegal variant");
+        }
         this.numOfPlayers = numOfPlayers;
         board = new ChineseCheckersBoard(numOfPlayers);
         CornerMap corners = new CornerMap(numOfPlayers);
-        logic = new LogicUnit(board, corners);
+        //logic = new LogicUnitAllFilled(board, corners);
+        setLogic(variant, corners);
         players = new PlayerList(numOfPlayers);
         playerIterator = players.iterator();
     }
@@ -75,6 +85,7 @@ public class Game implements Runnable {
             serverThread = null;
         }
     */
+
     @Override
     public void run() {
         int i = 1;
@@ -113,6 +124,20 @@ public class Game implements Runnable {
         }
     }
 
+    private void setLogic(Integer variant, CornerMap corners) {
+        switch (variant) {
+            case 1:
+                this.logic = new LogicUnitAllFilled(board, corners);
+                break;
+            case 2:
+                this.logic = new LogicUnitAtLeastOneFilled(board, corners);
+                break;
+            case 3:
+                this.logic = new LogicUnitCanSwap(board, corners);
+                break;
+        }
+    }
+
     private void gameStarted() {
         for (Player player : players.getList()) {
             player.protocol.gameStarted();
@@ -121,7 +146,7 @@ public class Game implements Runnable {
 
     private void sendMoveToAll(String play, int x, int y) {
         for (Player player : players.getList()) {
-            player.protocol.moveMade(play, x, y);
+            player.protocol.moveMade(player.getPlayer(), play, x, y);
         }
     }
 
@@ -200,7 +225,7 @@ public class Game implements Runnable {
         }
 
         private void sendBoard() {
-            System.out.println("Sending board to client");
+            System.out.println(player + ": Sending board to client");
             for (int i = 0; i < 25; i++) {
                 for (int j = 0; j < 17; j++) {
                     String singleField = board.getField(i, j).toString();
@@ -221,7 +246,6 @@ public class Game implements Runnable {
                         chosen = new IntPoint(x, y);
                         logic.highlightPossible(x, y, Field.valueOf(player));
                         protocol.movesHighlighted(x, y);
-                        // TODO send serialized board to client after every command
                         sendBoard();
                     } else {
                         protocol.notYourTurn();

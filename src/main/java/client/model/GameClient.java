@@ -112,4 +112,17 @@ public class GameClient {//TODO make abstaract class and move implementation to 
         output.println(message);
         output.flush();
     }
+
+    public static void main(String[] args) {
+        GameClient player = new GameClient();
+        new Thread(() -> {
+            System.out.println("Player started");
+            try {
+                player.setConnection("localhost");
+                player.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 }
