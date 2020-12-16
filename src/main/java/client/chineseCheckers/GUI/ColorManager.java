@@ -31,6 +31,7 @@ public class ColorManager {
         colorMap.put(Field.Player1, Color.BLUE);
         colorMap.put(Field.Player2, Color.RED);
         colorMap.put(Field.Possible, Color.WHITE);
+        colorMap.put(Field.Chosen, Color.BLACK);
     }
 
     private void prepareForThreePlayers() {

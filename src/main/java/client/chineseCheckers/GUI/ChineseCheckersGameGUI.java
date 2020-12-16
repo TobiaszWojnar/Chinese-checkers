@@ -12,7 +12,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     private GameGuiListener gameGuiListener;
 
     //Is created by client
-    public ChineseCheckersGameGUI(int numberOfPlayers, String roomId) {
+    public ChineseCheckersGameGUI(int numberOfPlayers, String roomId, Board board, ColorManager colorManager) {
 
         setTitle("ChineseCheckersGame room: " + roomId);
         setSize(new Dimension(650,650));
@@ -20,16 +20,13 @@ public class ChineseCheckersGameGUI extends JFrame {
         setResizable(false);
         setVisible(true);
 
-        Board board = new ChineseCheckersBoard(numberOfPlayers);
-        ColorManager colorManager = new ColorManager(numberOfPlayers);
-
         //TODO po utworzeniu możesz nie mieć kompletu graczy
         boardGui = new ChineseCheckersBoardGUI(board, colorManager);
         add(boardGui);
         boardGui.setListener((x, y) -> {
             System.out.println("Server clicked x = " + x + "; y = " + y);
             //TODO catch request and do sth
-            //gameGuiListener.onClicked(x,y);
+            gameGuiListener.onClicked(x, y);
         });
 
         ChineseCheckersMenuBar menuBar = new ChineseCheckersMenuBar(colorManager, numberOfPlayers);
@@ -76,10 +73,12 @@ public class ChineseCheckersGameGUI extends JFrame {
         this.gameGuiListener = gameGuiListener;
     }
 
+/*
     public interface GameGuiListener {
         void onClicked(int x, int y);//Waits for board or message or both
         void onSkipped();            //Waits for board or message or both
         void onResigned();           //Waits for message
         //Liczba graczy co jakiś czas
     }
+*/
 }

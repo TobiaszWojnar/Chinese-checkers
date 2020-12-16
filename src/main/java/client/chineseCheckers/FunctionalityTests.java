@@ -10,7 +10,7 @@ public class FunctionalityTests {
         for(int i:new int[] {2,3,4,6}){
             testGui = new CommandLineBoardUI(i);
             testGui.show();
-            javax.swing.SwingUtilities.invokeLater(() -> new ChineseCheckersGameGUI( i, "test room"+i ));
+            //javax.swing.SwingUtilities.invokeLater(() -> new ChineseCheckersGameGUI( i, "test room"+i ));
         }
 
         //javax.swing.SwingUtilities.invokeLater(() -> new ChineseCheckersMenu().MenuWindow());

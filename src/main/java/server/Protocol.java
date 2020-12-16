@@ -17,7 +17,7 @@ public class Protocol {
 */
 
     void gameStarted() {
-        out.println("ALLCONNECTED GAMESTARTED");
+        out.println("ALLCONNECTED_GAMESTARTED");
         out.flush();
     }
 
@@ -33,10 +33,10 @@ public class Protocol {
         System.out.println("DESELECTED " + x + " " + y);
     }
 
-    void moveMade(int x, int y) {
-        out.println("MOVEMADE " + x + " " + y);
+    void moveMade(String player, int x, int y) {
+        out.println("MOVEMADE " + player + " " + x + " " + y);
         out.flush();
-        System.out.println("MOVEMADE " + x + " " + y);
+        System.out.println("MOVEMADE " + player + " " + x + " " + y);
     }
 
     void winner(String player) {
@@ -50,8 +50,8 @@ public class Protocol {
         out.flush();
     }
 
-    void welcome(int i) {
-        out.println("WELCOME " + "Player" + i);
+    void welcome(int i, int numOfPlayers) {
+        out.println("WELCOME " + "Player" + i + " " + numOfPlayers);
         out.flush();
     }
 }

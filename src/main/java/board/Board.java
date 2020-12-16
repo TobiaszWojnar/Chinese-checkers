@@ -10,6 +10,10 @@ public abstract class Board {
 
     public abstract Board prepareForPlayers(int numberOfPlayers);
 
+    public void setBoard(Field[][] board) {
+        this.board = board;
+    }
+
     public void setField(int x, int y, Field field){
         board[y][x] = field;
     }

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class LogicUnit {
     private final ChineseCheckersBoard board;
-    private final boolean[][] visited = new boolean[17][25];
+    private final boolean[][] visited = new boolean[25][17];
     private final CornerMap corners;
 
     public LogicUnit(Board board, CornerMap corners) {
@@ -26,9 +26,11 @@ public class LogicUnit {
     void setPossibleJump(int x_mid, int y_mid, int x, int y) {
         if (board.isValidField(x, y)
                 && board.isEmpty(x, y)
-                && board.hasPawn(x_mid, y_mid) && !visited[x][y]) {
+                && board.hasPawn(x_mid, y_mid)
+                && !visited[x][y]) {
             visited[x][y] = true;
-            setPossible(x, y);
+            //setPossible(x, y);
+            board.setField(x, y, Field.Possible);
             highlightJumpsRecursive(x, y);
         }
     }

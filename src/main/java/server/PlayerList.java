@@ -51,11 +51,18 @@ public class PlayerList {
 
         @Override
         public Game.Player next() {
+            index++;
+            if (index >= numOfPlayers) {
+                index = 0;
+            }
             while (!players.get(index).lives()) {
                 index++;
                 if (index >= numOfPlayers) {
                     index = 0;
                 }
+            }
+            if (index >= numOfPlayers) {
+                index = 0;
             }
             return players.get(index);
         }

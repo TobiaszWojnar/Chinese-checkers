@@ -88,16 +88,18 @@ public class Game implements Runnable {
                         Player player = new Player("Player" + i, client);
 
                         players.add(player);
-                        currentPlayer = player;
+                        //currentPlayer = player;
 
-                        player.protocol.welcome(i);
+                        player.protocol.welcome(i, numOfPlayers);
 
                         if (i == numOfPlayers) {
-                            for (int j = 0; j < new Random().nextInt(numOfPlayers); j++) {
+                            for (int j = 0; j <= new Random().nextInt(numOfPlayers); j++) {
+                                //System.out.println("blad");
                                 currentPlayer = playerIterator.next();
                             }
                             gameStarted();
-                            System.out.println("ALLCONNECTED GAMESTARTED");
+                            System.out.println("ALLCONNECTED_GAMESTARTED");
+                            System.out.println("STARTING_PLAYER: " + currentPlayer.getPlayer());
                         }
 
                         i++;
@@ -117,8 +119,16 @@ public class Game implements Runnable {
         }
     }
 
+    private void sendMoveToAll(String play, int x, int y) {
+        for (Player player : players.getList()) {
+            player.protocol.moveMade(play, x, y);
+        }
+    }
+
     private void endTurn() {
+        System.out.print(currentPlayer.getPlayer() + " -> ");
         currentPlayer = playerIterator.next();
+        System.out.println(currentPlayer.getPlayer());
     }
 
     private void checkIfWinner() {
@@ -126,9 +136,15 @@ public class Game implements Runnable {
             for (Player player : players.getList()) {
                 player.protocol.winner(currentPlayer.getPlayer());
             }
+            currentPlayer.kill();
+            numOfPlayers--;
         }
-        currentPlayer.kill();
-        numOfPlayers--;
+    }
+
+    private void sendAllBoards() {
+        for (Player player : players.getList()) {
+            player.sendBoard();
+        }
     }
 
 /*
@@ -183,13 +199,22 @@ public class Game implements Runnable {
             return running;
         }
 
+        private void sendBoard() {
+            System.out.println("Sending board to client");
+            for (int i = 0; i < 25; i++) {
+                for (int j = 0; j < 17; j++) {
+                    String singleField = board.getField(i, j).toString();
+                    sendMessage(singleField);
+                }
+            }
+        }
+
         private void handleCommands() throws IOException {
             String command;
             while ((command = input.readLine()) != null && running) {
                 System.out.println("Message from client: " + command);
                 if (command.startsWith("SELECT")) {
                     String[] words = command.split(" ");
-                    for (String wor : words) System.out.println(wor);
                     if (words[1].equals(currentPlayer.getPlayer())) {
                         int x = Integer.parseInt(words[2]);
                         int y = Integer.parseInt(words[3]);
@@ -197,6 +222,7 @@ public class Game implements Runnable {
                         logic.highlightPossible(x, y, Field.valueOf(player));
                         protocol.movesHighlighted(x, y);
                         // TODO send serialized board to client after every command
+                        sendBoard();
                     } else {
                         protocol.notYourTurn();
                     }
@@ -209,6 +235,7 @@ public class Game implements Runnable {
                                 Field.valueOf(currentPlayer.getPlayer()));
                         chosen = null;
                         protocol.deselected(x, y);
+                        sendBoard();
                     } else {
                         protocol.notYourTurn();
                     }
@@ -220,8 +247,10 @@ public class Game implements Runnable {
                         logic.move(x, y, chosen.getX(), chosen.getY(),
                                 Field.valueOf(currentPlayer.getPlayer()));
                         chosen = null;
-                        protocol.moveMade(x, y);
+                        sendMoveToAll(currentPlayer.getPlayer(), x, y);
+                        sendAllBoards();
                         checkIfWinner();
+                        endTurn();
                     } else {
                         protocol.notYourTurn();
                     }

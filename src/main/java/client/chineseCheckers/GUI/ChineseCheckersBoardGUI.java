@@ -38,7 +38,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
 
 
     private void paintElement (Graphics g, int x, int y){
-        g.setColor(colorManager.getMappedColor(board.getBoard()[y][x]));
+        g.setColor(colorManager.getMappedColor(board.getField(x, y)));
 
         g.fillOval((int)(xOffset + x*pawnSize*0.6),y* pawnSize, pawnSize, pawnSize);
     }
@@ -77,7 +77,9 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         this.boardGuiListener = boardGuiListener;
     }
 
+
     public interface BoardGuiListener {
         void onClicked(int x, int y);
     }
+
 }
