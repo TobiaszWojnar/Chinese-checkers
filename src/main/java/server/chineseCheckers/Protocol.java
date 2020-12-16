@@ -54,4 +54,9 @@ public class Protocol {
         out.println("WELCOME " + "Player" + i + " " + numOfPlayers);
         out.flush();
     }
+
+    void turnEnded(String currentPlayer) {
+        out.println("TURNENDED " + currentPlayer);
+        out.flush();
+    }
 }

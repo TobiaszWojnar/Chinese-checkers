@@ -153,6 +153,9 @@ public class Game extends GameAbstract {
     private void endTurn() {
         System.out.print(currentPlayer.getPlayer() + " -> ");
         currentPlayer = playerIterator.next();
+        for (Player player : players.getList()) {
+            player.protocol.turnEnded(currentPlayer.getPlayer());
+        }
         System.out.println(currentPlayer.getPlayer());
     }
 

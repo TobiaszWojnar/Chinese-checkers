@@ -19,6 +19,7 @@ public class GameClient {//TODO make abstaract class and move implementation to 
     private PrintWriter output;
     private Socket socket;
     private String player;
+    private String currentPlayer;
     private int numOfPlayers;
     private boolean highlighted;
     private boolean initialized;
@@ -96,6 +97,9 @@ public class GameClient {//TODO make abstaract class and move implementation to 
                         receiveBoard();
                         gameGUI.updateBoard((ChineseCheckersBoard) board);
                         highlighted = false;
+                        break;
+                    case "TURNENDED":
+                        currentPlayer = words[1];
                         break;
                     default:
                         break;
