@@ -1,4 +1,4 @@
 package client.model;
 
-public class LobbyClient {
+public abstract class LobbyClient {
 }

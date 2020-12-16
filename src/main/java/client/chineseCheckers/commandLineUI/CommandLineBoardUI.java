@@ -5,7 +5,7 @@ import board.ChineseCheckersBoard;
 import board.Field;
 
 public class CommandLineBoardUI {
-    private final Board board;//TODO names is board a matrix of Field objects or is it a Board object
+    private final Board board;
 
     public CommandLineBoardUI(int numberOfPlayers){
         board = new ChineseCheckersBoard(numberOfPlayers);

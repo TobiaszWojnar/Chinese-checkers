@@ -14,10 +14,10 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
     private final String[] numberOfPlayers = new String[]{"2","3","4","6"};
     private final JComboBox<String> numberOfPlayersList = new JComboBox<>(numberOfPlayers);
 
+    private LobbyGuiListener listener;
 
-    //TODO communicate with server has list of games
-    //TODO creates games
-    public void MenuWindow(){//TODO make look nice
+
+    public void LobbyWindow(){//TODO make look nice
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setPreferredSize(new Dimension(400, 150));
@@ -37,15 +37,25 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
         panel.add(roomIdTextField);
 
         JButton bHost = new JButton("Host");
-        bHost.setActionCommand("host");
+        //bHost.setActionCommand("host");
         panel.add(bHost);
-        bHost.addActionListener(this);
+        bHost.addActionListener(e -> {
+            int chosenNumberOfPlayers = Integer.parseInt(
+                    (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem()));
+            listener.host(chosenNumberOfPlayers);
+        });
 
         JButton bJoin = new JButton("Join");
-        bJoin.setActionCommand("join");
         panel.add(bJoin);
-        bJoin.addActionListener(this);
-
+            bJoin.addActionListener(e -> {
+                String chosenRoomId = roomIdTextField.getText();
+                System.out.println("joining room "+chosenRoomId);
+                listener.join(chosenRoomId);
+            });
+        /*
+            bJoin.setActionCommand("join");
+            bJoin.addActionListener(this);
+        */
         frame.setContentPane(panel);
 
         frame.pack();
@@ -55,16 +65,29 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        /*
         if ("host".equals(actionEvent.getActionCommand())) {
-
             int chosenNumberOfPlayers = Integer.parseInt(
                     (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem()));
             System.out.println("host for "+ chosenNumberOfPlayers);
             //TODO send request through client
-        } else if("join".equals(actionEvent.getActionCommand())){
+        } else
+
+            if("join".equals(actionEvent.getActionCommand())){
             String chosenRoomId = roomIdTextField.getText();
             System.out.println("joining room "+chosenRoomId);
+            listener.join(chosenRoomId);
             //TODO send request through client
         }
+        */
+    }
+
+    public void setListener(LobbyGuiListener listener){
+        this.listener = listener;
+    }
+
+    public interface LobbyGuiListener{
+        void join(String roomId);
+        void host(int chosenNumberOfPlayers);
     }
 }

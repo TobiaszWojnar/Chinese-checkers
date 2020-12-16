@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class GameClient {
+public class GameClient {//TODO make abstaract class and move implementation to ChineseCheckersGameClient
     private BufferedReader input;
     private PrintWriter output;
     private Socket socket;

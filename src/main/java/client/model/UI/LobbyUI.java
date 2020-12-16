@@ -1,4 +1,4 @@
 package client.model.UI;
 
-public class LobbyUI {
+public abstract class LobbyUI {
 }

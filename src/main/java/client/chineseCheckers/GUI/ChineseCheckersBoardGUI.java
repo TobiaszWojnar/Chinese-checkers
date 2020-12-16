@@ -27,7 +27,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         System.out.println(g.getColor());
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        for(int y = 0; y<board.getHeight();y++){//TODO do we need methods board.getWidth() board.getHeight()?
+        for(int y = 0; y<board.getHeight();y++){
             for(int x = 0; x<board.getWidth();x++) {
                 if(board.isValidField(x,y))
                     paintElement(g,x,y);
