@@ -3,7 +3,6 @@ package board.corners;
 import board.IntPoint;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class UpperCorner extends Corner {

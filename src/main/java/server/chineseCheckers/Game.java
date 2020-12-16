@@ -34,9 +34,11 @@ public class Game extends GameAbstract {
     private static final int PORT = 8081;
 
     // for testing only
-    /*public Board getBoard() {
+    /*
+    public Board getBoard() {
         return board;
-    }*/
+    }
+    */
 
     public Game(int numOfPlayers, int variant) {
         started = false;

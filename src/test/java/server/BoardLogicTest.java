@@ -13,7 +13,7 @@ public class BoardLogicTest {
 
     @Test
     public void highlightTest() {
-        // Tests if LogicUnit perfmorms every step of moving a pawn correctly
+        // Tests if LogicUnit performs every step of moving a pawn correctly
 
         Board testBoard = new ChineseCheckersBoard(6);
 

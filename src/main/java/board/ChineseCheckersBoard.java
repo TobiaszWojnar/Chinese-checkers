@@ -37,12 +37,7 @@ public class ChineseCheckersBoard extends Board {
         for (Field[] fields : board) {
             Arrays.fill(fields, Field.Empty);
         }
-        /*
-        for(Field[] row: board){
-            for(Field field: row)
-                field = Field.Empty;
-        }
-        */ //Does not set values
+
     }
 
     private void prepareForTwoPlayers() {
