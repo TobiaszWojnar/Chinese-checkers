@@ -30,18 +30,20 @@ public class GameClient {//TODO make abstaract class and move implementation to 
     private class Listener implements GameGuiListener {
         @Override
         public void onClicked(int x, int y) {
-            if (board.getField(x, y) == Field.valueOf(player)
-                    && !highlighted) {
-                System.out.println("Sending SELECT");
-                sendMessage("SELECT " + player + " " + x + " " + y);
-            } else if (board.getField(x, y) == Field.Chosen
-                    && highlighted) {
-                System.out.println("Sending DESELECT");
-                sendMessage("DESELECT " + player + " " + x + " " + y);
-            } else if (board.getField(x, y) == Field.Possible
-                    && highlighted) {
-                System.out.println("Sending MOVE");
-                sendMessage("MOVE " + player + " " + x + " " + y);
+            if (player.equals(currentPlayer)) {
+                if (board.getField(x, y) == Field.valueOf(player)
+                        && !highlighted) {
+                    System.out.println("Sending SELECT");
+                    sendMessage("SELECT " + player + " " + x + " " + y);
+                } else if (board.getField(x, y) == Field.Chosen
+                        && highlighted) {
+                    System.out.println("Sending DESELECT");
+                    sendMessage("DESELECT " + player + " " + x + " " + y);
+                } else if (board.getField(x, y) == Field.Possible
+                        && highlighted) {
+                    System.out.println("Sending MOVE");
+                    sendMessage("MOVE " + player + " " + x + " " + y);
+                }
             }
         }
     }

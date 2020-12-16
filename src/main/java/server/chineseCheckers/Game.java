@@ -213,8 +213,6 @@ public class Game extends GameAbstract {
         @Override
         public void run() {
             try {
-                //protocol.allConnected();
-                //protocol.gameStarted();
                 handleCommands();
                 disconnect();
             } catch (Exception e) {
