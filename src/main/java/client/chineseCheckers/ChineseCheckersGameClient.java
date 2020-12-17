@@ -87,8 +87,6 @@ public class ChineseCheckersGameClient extends GameClient { //TODO is it necessa
                         }
                         break;
                     case "HIGHLIGHTED":
-                        //int x = Integer.parseInt(words[1]);
-                        //int y = Integer.parseInt(words[2]);
                         receiveBoard();
                         gameGUI.updateBoard((ChineseCheckersBoard) board);
                         highlighted = true;

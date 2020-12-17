@@ -69,5 +69,4 @@ public abstract class Board {
         }
         return false;
     }
-
 }
