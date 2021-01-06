@@ -21,6 +21,7 @@ public class ChineseCheckersGameGUI extends JFrame {
         ColorManager colorManager = new ColorManager(numberOfPlayers);
 
         System.out.println("Creating board gui");
+
         boardGui = new ChineseCheckersBoardGUI(board, colorManager);
         add(boardGui);
         boardGui.setListener((x, y) -> {
@@ -52,8 +53,8 @@ public class ChineseCheckersGameGUI extends JFrame {
 
         System.out.println("Creating window");
         setTitle("Chinese Checkers Game. You are " + playerNumber);
-        setSize(new Dimension(650,650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(new Dimension(800,800));
         setResizable(false);
         setVisible(true);
     }

@@ -13,20 +13,23 @@ import java.util.List;
 
 public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private ChineseCheckersBoard board;
-    private final int pawnSize = 35;//TODO change values to change with board size
-    private final int xOffset = 55;
     private final ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
-    List<MyPair> fieldList = new LinkedList<>();
+    private final List<MyPair> fieldList = new LinkedList<>();
+    private int pawnSize;
+    private int xOffset ;
 
     public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager){
         this.colorManager = colorManager;
         boardUpdate(board);
 
+
+
         addMouseListener(this);
     }
 
     public void paint(Graphics g){//TODO state, for shifting board
+
         g.setColor(colorManager.getBackgroundColor());
         System.out.println(g.getColor());
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -40,13 +43,19 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
 
     public void boardUpdate (ChineseCheckersBoard board){
         this.board=board;
+
+        xOffset = (int) ((800*17)/(12*board.getHeight()));
+        pawnSize = (int) ((800*17)/(19*board.getHeight()));
+
         fieldList.clear();
         for(int y = 0; y<board.getHeight();y++){
             for(int x = 0; x<board.getWidth();x++) {
                 if(board.isValidField(x,y)){
+                    //TODO change values to change with board size
+
                     fieldList.add(new MyPair(
-                            new Ellipse2D.Float((float) (xOffset + x*pawnSize*0.6),y* pawnSize,pawnSize,pawnSize),
-                            new Point2D.Float(x,y)));
+                            new Ellipse2D.Float((float) (xOffset + x * pawnSize * 0.6), y * pawnSize, pawnSize, pawnSize),
+                            new Point2D.Float(x, y)));
                 }
             }
         }
@@ -79,14 +88,18 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         this.boardGuiListener = boardGuiListener;
     }
 
+    public void gameResize(int h, int w) {
+        repaint();
+    }
+
 
     public interface BoardGuiListener {
         void onClicked(int x, int y);
     }
 
-    public class MyPair {
-        private Shape shape;
-        private Point2D point;
+    public static class MyPair {
+        private final Shape shape;
+        private final Point2D point;
 
         public MyPair(Shape s, Point2D p) {
             shape = s;
