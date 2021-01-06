@@ -58,13 +58,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent mE) {
         for(MyPair p: fieldList){
             if(p.getShape().contains(mE.getPoint())) {
-                int x;
-                int y = mE.getY()/pawnSize;
-                if(y%2==0)
-                    x = 2*(int)((mE.getX()-xOffset)/(pawnSize*1.2));
-                else
-                    x = 2*(int)((mE.getX()-xOffset-pawnSize*0.6)/(pawnSize*1.2))+1;
-                boardGuiListener.onClicked(x,y);
+                boardGuiListener.onClicked(p.getX(),p.getY());
             }
         }
     }
