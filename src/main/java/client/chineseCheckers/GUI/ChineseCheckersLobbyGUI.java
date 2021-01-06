@@ -17,7 +17,7 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
     private LobbyGuiListener listener;
 
 
-    public void LobbyWindow(){//TODO make look nice
+    public void LobbyWindow(){
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setPreferredSize(new Dimension(400, 150));
@@ -29,7 +29,6 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
 
         l = new JLabel("To join a game enter room Id and click 'join'", JLabel.CENTER);
         panel.add(l);
-        //TODO add eventually password
 
         panel.add(numberOfPlayersList);
 

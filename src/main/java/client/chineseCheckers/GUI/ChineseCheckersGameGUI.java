@@ -15,7 +15,7 @@ public class ChineseCheckersGameGUI extends JFrame {
 
     public ChineseCheckersGameGUI(
             int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO roomId?
-
+            //TODO show list of players with colors, change your number to 'You'
         this.currentPlayer=currentPlayer;
 
         ColorManager colorManager = new ColorManager(numberOfPlayers);
@@ -34,15 +34,13 @@ public class ChineseCheckersGameGUI extends JFrame {
         menuBar.setListener(new ChineseCheckersMenuBar.MenuBarListener() {
             @Override
             public void resign() {
-                //TODO catch request and do sth
-                //gameGuiListener.onResigned();
+                gameGuiListener.onResigned();
                 System.out.println("To server I resign");
             }
 
             @Override
             public void skip() {
-                //TODO catch request and do sth
-                //gameGuiListener.onSkipped();
+                gameGuiListener.onSkipped();
                 System.out.println("To server I skip");
             }
 

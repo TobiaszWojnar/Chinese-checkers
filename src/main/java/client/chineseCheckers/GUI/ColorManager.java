@@ -22,7 +22,6 @@ public class ColorManager {
             case 6:
                 prepareForSixPlayers();
                 break;
-            //TODO error handling
         }
     }
 

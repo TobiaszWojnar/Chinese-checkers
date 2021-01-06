@@ -11,6 +11,9 @@ public abstract class ChineseCheckersBoard extends Board {
 
     protected int n;
 
+    public int getN() {
+        return n;
+    }
     /*public ChineseCheckersBoard(int numberOfPlayers) {
         board = new Field[17][25];
         cleanBoard();
@@ -57,7 +60,6 @@ public abstract class ChineseCheckersBoard extends Board {
                 break;
             default:
                 break;
-            //TODO error handling
         }
     }
 

@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ChineseCheckersGameClient extends GameClient { //TODO is it necessary
+public class ChineseCheckersGameClient extends GameClient {
 
     private BufferedReader input;
     private PrintWriter output;
@@ -45,6 +45,23 @@ public class ChineseCheckersGameClient extends GameClient { //TODO is it necessa
                     System.out.println("Sending MOVE");
                     sendMessage("MOVE " + player + " " + x + " " + y);
                 }
+            }
+        }
+
+        @Override
+        public void onSkipped() {
+            if (player.equals(currentPlayer)) {
+                System.out.println("Sending SKIP");
+                sendMessage("SKIP");
+            }
+        }
+
+
+        @Override
+        public void onResigned() {
+            if (player.equals(currentPlayer)) {
+                System.out.println("Sending RESIGN");
+                sendMessage("RESIGN");
             }
         }
     }
