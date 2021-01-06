@@ -328,6 +328,18 @@ public class Game extends GameAbstract {
                     } else {
                         protocol.notYourTurn();
                     }
+                } else if (command.startsWith("SKIP")) {
+                    if (chosen != null) {
+                        logic.deselect(chosen.getX(), chosen.getY(),
+                                Field.valueOf(currentPlayer.getPlayer()));
+                        protocol.deselected(chosen.getX(), chosen.getY());
+                        chosen = null;
+                        sendBoard();
+                    }
+                    endTurn();
+                } else if (command.startsWith("RESIGN")) {
+                    currentPlayer.kill();
+                    endTurn();
                 }
             }
         }
