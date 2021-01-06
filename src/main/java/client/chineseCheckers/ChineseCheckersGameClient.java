@@ -1,7 +1,8 @@
 package client.chineseCheckers;
 
 import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseBoardFactory;
+import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 import client.chineseCheckers.GUI.ChineseCheckersGameGUI;
 import client.chineseCheckers.GUI.GameGuiListener;
@@ -23,7 +24,7 @@ public class ChineseCheckersGameClient extends GameClient { //TODO is it necessa
     private int numOfPlayers;
     private boolean highlighted;
     private boolean initialized;
-    private Board board;
+    private ChineseCheckersBoard board;
 
     private ChineseCheckersGameGUI gameGUI;
 
@@ -58,8 +59,8 @@ public class ChineseCheckersGameClient extends GameClient { //TODO is it necessa
 
     public void receiveBoard() throws Exception {
         System.out.println("Receiving board from server");
-        for (int i = 0; i < 25; i++) {
-            for (int j = 0; j < 17; j++) {
+        for (int i = 0; i < board.getWidth(); i++) {
+            for (int j = 0; j < board.getHeight(); j++) {
                 String singleField = input.readLine();
                 board.setField(i, j, Field.valueOf(singleField));
             }
@@ -79,7 +80,9 @@ public class ChineseCheckersGameClient extends GameClient { //TODO is it necessa
                         break;
                     case "ALLCONNECTED_GAMESTARTED":
                         if (!initialized) {
-                            board = new ChineseCheckersBoard(numOfPlayers);
+                            ChineseBoardFactory factory = new ChineseBoardFactory();
+                            board = factory.getBoard(words[2]);
+                            board.prepareForPlayers(numOfPlayers);
                             currentPlayer = words[1];
                             gameGUI = new ChineseCheckersGameGUI(numOfPlayers, player, board, currentPlayer);
                             gameGUI.setListener(new Listener());

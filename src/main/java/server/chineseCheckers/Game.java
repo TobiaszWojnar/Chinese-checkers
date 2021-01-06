@@ -1,6 +1,7 @@
 package server.chineseCheckers;
 
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseBoardFactory;
+import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 import board.IntPoint;
 import server.chineseCheckers.datastructures.CornerMap;
@@ -14,8 +15,7 @@ import server.chineseCheckers.logic.LogicUnitCanSwap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
+import java.io.PrintWriter;import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -32,6 +32,7 @@ public class Game extends GameAbstract {
     private boolean running;
     private ServerSocket serverSocket;
     private static final int PORT = 8081;
+    String boardType;
 
     // for testing only
     /*
@@ -40,7 +41,7 @@ public class Game extends GameAbstract {
     }
     */
 
-    public Game(int numOfPlayers, int variant) {
+    public Game(int numOfPlayers, int variant, String boardType) {
         started = false;
         serverSocket = null;
         if (!Arrays.asList(2, 3, 4, 6).contains(numOfPlayers)) {
@@ -50,7 +51,11 @@ public class Game extends GameAbstract {
             throw new IllegalArgumentException("Illegal variant");
         }
         this.numOfPlayers = numOfPlayers;
-        board = new ChineseCheckersBoard(numOfPlayers);
+        this.boardType = boardType;
+        //board = new ChineseCheckersBoard(numOfPlayers);
+        ChineseBoardFactory boardFactory = new ChineseBoardFactory();
+        board = boardFactory.getBoard(boardType);
+        board.prepareForPlayers(numOfPlayers);
         CornerMap corners = new CornerMap(numOfPlayers);
         //logic = new LogicUnitAllFilled(board, corners);
         setLogic(variant, corners);
@@ -142,7 +147,7 @@ public class Game extends GameAbstract {
 
     private void gameStarted() {
         for (Player player : players.getList()) {
-            player.protocol.gameStarted(currentPlayer.getPlayer());
+            player.protocol.gameStarted(currentPlayer.getPlayer(), boardType);
         }
     }
 
@@ -229,8 +234,8 @@ public class Game extends GameAbstract {
 
         private void sendBoard() {
             System.out.println(player + ": Sending board to client");
-            for (int i = 0; i < 25; i++) {
-                for (int j = 0; j < 17; j++) {
+            for (int i = 0; i < board.getWidth(); i++) {
+                for (int j = 0; j < board.getHeight(); j++) {
                     String singleField = board.getField(i, j).toString();
                     sendMessage(singleField);
                 }

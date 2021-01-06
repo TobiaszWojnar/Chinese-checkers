@@ -1,10 +1,9 @@
 package server.chineseCheckers.logic;
 
-import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 import board.IntPoint;
-import board.corners.Corner;
+import board.chineseCheckers.corners.Corner;
 import server.chineseCheckers.datastructures.CornerMap;
 
 import java.util.ArrayList;
@@ -17,8 +16,8 @@ public abstract class LogicUnitAbstract {
     protected final CornerMap corners;
     protected final List<IntPoint> offsets;
 
-    public LogicUnitAbstract(Board board, CornerMap corners) {
-        this.board = (ChineseCheckersBoard) board;
+    public LogicUnitAbstract(ChineseCheckersBoard board, CornerMap corners) {
+        this.board = board;
         this.corners = corners;
         this.offsets = new ArrayList<>();
         offsets.add(new IntPoint(1, 1));

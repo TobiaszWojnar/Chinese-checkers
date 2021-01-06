@@ -1,14 +1,17 @@
 package client.chineseCheckers.commandLineUI;
 
 import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseBoardFactory;
+import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 
 public class CommandLineBoardUI {
-    private final Board board;
+    private final ChineseCheckersBoard board;
 
-    public CommandLineBoardUI(int numberOfPlayers){
-        board = new ChineseCheckersBoard(numberOfPlayers);
+    public CommandLineBoardUI(int numberOfPlayers, String boardType){
+        ChineseBoardFactory factory = new ChineseBoardFactory();
+        board = factory.getBoard(boardType);
+        board.prepareForPlayers(6);
     }
 
     public void show(){

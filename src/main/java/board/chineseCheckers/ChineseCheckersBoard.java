@@ -1,18 +1,47 @@
-package board;
+package board.chineseCheckers;
 
-import board.corners.*;
+import board.Board;
+import board.Field;
+import board.IntPoint;
+import board.chineseCheckers.corners.*;
 
 import java.util.Arrays;
 
-public class ChineseCheckersBoard extends Board {
+public abstract class ChineseCheckersBoard extends Board {
 
-    public ChineseCheckersBoard(int numberOfPlayers) {
+    protected int n;
+
+    /*public ChineseCheckersBoard(int numberOfPlayers) {
         board = new Field[17][25];
         cleanBoard();
         prepareForPlayers(numberOfPlayers);
+    }*/
+
+    @Override
+    public boolean isValidField(int x, int y) {
+        if ((x + y) % 2 == 0) {
+            for (int i = 0; i < n; i++) {
+                if (y == i || y == 4 * n - i) {
+                    return x >= 3 * n - i && x <= 3 * n + i;
+                }
+            }
+            for (int i = n; i <= 2 * n; i++) {
+                if (y == i || y == 4 * n - i) {
+                    return x >= i - n && x <= 7 * n - i;
+                }
+            }
+        }
+        return false;
     }
 
-    protected void prepareForPlayers(int numberOfPlayers) {
+    @Override
+    public void prepareForPlayers(int numberOfPlayers) {
+        LowerCorner.init(n);
+        UpperCorner.init(n);
+        LowerRightCorner.init(n);
+        LowerLeftCorner.init(n);
+        UpperRightCorner.init(n);
+        UpperLeftCorner.init(n);
         switch (numberOfPlayers) {
             case 2:
                 prepareForTwoPlayers();
@@ -32,6 +61,7 @@ public class ChineseCheckersBoard extends Board {
         }
     }
 
+    @Override
     protected void cleanBoard() {
 
         for (Field[] fields : board) {
@@ -41,41 +71,41 @@ public class ChineseCheckersBoard extends Board {
     }
 
     private void prepareForTwoPlayers() {
-        setUpper();
+        setUpper(Field.Player1);
         setLower(Field.Player2);
     }
 
     private void prepareForThreePlayers() {
-        setUpper();
+        setUpper(Field.Player1);
         setLowerRight(Field.Player2);
         setLowerLeft(Field.Player3);
     }
 
     private void prepareForFourPlayers() {
         setUpperLeft(Field.Player1);
-        setUpperRight();
+        setUpperRight(Field.Player2);
         setLowerRight(Field.Player3);
         setLowerLeft(Field.Player4);
     }
 
     private void prepareForSixPlayers() {
-        setUpper();
-        setUpperRight();
+        setUpper(Field.Player1);
+        setUpperRight(Field.Player2);
         setLowerRight(Field.Player3);
         setLower(Field.Player4);
         setLowerLeft(Field.Player5);
         setUpperLeft(Field.Player6);
     }
 
-    private void setUpper() {
+    private void setUpper(Field field) {
         for (IntPoint point : UpperCorner.getInstance().points) {
-            setField(point.getX(), point.getY(), Field.Player1);
+            setField(point.getX(), point.getY(), field);
         }
     }
 
-    private void setUpperRight() {
+    private void setUpperRight(Field field) {
         for (IntPoint point : UpperRightCorner.getInstance().points) {
-            setField(point.getX(), point.getY(), Field.Player2);
+            setField(point.getX(), point.getY(), field);
         }
     }
 

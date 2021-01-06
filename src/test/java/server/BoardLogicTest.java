@@ -1,7 +1,8 @@
 package server;
 
 import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseBoardFactory;
+import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 import org.junit.Test;
 import server.chineseCheckers.datastructures.CornerMap;
@@ -15,7 +16,10 @@ public class BoardLogicTest {
     public void highlightTest() {
         // Tests if LogicUnit performs every step of moving a pawn correctly
 
-        Board testBoard = new ChineseCheckersBoard(6);
+        ChineseBoardFactory factory = new ChineseBoardFactory();
+
+        ChineseCheckersBoard testBoard = factory.getBoard("normal");
+        testBoard.prepareForPlayers(6);
 
         LogicUnitAllFilled logic = new LogicUnitAllFilled(testBoard, new CornerMap(6));
 
@@ -30,7 +34,8 @@ public class BoardLogicTest {
 
         testBoard.setField(12, 8, Field.Player1);
 
-        Board checkBoard = new ChineseCheckersBoard(6);
+        ChineseCheckersBoard checkBoard = factory.getBoard("normal");
+        checkBoard.prepareForPlayers(6);
 
         // Clone testBoard
         checkBoard.setField(11, 7, Field.Player1);
@@ -66,7 +71,8 @@ public class BoardLogicTest {
 
         logic.deselect(12, 8, Field.Player1);
 
-        Board checkBoard2 = new ChineseCheckersBoard(6);
+        ChineseCheckersBoard checkBoard2 = factory.getBoard("normal");
+        checkBoard2.prepareForPlayers(6);
 
         checkBoard2.setField(11, 7, Field.Player1);
         checkBoard2.setField(9, 7, Field.Player1);

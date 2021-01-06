@@ -8,7 +8,7 @@ public class FunctionalityTests {
         CommandLineBoardUI testGui;
         //for(int i:new int[] {6}){
         for(int i:new int[] {2,3,4,6}){
-            testGui = new CommandLineBoardUI(i);
+            testGui = new CommandLineBoardUI(i, "normal");
             testGui.show();
             //javax.swing.SwingUtilities.invokeLater(() -> new ChineseCheckersGameGUI( i, "test room"+i ));
         }

@@ -16,8 +16,8 @@ public class Protocol {
     }
 */
 
-    void gameStarted(String currentplayer) {
-        out.println("ALLCONNECTED_GAMESTARTED " + currentplayer);
+    void gameStarted(String currentplayer, String boardType) {
+        out.println("ALLCONNECTED_GAMESTARTED " + currentplayer + " " + boardType);
         out.flush();
     }
 

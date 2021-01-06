@@ -1,4 +1,4 @@
-package board.corners;
+package board.chineseCheckers.corners;
 
 import board.IntPoint;
 

@@ -1,7 +1,7 @@
 package client.chineseCheckers.GUI;
 
 import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseCheckersBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     private String currentPlayer;
 
     public ChineseCheckersGameGUI(
-            int numberOfPlayers, String playerNumber, Board board, String currentPlayer) {//TODO roomId?
+            int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO roomId?
 
         this.currentPlayer=currentPlayer;
 

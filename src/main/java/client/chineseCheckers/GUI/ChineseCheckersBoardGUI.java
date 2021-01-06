@@ -1,7 +1,7 @@
 package client.chineseCheckers.GUI;
 
 import board.Board;
-import board.ChineseCheckersBoard;
+import board.chineseCheckers.ChineseCheckersBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +9,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
-    private Board board;
+    private ChineseCheckersBoard board;
     private final int pawnSize = 35;
     private final int xOffset = 55;
     private final ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
 
-    public ChineseCheckersBoardGUI (Board board, ColorManager colorManager){
+    public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager){
         this.board=board;
         this.colorManager=colorManager;
 

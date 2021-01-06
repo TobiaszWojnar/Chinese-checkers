@@ -1,14 +1,14 @@
 package server.chineseCheckers.logic;
 
-import board.Board;
 import board.Field;
 import board.IntPoint;
-import board.corners.Corner;
+import board.chineseCheckers.ChineseCheckersBoard;
+import board.chineseCheckers.corners.Corner;
 import server.chineseCheckers.datastructures.CornerMap;
 
 public class LogicUnitAllFilled extends LogicUnitAbstract {
 
-    public LogicUnitAllFilled(Board board, CornerMap corners) {
+    public LogicUnitAllFilled(ChineseCheckersBoard board, CornerMap corners) {
         super(board, corners);
     }
 
