@@ -64,7 +64,7 @@ public class BoardLogicTest {
 
         // Check every field
         for (int x = 0; x < 25; x++)
-            for (int y = 0; y < 17; y += 2) {
+            for (int y = 0; y < 17; y++) {
                 //System.out.println("x " + x + " " + y);
                 assertEquals(checkBoard.getField(x, y), testBoard.getField(x, y));
             }
@@ -86,7 +86,7 @@ public class BoardLogicTest {
         checkBoard2.setField(12, 8, Field.Player1);
 
         for (int x = 0; x < 25; x++)
-            for (int y = 0; y < 17; y += 2) {
+            for (int y = 0; y < 17; y++) {
                 //System.out.println("x " + x + " " + y);
                 assertEquals(checkBoard2.getField(x, y), testBoard.getField(x, y));
             }
@@ -98,10 +98,11 @@ public class BoardLogicTest {
         logic.move(8, 8, 12, 8, Field.Player1);
 
         for (int x = 0; x < 25; x++)
-            for (int y = 0; y < 17; y += 2) {
+            for (int y = 0; y < 17; y++) {
                 //System.out.println("x " + x + " " + y);
                 assertEquals(checkBoard2.getField(x, y), testBoard.getField(x, y));
             }
+
     }
 
 }

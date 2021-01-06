@@ -21,6 +21,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
+/**
+ * Class which realizes a Chinese Checkers game
+ */
 public class Game extends GameAbstract {
     private final ChineseCheckersBoard board;
     private int numOfPlayers;
@@ -32,7 +35,7 @@ public class Game extends GameAbstract {
     private boolean running;
     private ServerSocket serverSocket;
     private static final int PORT = 8081;
-    String boardType;
+    private final String boardType;
 
     // for testing only
     /*
@@ -41,6 +44,12 @@ public class Game extends GameAbstract {
     }
     */
 
+    /**
+     * Constructor which checks if passed aruments are legal and initializes data structures
+     * @param numOfPlayers number of players
+     * @param variant variant of rules
+     * @param boardType type of board
+     */
     public Game(int numOfPlayers, int variant, String boardType) {
         started = false;
         serverSocket = null;
@@ -63,6 +72,9 @@ public class Game extends GameAbstract {
         playerIterator = players.iterator();
     }
 
+    /**
+     * Creates socket of server and starts its thread
+     */
     public void start() {
         if (!started) {
             started = true;
@@ -93,6 +105,10 @@ public class Game extends GameAbstract {
         }
     */
 
+    /**
+     * Waits for required number of players to connect, adds them to player list, sends welcome messages
+     * and sets current player to random
+     */
     @Override
     public void run() {
         int i = 1;
@@ -119,7 +135,6 @@ public class Game extends GameAbstract {
                             System.out.println("ALLCONNECTED_GAMESTARTED " + currentPlayer.getPlayer());
                             System.out.println("STARTING_PLAYER: " + currentPlayer.getPlayer());
                         }
-
                         i++;
                     }
                 } catch (Exception e) {
@@ -131,6 +146,11 @@ public class Game extends GameAbstract {
         }
     }
 
+    /**
+     * Sets logic unit based on variant
+     * @param variant variant of ruleset
+     * @param corners corner map for {@link server.chineseCheckers.logic.LogicUnitAbstract Logic unit}
+     */
     private void setLogic(Integer variant, CornerMap corners) {
         switch (variant) {
             case 1:
@@ -190,6 +210,9 @@ public class Game extends GameAbstract {
     }
 */
 
+    /**
+     * Inner class of player thread
+     */
     public class Player implements Runnable {
         private Protocol protocol;
         private final String player;
@@ -200,6 +223,11 @@ public class Game extends GameAbstract {
         private Thread runningThread;
         private boolean running;
 
+        /**
+         * Constructor which sets socket and communication buffers with client
+         * @param player name of player
+         * @param socket socket of client
+         */
         public Player(String player, Socket socket) {
             this.socket = socket;
             this.player = player;
@@ -217,6 +245,9 @@ public class Game extends GameAbstract {
             }
         }
 
+        /**
+         * Runs player thread
+         */
         @Override
         public void run() {
             try {
@@ -228,6 +259,10 @@ public class Game extends GameAbstract {
             }
         }
 
+        /**
+         * Check if player is still playing
+         * @return false if player finished the game true otherwise
+         */
         public boolean lives() {
             return running;
         }

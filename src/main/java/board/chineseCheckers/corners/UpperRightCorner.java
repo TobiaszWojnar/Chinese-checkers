@@ -4,10 +4,17 @@ import board.IntPoint;
 
 import java.util.ArrayList;
 
+/**
+ * Singleton of upper right corner of the board
+ */
 public class UpperRightCorner extends Corner {
 
     private static UpperRightCorner instance = null;
 
+    /**
+     * Singleton instance getter
+     * @return instance
+     */
     public static UpperRightCorner getInstance() {
         if (instance == null) {
             throw new AssertionError("Call init first");
@@ -24,6 +31,10 @@ public class UpperRightCorner extends Corner {
         }
     }
 
+    /**
+     * Init method for different board sizes
+     * @param n board size
+     */
     public synchronized static void init(int n) {
         /*if (instance != null) {
             throw new AssertionError("Already initalized");
