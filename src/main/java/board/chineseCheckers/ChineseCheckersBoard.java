@@ -19,7 +19,7 @@ public abstract class ChineseCheckersBoard extends Board {
 
     @Override
     public boolean isValidField(int x, int y) {
-        if ((x + y) % 2 == 0) {
+        if ((x + y) % 2 == n % 2) {
             for (int i = 0; i < n; i++) {
                 if (y == i || y == 4 * n - i) {
                     return x >= 3 * n - i && x <= 3 * n + i;

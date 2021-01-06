@@ -7,6 +7,6 @@ public class BigChineseBoard extends ChineseCheckersBoard {
     public BigChineseBoard() {
         board = new Field[21][31];
         cleanBoard();
-        this.n = 5;
+        n = 5;
     }
 }

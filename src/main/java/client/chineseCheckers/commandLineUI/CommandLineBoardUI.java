@@ -11,7 +11,7 @@ public class CommandLineBoardUI {
     public CommandLineBoardUI(int numberOfPlayers, String boardType){
         ChineseBoardFactory factory = new ChineseBoardFactory();
         board = factory.getBoard(boardType);
-        board.prepareForPlayers(6);
+        board.prepareForPlayers(numberOfPlayers);
     }
 
     public void show(){
