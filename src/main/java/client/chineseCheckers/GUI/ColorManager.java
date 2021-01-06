@@ -15,10 +15,13 @@ public class ColorManager {
         switch(numberOfPlayers){
             case 2:
                 prepareForTwoPlayers();
+                break;
             case 3:
                 prepareForThreePlayers();
+                break;
             case 4:
                 prepareForFourPlayers();
+                break;
             case 6:
                 prepareForSixPlayers();
                 break;

@@ -7,6 +7,9 @@ import board.chineseCheckers.corners.*;
 
 import java.util.Arrays;
 
+/**
+ * Class providing a board for Chinese Checkers game
+ */
 public abstract class ChineseCheckersBoard extends Board {
 
     protected int n;
@@ -20,6 +23,12 @@ public abstract class ChineseCheckersBoard extends Board {
         prepareForPlayers(numberOfPlayers);
     }*/
 
+    /**
+     * Checks if given field is valid
+     * @param x x cooridnate of the field
+     * @param y y cooridnate of the field
+     * @return true of field is valid false otherwise
+     */
     @Override
     public boolean isValidField(int x, int y) {
         if ((x + y) % 2 == n % 2) {
@@ -37,6 +46,12 @@ public abstract class ChineseCheckersBoard extends Board {
         return false;
     }
 
+    /**
+     * Prepares board for the beggining of the game by setting field to different players
+     * depending on the number of players and initializes singletons of corners
+     * @param numberOfPlayers number of players
+     * @see board.chineseCheckers.corners.Corner
+     */
     @Override
     public void prepareForPlayers(int numberOfPlayers) {
         LowerCorner.init(n);
@@ -135,11 +150,31 @@ public abstract class ChineseCheckersBoard extends Board {
         }
     }
 
+    /**
+     * Checks if there is a pawn on a given field
+     * @param x x coordinate of the field
+     * @param y y coordinate of the field
+     * @return true if there is a pawn on the field false otherwise
+     */
     public boolean hasPawn(int x, int y) {
         return getField(x, y) != Field.Chosen && getField(x, y) != Field.Empty && getField(x, y) != Field.Possible;
     }
 
+    /**
+     * Checks if a given field is empty
+     * @param x x coordinate of the field
+     * @param y y coordinate of the field
+     * @return true if the field is empty false otherwise
+     */
     public boolean isEmpty(int x, int y) {
         return getField(x, y) == Field.Empty;
+    }
+
+    /**
+     * Getter for the size of the board
+     * @return size of the board
+     */
+    public int getN() {
+        return n;
     }
 }
