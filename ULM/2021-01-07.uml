@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1681.5000000000002" y="1967.0">board.chineseCheckers.corners.UpperRightCorner</node>
+    <node x="4438.547101449276" y="360.0">client.chineseCheckers.GUI.ColorManager</node>
+    <node x="4816.547101449276" y="921.5">client.chineseCheckers.GUI.ChineseCheckersMenuBar.MenuBarListener</node>
+    <node x="3127.983695652174" y="1462.0">board.chineseCheckers.NormalChineseBoard</node>
+    <node x="1054.0000000000002" y="895.5">board.IntPoint</node>
+    <node x="387.79710144927594" y="2353.0">server.chineseCheckers.Game.Player</node>
+    <node x="1404.5000000000002" y="1967.0">board.chineseCheckers.corners.UpperLeftCorner</node>
+    <node x="3613.983695652174" y="1423.5">client.chineseCheckers.commandLineUI.CommandLineBoardUI</node>
+    <node x="3310.0" y="3306.0">server.ServerTest</node>
+    <node x="2681.983695652174" y="1323.5">server.chineseCheckers.logic.LogicUnitAbstract</node>
+    <node x="3374.625" y="1992.5">server.chineseCheckers.logic.LogicUnitCanSwap</node>
+    <node x="1046.2971014492757" y="1449.0">board.chineseCheckers.corners.Corner</node>
+    <node x="2863.0" y="3306.0">server.IsWinnerTest</node>
+    <node x="5154.858695652174" y="1424.5">client.chineseCheckers.GUI.GameGuiListener</node>
+    <node x="1152.5000000000002" y="1967.0">board.chineseCheckers.corners.LowerCorner</node>
+    <node x="2644.75" y="946.5">server.chineseCheckers.datastructures.CornerMap</node>
+    <node x="379.0" y="3306.0">client.model.UI.GameUI</node>
+    <node x="1132.1743659420295" y="2864.0">server.chineseCheckers.datastructures.PlayerList</node>
+    <node x="1265.0" y="3306.0">client.chineseCheckers.ChineseCheckersLobbyClient</node>
+    <node x="1618.0" y="3306.0">server.OppositeCornerTest</node>
+    <node x="4654.858695652174" y="1904.5">client.chineseCheckers.GUI.ChineseCheckersGameGUI</node>
+    <node x="4069.820199275363" y="2353.5">client.chineseCheckers.ChineseCheckersGameClient</node>
+    <node x="2274.5" y="1992.5">server.chineseCheckers.logic.LogicUnitAllFilled</node>
+    <node x="1615.6480978260875" y="1462.0">server.GameAbstract</node>
+    <node x="1968.5000000000002" y="1767.0">server.chineseCheckers.Game</node>
+    <node x="2397.0" y="3306.0">server.BoardLogicTest</node>
+    <node x="4279.858695652174" y="2005.5">client.chineseCheckers.GUI.ChineseCheckersBoardGUI.BoardGuiListener</node>
+    <node x="3999.858695652174" y="2019.0">client.model.GameClient</node>
+    <node x="2718.5" y="1992.5">server.chineseCheckers.logic.LogicUnitAtLeastOneFilled</node>
+    <node x="2630.0" y="3306.0">server.ValidFieldTest</node>
+    <node x="1150.1743659420295" y="3100.0">server.chineseCheckers.datastructures.PlayerList.PlayerIterator</node>
+    <node x="3787.375" y="0.0">board.Field</node>
+    <node x="613.5" y="1967.0">board.chineseCheckers.corners.UpperCorner</node>
+    <node x="3321.0" y="746.0">board.chineseCheckers.ChineseCheckersBoard</node>
+    <node x="0.0" y="3440.0">client.chineseCheckers.GUI.ChineseCheckersLobbyGUI</node>
+    <node x="3719.0" y="3306.0">client.model.UI.LobbyUI</node>
+    <node x="63.0" y="3306.0">client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener</node>
+    <node x="4329.358695652174" y="870.5">client.chineseCheckers.GUI.ChineseCheckersBoardGUI.MyPair</node>
+    <node x="4520.711503623189" y="2890.0">client.chineseCheckers.ChineseCheckersGameClient.Listener</node>
+    <node x="3916.983695652174" y="1462.0">board.chineseCheckers.BigChineseBoard</node>
+    <node x="864.5" y="1967.0">board.chineseCheckers.corners.LowerRightCorner</node>
+    <node x="3089.0" y="3306.0">server.chineseCheckers.Server</node>
+    <node x="3329.5" y="385.5">board.Board</node>
+    <node x="1891.0" y="3306.0">client.FunctionalityTests</node>
+    <node x="4722.858695652174" y="1398.5">client.chineseCheckers.GUI.ChineseCheckersMenuBar</node>
+    <node x="10.5" y="1892.0">server.chineseCheckers.Protocol</node>
+    <node x="2164.0" y="3306.0">server.PlayerListTest</node>
+    <node x="335.5" y="1967.0">board.chineseCheckers.corners.LowerLeftCorner</node>
+    <node x="612.0" y="3306.0">board.MyList</node>
+    <node x="3516.0" y="3306.0">client.model.LobbyClient</node>
+    <node x="4168.858695652174" y="1286.0">client.chineseCheckers.GUI.ChineseCheckersBoardGUI</node>
+    <node x="896.0" y="3306.0">board.chineseCheckers.ChineseBoardFactory</node>
+    <node x="3375.983695652174" y="1462.0">board.chineseCheckers.SmallChineseBoard</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener" target="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI">
+      <point x="52.0" y="42.0" />
+      <point x="219.0" y="3415.0" />
+      <point x="250.5" y="3415.0" />
+      <point x="83.5" y="-105.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game" target="server.chineseCheckers.Game.Player">
+      <point x="0.0" y="268.0" />
+      <point x="2111.5" y="2333.0" />
+      <point x="584.6721014492759" y="2333.0" />
+      <point x="84.375" y="-230.5" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.UpperRightCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="1815.0000000000002" y="1727.0" />
+      <point x="1221.3804347826087" y="1727.0" />
+      <point x="79.58333333333303" y="42.5" />
+    </edge>
+    <edge source="board.chineseCheckers.ChineseCheckersBoard" target="board.Board">
+      <point x="0.0" y="-230.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI" target="client.chineseCheckers.GUI.ColorManager">
+      <point x="200.25" y="-205.5" />
+      <point x="4636.108695652174" y="1266.0" />
+      <point x="4579.547101449276" y="1266.0" />
+      <point x="0.0" y="168.0" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.UpperCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="729.0" y="1737.0" />
+      <point x="1094.0471014492757" y="1737.0" />
+      <point x="-47.75" y="42.5" />
+    </edge>
+    <edge source="server.chineseCheckers.Game" target="server.chineseCheckers.logic.LogicUnitAbstract">
+      <point x="95.33333333333303" y="-268.0" />
+      <point x="2206.833333333333" y="1737.0" />
+      <point x="2735.233695652174" y="1737.0" />
+      <point x="-159.75" y="168.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game.Player" target="board.IntPoint">
+      <point x="-84.375" y="-230.5" />
+      <point x="415.92210144927594" y="2333.0" />
+      <point x="0.0" y="2333.0" />
+      <point x="0.0" y="1266.0" />
+      <point x="1080.5000000000002" y="1266.0" />
+      <point x="-53.0" y="80.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersGameGUI" target="client.chineseCheckers.GUI.GameGuiListener">
+      <point x="182.66666666666663" y="-130.5" />
+      <point x="5111.525362318841" y="1747.0" />
+      <point x="5205.108695652174" y="1747.0" />
+      <point x="-50.25" y="67.0" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitAbstract" target="board.IntPoint">
+      <point x="-142.0" y="-168.0" />
+      <point x="2752.983695652174" y="1236.0" />
+      <point x="1186.5000000000002" y="1236.0" />
+      <point x="53.0" y="80.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI.MyPair" target="client.chineseCheckers.GUI.ChineseCheckersBoardGUI">
+      <point x="53.25" y="105.5" />
+      <point x="4489.108695652174" y="1266.0" />
+      <point x="4502.608695652174" y="1266.0" />
+      <point x="66.75" y="-205.5" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitCanSwap" target="server.chineseCheckers.logic.LogicUnitAbstract">
+      <point x="0.0" y="-42.5" />
+      <point x="3591.625" y="1747.0" />
+      <point x="3054.733695652174" y="1747.0" />
+      <point x="159.75" y="168.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI" target="client.chineseCheckers.GUI.ChineseCheckersBoardGUI.BoardGuiListener">
+      <point x="0.0" y="205.5" />
+      <point x="52.0" y="-29.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ColorManager" target="board.Field">
+      <point x="0.0" y="-168.0" />
+      <point x="4579.547101449276" y="335.0" />
+      <point x="3927.625" y="335.0" />
+      <point x="46.75" y="155.0" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitAbstract" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="142.0" y="-168.0" />
+      <point x="3036.983695652174" y="1256.0" />
+      <point x="3369.0" y="1256.0" />
+      <point x="-80.0" y="230.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game" target="server.chineseCheckers.datastructures.PlayerList">
+      <point x="95.33333333333303" y="268.0" />
+      <point x="2206.833333333333" y="2333.0" />
+      <point x="2252.028532608696" y="2333.0" />
+      <point x="2252.028532608696" y="2839.0" />
+      <point x="1300.1743659420295" y="2839.0" />
+      <point x="56.0" y="-93.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI" target="client.chineseCheckers.GUI.ChineseCheckersBoardGUI.MyPair">
+      <point x="-66.75" y="-205.5" />
+      <point x="4369.108695652174" y="1266.0" />
+      <point x="4382.608695652174" y="1266.0" />
+      <point x="-53.25" y="105.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersGameGUI" target="client.chineseCheckers.GUI.ChineseCheckersMenuBar">
+      <point x="0.0" y="-130.5" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-268.0" />
+      <point x="2111.083333333334" y="1246.0" />
+      <point x="3337.0" y="1246.0" />
+      <point x="-112.0" y="230.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI.BoardGuiListener" target="client.chineseCheckers.GUI.ChineseCheckersBoardGUI">
+      <point x="-52.0" y="-29.5" />
+      <point x="4331.858695652174" y="1747.0" />
+      <point x="4257.858695652174" y="1747.0" />
+      <point x="-178.0" y="205.5" />
+    </edge>
+    <edge source="board.chineseCheckers.SmallChineseBoard" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-29.5" />
+      <point x="3484.983695652174" y="1266.0" />
+      <point x="3433.0" y="1266.0" />
+      <point x="-16.0" y="230.0" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.Corner" target="board.IntPoint">
+      <point x="0.0" y="-42.5" />
+      <point x="1141.7971014492757" y="1266.0" />
+      <point x="1133.5000000000002" y="1266.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.LowerRightCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="998.5" y="1747.0" />
+      <point x="1125.8804347826087" y="1747.0" />
+      <point x="-15.91666666666697" y="42.5" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitAtLeastOneFilled" target="server.chineseCheckers.logic.LogicUnitAbstract">
+      <point x="0.0" y="-42.5" />
+      <point x="2961.0" y="1747.0" />
+      <point x="2948.233695652174" y="1747.0" />
+      <point x="53.25" y="168.0" />
+    </edge>
+    <edge source="client.chineseCheckers.ChineseCheckersGameClient.Listener" target="client.chineseCheckers.GUI.GameGuiListener">
+      <point x="50.25" y="-67.0" />
+      <point x="4671.461503623189" y="2839.0" />
+      <point x="5305.608695652174" y="2839.0" />
+      <point x="50.25" y="67.0" />
+    </edge>
+    <edge source="board.chineseCheckers.NormalChineseBoard" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-29.5" />
+      <point x="3241.983695652174" y="1266.0" />
+      <point x="3401.0" y="1266.0" />
+      <point x="-48.0" y="230.0" />
+    </edge>
+    <edge source="board.Board" target="board.Field">
+      <point x="0.0" y="-142.5" />
+      <point x="3449.0" y="335.0" />
+      <point x="3834.125" y="335.0" />
+      <point x="-46.75" y="155.0" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.LowerLeftCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="464.5" y="1727.0" />
+      <point x="1062.2137681159427" y="1727.0" />
+      <point x="-79.58333333333303" y="42.5" />
+    </edge>
+    <edge source="client.chineseCheckers.commandLineUI.CommandLineBoardUI" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-68.0" />
+      <point x="3755.483695652174" y="1256.0" />
+      <point x="3465.0" y="1256.0" />
+      <point x="16.0" y="230.0" />
+    </edge>
+    <edge source="client.chineseCheckers.ChineseCheckersGameClient.Listener" target="client.chineseCheckers.ChineseCheckersGameClient">
+      <point x="-50.25" y="-67.0" />
+      <point x="4570.961503623189" y="2839.0" />
+      <point x="4218.820199275363" y="2839.0" />
+      <point x="0.0" y="230.0" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.LowerCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="1268.5000000000002" y="1747.0" />
+      <point x="1157.7137681159427" y="1747.0" />
+      <point x="15.91666666666697" y="42.5" />
+    </edge>
+    <edge source="client.chineseCheckers.ChineseCheckersGameClient" target="client.model.GameClient">
+      <point x="-99.33333333333331" y="-230.0" />
+      <point x="4119.48686594203" y="2333.0" />
+      <point x="4073.858695652174" y="2333.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="server.chineseCheckers.datastructures.PlayerList" target="server.chineseCheckers.Game.Player">
+      <point x="-56.0" y="-93.0" />
+      <point x="1188.1743659420295" y="2839.0" />
+      <point x="500.29710144927594" y="2839.0" />
+      <point x="0.0" y="230.5" />
+    </edge>
+    <edge source="server.chineseCheckers.Game.Player" target="server.chineseCheckers.Game">
+      <point x="28.125" y="-230.5" />
+      <point x="528.4221014492759" y="2323.0" />
+      <point x="2016.1666666666672" y="2323.0" />
+      <point x="-95.33333333333303" y="268.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game" target="server.GameAbstract">
+      <point x="-95.33333333333303" y="-268.0" />
+      <point x="2016.1666666666672" y="1717.0" />
+      <point x="1699.6480978260875" y="1717.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="client.chineseCheckers.ChineseCheckersGameClient" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-230.0" />
+      <point x="4218.820199275363" y="2333.0" />
+      <point x="4158.358695652174" y="2333.0" />
+      <point x="4158.358695652174" y="1236.0" />
+      <point x="3529.0" y="1236.0" />
+      <point x="80.0" y="230.0" />
+    </edge>
+    <edge source="board.chineseCheckers.corners.UpperLeftCorner" target="board.chineseCheckers.corners.Corner">
+      <point x="0.0" y="-68.0" />
+      <point x="1533.0000000000002" y="1737.0" />
+      <point x="1189.5471014492757" y="1737.0" />
+      <point x="47.75" y="42.5" />
+    </edge>
+    <edge source="board.chineseCheckers.BigChineseBoard" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="0.0" y="-29.5" />
+      <point x="4015.983695652174" y="1246.0" />
+      <point x="3497.0" y="1246.0" />
+      <point x="48.0" y="230.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersMenuBar" target="client.chineseCheckers.GUI.ChineseCheckersMenuBar.MenuBarListener">
+      <point x="-103.0" y="-93.0" />
+      <point x="4825.858695652174" y="1266.0" />
+      <point x="4866.047101449276" y="1266.0" />
+      <point x="-49.5" y="54.5" />
+    </edge>
+    <edge source="server.chineseCheckers.datastructures.PlayerList.PlayerIterator" target="server.chineseCheckers.datastructures.PlayerList">
+      <point x="0.0" y="-80.5" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="client.chineseCheckers.ChineseCheckersGameClient" target="client.chineseCheckers.GUI.ChineseCheckersGameGUI">
+      <point x="99.33333333333337" y="-230.0" />
+      <point x="4318.153532608696" y="2333.0" />
+      <point x="4928.858695652174" y="2333.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitAbstract" target="server.chineseCheckers.datastructures.CornerMap">
+      <point x="0.0" y="-168.0" />
+      <point x="2894.983695652174" y="1226.0" />
+      <point x="2723.75" y="1226.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersGameGUI" target="client.chineseCheckers.GUI.ChineseCheckersBoardGUI">
+      <point x="-182.66666666666663" y="-130.5" />
+      <point x="4746.192028985508" y="1747.0" />
+      <point x="4613.858695652174" y="1747.0" />
+      <point x="178.0" y="205.5" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI" target="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener">
+      <point x="-83.5" y="-105.0" />
+      <point x="83.5" y="3415.0" />
+      <point x="115.0" y="3415.0" />
+      <point x="-52.0" y="42.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersMenuBar.MenuBarListener" target="client.chineseCheckers.GUI.ChineseCheckersMenuBar">
+      <point x="49.5" y="54.5" />
+      <point x="4965.047101449276" y="1266.0" />
+      <point x="5031.858695652174" y="1266.0" />
+      <point x="102.99999999999977" y="-93.0" />
+    </edge>
+    <edge source="server.chineseCheckers.Game.Player" target="server.chineseCheckers.Protocol">
+      <point x="-28.125" y="-230.5" />
+      <point x="472.17210144927594" y="2323.0" />
+      <point x="163.0" y="2323.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="server.chineseCheckers.logic.LogicUnitAllFilled" target="server.chineseCheckers.logic.LogicUnitAbstract">
+      <point x="0.0" y="-42.5" />
+      <point x="2486.5" y="1747.0" />
+      <point x="2841.733695652174" y="1747.0" />
+      <point x="-53.25" y="168.0" />
+    </edge>
+    <edge source="client.chineseCheckers.GUI.ChineseCheckersBoardGUI" target="board.chineseCheckers.ChineseCheckersBoard">
+      <point x="-200.25" y="-205.5" />
+      <point x="4235.608695652174" y="1226.0" />
+      <point x="3561.0" y="1226.0" />
+      <point x="112.0" y="230.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.42670299727520433" x="1371.9942528735633" y="1516.9169859514686" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
