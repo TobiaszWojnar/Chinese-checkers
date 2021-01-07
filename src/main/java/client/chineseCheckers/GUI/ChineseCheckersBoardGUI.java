@@ -16,17 +16,17 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private final ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
     private final List<MyPair> fieldList = new LinkedList<>();
+    private int angle;
 
-    public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager){
+    public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager, int initialAngle){
         this.colorManager = colorManager;
+        angle=initialAngle;
         boardUpdate(board);
-
-
 
         addMouseListener(this);
     }
 
-    public void paint(Graphics g){//TODO state, for shifting board
+    public void paint(Graphics g){
 
         g.setColor(colorManager.getBackgroundColor());
         System.out.println(g.getColor());
@@ -42,8 +42,10 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     public void boardUpdate (ChineseCheckersBoard board){
         this.board=board;
 
-        int xOffset = (int) ((800 * 17) / (12 * board.getHeight()));
-        int pawnSize = (int) ((800 * 17) / (19 * board.getHeight()));
+        double xOffset =  ((800 * 17) / (12 * (double)board.getHeight()));
+        double pawnSize =  (800 * 17) / (19 * (double)board.getHeight());
+        double ox = (xOffset + 3 *board.getN() * pawnSize * 0.6);
+        double oy =  2*board.getN() * pawnSize;
 
         fieldList.clear();
         for(int y = 0; y<board.getHeight();y++){
@@ -51,8 +53,10 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
                 if(board.isValidField(x,y)){
                     //TODO change values to change with board size
 
+                    double qx =  (ox + Math.cos(angle*Math.PI/180) * (xOffset + x * pawnSize * 0.6 - ox) - Math.sin(angle*Math.PI/180) * (y * pawnSize - oy));
+                    double qy =  (oy + Math.sin(angle*Math.PI/180) * (xOffset + x * pawnSize * 0.6 - ox) + Math.cos(angle*Math.PI/180) * (y * pawnSize - oy));
                     fieldList.add(new MyPair(
-                            new Ellipse2D.Float((float) (xOffset + x * pawnSize * 0.6), y * pawnSize, pawnSize, pawnSize),
+                            new Ellipse2D.Double(qx, qy, pawnSize, pawnSize),
                             new Point2D.Float(x, y)));
                 }
             }

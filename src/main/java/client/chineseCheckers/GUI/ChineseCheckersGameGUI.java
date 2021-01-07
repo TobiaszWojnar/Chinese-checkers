@@ -21,7 +21,7 @@ public class ChineseCheckersGameGUI extends JFrame {
 
         System.out.println("Creating board gui");
 
-        boardGui = new ChineseCheckersBoardGUI(board, colorManager);
+        boardGui = new ChineseCheckersBoardGUI(board, colorManager, angle);
         add(boardGui);
         boardGui.setListener((x, y) -> {
             System.out.println("Server clicked x = " + x + "; y = " + y);

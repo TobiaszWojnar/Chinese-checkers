@@ -1,10 +1,8 @@
 package client.chineseCheckers;
 
-import board.Board;
-import board.IntPoint;
+import board.Field;
 import board.chineseCheckers.ChineseBoardFactory;
 import board.chineseCheckers.ChineseCheckersBoard;
-import board.Field;
 import client.chineseCheckers.GUI.ChineseCheckersGameGUI;
 import client.chineseCheckers.GUI.GameGuiListener;
 import client.model.GameClient;
@@ -91,7 +89,7 @@ public class ChineseCheckersGameClient extends GameClient {
                         return 300;
                 }
             case 6:
-                return (180 - player * 60) % 360;
+                return (240 - player * 60) % 360;
             default:
                 return 0;
         }
