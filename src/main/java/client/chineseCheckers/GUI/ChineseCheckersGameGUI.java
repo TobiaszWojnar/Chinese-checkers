@@ -4,6 +4,8 @@ import board.chineseCheckers.ChineseCheckersBoard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ChineseCheckersGameGUI extends JFrame {
 
@@ -53,6 +55,14 @@ public class ChineseCheckersGameGUI extends JFrame {
         System.out.println("Creating window");
         setTitle("Chinese Checkers Game. You are " + playerNumber);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                gameGuiListener.onClose();
+            }
+        });
+
         setSize(new Dimension(800,800));
         setResizable(false);
         setVisible(true);

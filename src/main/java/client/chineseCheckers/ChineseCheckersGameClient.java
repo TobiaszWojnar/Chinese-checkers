@@ -62,6 +62,12 @@ public class ChineseCheckersGameClient extends GameClient {
             System.out.println("Sending RESIGN");
             sendMessage("RESIGN " + player);
         }
+
+        @Override
+        public void onClose() {
+            System.out.println("Sending CLOSE");
+            sendMessage("CLOSE " + player);
+        }
     }
 
     private int getAngle(int player, int numOfPlayers) {

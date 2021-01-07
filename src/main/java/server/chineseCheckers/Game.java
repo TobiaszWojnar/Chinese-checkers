@@ -343,6 +343,11 @@ public class Game extends GameAbstract {
                         kill();
                         endTurn();
                     }
+                } else if (command.startsWith("CLOSE")) {
+                    kill();
+                    if (player.equals(currentPlayer.getPlayer())) {
+                        endTurn();
+                    }
                 }
             }
             System.out.println("I'm out " + player);
