@@ -91,6 +91,11 @@ public class ChineseCheckersMenuBar extends JMenuBar {
         add(mSkip);
         mSkip.addActionListener(e -> listener.skip());
 
+        JMenuItem mRotate = new JMenuItem("Rotate");
+        mRotate.setMaximumSize(new Dimension(100, mRotate.getPreferredSize().height));
+        add(mRotate);
+        mRotate.addActionListener(e -> listener.rotate());
+
         mCurrentPlayer = new JMenuItem("Turn: " + currentPlayer);
         //mCurrentPlayer.setMaximumSize(new Dimension(100, mSkip.getPreferredSize().height));
         add(mCurrentPlayer);
@@ -120,5 +125,6 @@ public class ChineseCheckersMenuBar extends JMenuBar {
         void resign();
         void skip();
         void updateColors();
+        void rotate();
     }
 }

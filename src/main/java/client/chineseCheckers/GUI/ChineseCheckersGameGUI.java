@@ -63,6 +63,11 @@ public class ChineseCheckersGameGUI extends JFrame {
             public void updateColors() {
                 boardGui.repaint();
             }
+
+            @Override
+            public void rotate() {
+                boardGui.rotate();
+            }
         });
 
         System.out.println("Creating window");

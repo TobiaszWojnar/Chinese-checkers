@@ -177,6 +177,14 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     }
 
     /**
+     * Rotates board by 60 degrees
+     */
+    public void rotate() {
+        angle = (angle + 60) % 360;
+        boardUpdate(board);
+    }
+
+    /**
      * Listener enabling others to register clicks on board.
      */
     public interface BoardGuiListener {

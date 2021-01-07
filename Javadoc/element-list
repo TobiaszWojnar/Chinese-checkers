@@ -1,0 +1,13 @@
+board
+board.chineseCheckers
+board.chineseCheckers.corners
+client
+client.chineseCheckers
+client.chineseCheckers.commandLineUI
+client.chineseCheckers.GUI
+client.model
+client.model.UI
+server
+server.chineseCheckers
+server.chineseCheckers.datastructures
+server.chineseCheckers.logic
