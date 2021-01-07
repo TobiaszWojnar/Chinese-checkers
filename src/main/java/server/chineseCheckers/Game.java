@@ -279,7 +279,7 @@ public class Game extends GameAbstract {
 
         private void handleCommands() throws IOException {
             String command;
-            while ((command = input.readLine()) != null && running) {
+            while ((command = input.readLine()) != null) {
                 System.out.println("Message from client: " + command);
                 if (command.startsWith("SELECT")) {
                     String[] words = command.split(" ");
@@ -338,10 +338,14 @@ public class Game extends GameAbstract {
                     }
                     endTurn();
                 } else if (command.startsWith("RESIGN")) {
-                    currentPlayer.kill();
-                    endTurn();
+                    String[] words = command.split(" ");
+                    if (words[1].equals(currentPlayer.getPlayer())) {
+                        kill();
+                        endTurn();
+                    }
                 }
             }
+            System.out.println("I'm out " + player);
         }
 
         private void disconnect() {
@@ -372,7 +376,7 @@ public class Game extends GameAbstract {
         }
 
         private void sendMessage(String message) {
-            if (running) {
+            if (output != null) {
                 output.println(message);
                 output.flush();
             }

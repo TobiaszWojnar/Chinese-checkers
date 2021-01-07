@@ -23,8 +23,8 @@ public class CornerMap extends HashMap<Field, Corner> {
                 break;
             case 3:
                 this.put(Field.Player1, LowerCorner.getInstance());
-                this.put(Field.Player2, LowerRightCorner.getInstance());
-                this.put(Field.Player3, LowerLeftCorner.getInstance());
+                this.put(Field.Player2, UpperLeftCorner.getInstance());
+                this.put(Field.Player3, UpperRightCorner.getInstance());
                 break;
             case 4:
                 this.put(Field.Player1, LowerRightCorner.getInstance());

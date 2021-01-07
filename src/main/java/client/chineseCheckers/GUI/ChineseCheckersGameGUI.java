@@ -13,7 +13,7 @@ public class ChineseCheckersGameGUI extends JFrame {
     private String currentPlayer;
 
     public ChineseCheckersGameGUI(
-            int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO roomId?
+            int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer, int angle) {//TODO roomId?
             //TODO show list of players with colors, change your number to 'You'
         this.currentPlayer=currentPlayer;
 
