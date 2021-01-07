@@ -16,8 +16,6 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private final ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
     private final List<MyPair> fieldList = new LinkedList<>();
-    private int pawnSize;
-    private int xOffset ;
 
     public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager){
         this.colorManager = colorManager;
@@ -44,8 +42,8 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     public void boardUpdate (ChineseCheckersBoard board){
         this.board=board;
 
-        xOffset = (int) ((800*17)/(12*board.getHeight()));
-        pawnSize = (int) ((800*17)/(19*board.getHeight()));
+        int xOffset = (int) ((800 * 17) / (12 * board.getHeight()));
+        int pawnSize = (int) ((800 * 17) / (19 * board.getHeight()));
 
         fieldList.clear();
         for(int y = 0; y<board.getHeight();y++){

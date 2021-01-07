@@ -1,6 +1,5 @@
 package client.chineseCheckers.GUI;
 
-import board.Board;
 import board.chineseCheckers.ChineseCheckersBoard;
 
 import javax.swing.*;
