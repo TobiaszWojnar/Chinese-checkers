@@ -1,0 +1,11 @@
+Uruchamianie za pomocą maven:
+- mvn clean package
+- mvn exec:java@server -Dplayers=liczbaGraczy -Dvariant=wariantZasad -Dboard=rozmiarPlanszy
+Możliwe wartości argumentów:
+Dplayers: 2, 3, 4, 6
+Dvariant: 1 (niestety zdążyliśmy zaimplementować tylko jeden wariant zasad - ten najprostszy, w którym trzeba wypełnić cały przeciwny róg planszy swoimi pionkami aby wygrać)
+Dboard: small, normal, big
+Jeśli któryś z argumentów nie zostanie sprecyzowany używane są domyślne wartości: 3 1 normal (więc w aktualnej wersji programu Dvariant można zawsze pominąć).
+
+- mvn exec:java@client - uruchamia jednego klienta
+Po uruchomieniu serwera należy uruchomić tylu klientów ilu graczy podano w Dplayers, aby gra się rozpoczęła.
