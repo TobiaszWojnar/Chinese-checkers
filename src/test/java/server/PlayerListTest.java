@@ -5,6 +5,7 @@ import server.chineseCheckers.Game;
 import server.chineseCheckers.datastructures.PlayerList;
 
 import java.util.Iterator;
+
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 

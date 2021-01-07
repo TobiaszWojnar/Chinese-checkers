@@ -9,6 +9,7 @@ class MyList extends LinkedList<Point[]> {
     public MyList(LinkedList<Point[]> all) {
         this.addAll(all);
     }
+
     public static void main(String[] args) {
         List<Point[]> points2 = new LinkedList<Point[]>();
 

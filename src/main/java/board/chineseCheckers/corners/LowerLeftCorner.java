@@ -13,6 +13,7 @@ public class LowerLeftCorner extends Corner {
 
     /**
      * Singleton instance getter
+     *
      * @return instance
      */
     public static LowerLeftCorner getInstance() {
@@ -25,7 +26,7 @@ public class LowerLeftCorner extends Corner {
     private LowerLeftCorner(int n) {
         points = new ArrayList<>();
         for (int i = 2 * n + 1; i <= 3 * n; i++) {
-            for (int j = 3 * n - i; j <=  i - n - 2; j += 2) {
+            for (int j = 3 * n - i; j <= i - n - 2; j += 2) {
                 points.add(new IntPoint(j, i));
             }
         }
@@ -33,6 +34,7 @@ public class LowerLeftCorner extends Corner {
 
     /**
      * Init method for different board sizes
+     *
      * @param n board size
      */
     public synchronized static void init(int n) {

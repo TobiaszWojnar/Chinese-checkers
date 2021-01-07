@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Abstract class for creating singletons of board conrners for Chinese Checkers game
+ *
  * @see LowerCorner
  * @see LowerLeftCorner
  * @see LowerRightCorner
@@ -18,6 +19,7 @@ public abstract class Corner {
 
     /**
      * Checks if given point is in the corner
+     *
      * @param x x coordinate of the point
      * @param y y coordinate of the point
      * @return true if corner contains the point false otherwise

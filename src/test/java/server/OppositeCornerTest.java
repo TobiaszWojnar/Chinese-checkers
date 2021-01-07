@@ -32,25 +32,25 @@ public class OppositeCornerTest {
         /*testBoard.show();
         checkBoard.show();*/
 
-        testBoard.setField(13,13,Field.Empty);
-        testBoard.setField(12,16,Field.Empty);
-        testBoard.setField(14,14,Field.Player1);
+        testBoard.setField(13, 13, Field.Empty);
+        testBoard.setField(12, 16, Field.Empty);
+        testBoard.setField(14, 14, Field.Player1);
 
 
-        checkBoard.setField(13,13,Field.Possible);
-        checkBoard.setField(12,16,Field.Possible);
-        checkBoard.setField(14,14,Field.Chosen);
+        checkBoard.setField(13, 13, Field.Possible);
+        checkBoard.setField(12, 16, Field.Possible);
+        checkBoard.setField(14, 14, Field.Chosen);
 
         //checkBoard.show();
 
-        logic.highlightPossible(14 ,14, Field.Player1);
+        logic.highlightPossible(14, 14, Field.Player1);
 
 
         for (IntPoint point : UpperCorner.getInstance().points) {
             System.out.println("x " + point.getX() + " " + point.getY());
         }
 
-        boolean temp = corners.get(Field.Player2).has(12,2);
+        boolean temp = corners.get(Field.Player2).has(12, 2);
         System.out.println(temp);
         System.out.println(corners.size());
 

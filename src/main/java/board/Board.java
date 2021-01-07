@@ -12,6 +12,7 @@ public abstract class Board {
 
     /**
      * Setter for the 2D table of fields
+     *
      * @param board 2D table
      */
     public void setBoard(Field[][] board) {
@@ -20,8 +21,9 @@ public abstract class Board {
 
     /**
      * Sets given field to given value
-     * @param x x coordinate of the field
-     * @param y y coordinate of the field
+     *
+     * @param x     x coordinate of the field
+     * @param y     y coordinate of the field
      * @param field value the field is to be set to
      */
     public void setField(int x, int y, Field field) {
@@ -30,6 +32,7 @@ public abstract class Board {
 
     /**
      * Gets value of given field
+     *
      * @param x x coordinate of the field
      * @param y y coordinate of the field
      * @return value of the given field
@@ -40,6 +43,7 @@ public abstract class Board {
 
     /**
      * Getter for the 2D table of the board
+     *
      * @return board
      */
     public Field[][] getBoard() {
@@ -48,6 +52,7 @@ public abstract class Board {
 
     /**
      * Getter for board width
+     *
      * @return board width
      */
     public int getWidth() {
@@ -56,6 +61,7 @@ public abstract class Board {
 
     /**
      * Getter for board height
+     *
      * @return board height
      */
     public int getHeight() {
@@ -64,6 +70,7 @@ public abstract class Board {
 
     /**
      * Abstract method meant to check if given field is valid
+     *
      * @param x x coordinate of the field
      * @param y y coordinate of the field
      * @return true if field is valid false otherwise

@@ -16,6 +16,7 @@ public class PlayerList {
 
     /**
      * Construcor
+     *
      * @param num number of players
      */
     public PlayerList(int num) {
@@ -25,6 +26,7 @@ public class PlayerList {
 
     /**
      * Adds player to player list
+     *
      * @param player player being added
      */
     public void add(Game.Player player) {
@@ -33,6 +35,7 @@ public class PlayerList {
 
     /**
      * Custom iterator getter
+     *
      * @return custom iterator
      */
     public Iterator<Game.Player> iterator() {
@@ -47,6 +50,7 @@ public class PlayerList {
 
     /**
      * Player list getter
+     *
      * @return player list
      */
     public List<Game.Player> getList() {
@@ -62,6 +66,7 @@ public class PlayerList {
 
         /**
          * Constructor
+         *
          * @param num number of players
          */
         public PlayerIterator(int num) {
@@ -71,6 +76,7 @@ public class PlayerList {
 
         /**
          * Checks if there are players who haven't finished the game yet
+         *
          * @return True if there are still players in game
          */
         @Override
@@ -85,6 +91,7 @@ public class PlayerList {
 
         /**
          * Returns next player
+         *
          * @return next player
          */
         @Override

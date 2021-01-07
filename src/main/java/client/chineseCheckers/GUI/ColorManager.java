@@ -9,10 +9,10 @@ public class ColorManager {
     private Color backgroundColor;
     private final EnumMap<Field, Color> colorMap;
 
-    public ColorManager(int numberOfPlayers){
-        backgroundColor = new Color(238,238,238);
+    public ColorManager(int numberOfPlayers) {
+        backgroundColor = new Color(238, 238, 238);
         colorMap = new EnumMap<>(Field.class);
-        switch(numberOfPlayers){
+        switch (numberOfPlayers) {
             case 2:
                 prepareForTwoPlayers();
                 break;
@@ -54,16 +54,16 @@ public class ColorManager {
     }
 
 
-    public Color getMappedColor(Field field){
+    public Color getMappedColor(Field field) {
         return colorMap.get(field);
     }
 
-    public Color getMappedColor(int indexInEnum){
+    public Color getMappedColor(int indexInEnum) {
         return colorMap.get(Field.values()[indexInEnum]);
     }
 
     public void putMap(Field value, Color color) {
-        colorMap.put(value,color);
+        colorMap.put(value, color);
     }
 
     public Color getBackgroundColor() {

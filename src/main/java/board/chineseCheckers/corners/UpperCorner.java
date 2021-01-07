@@ -13,6 +13,7 @@ public class UpperCorner extends Corner {
 
     /**
      * Singleton instance getter
+     *
      * @return instance
      */
     public static UpperCorner getInstance() {
@@ -25,7 +26,7 @@ public class UpperCorner extends Corner {
     private UpperCorner(int n) {
         points = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            for (int j = 3 * n - i; j <=  3 * n + i; j += 2) {
+            for (int j = 3 * n - i; j <= 3 * n + i; j += 2) {
                 points.add(new IntPoint(j, i));
             }
         }
@@ -33,6 +34,7 @@ public class UpperCorner extends Corner {
 
     /**
      * Init method for different board sizes
+     *
      * @param n board size
      */
     public synchronized static void init(int n) {

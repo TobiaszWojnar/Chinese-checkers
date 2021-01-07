@@ -11,13 +11,13 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
 
     private final JTextField roomIdTextField = new JTextField("Room Id");
 
-    private final String[] numberOfPlayers = new String[]{"2","3","4","6"};
+    private final String[] numberOfPlayers = new String[]{"2", "3", "4", "6"};
     private final JComboBox<String> numberOfPlayersList = new JComboBox<>(numberOfPlayers);
 
     private LobbyGuiListener listener;
 
 
-    public void LobbyWindow(){
+    public void LobbyWindow() {
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setPreferredSize(new Dimension(400, 150));
@@ -46,11 +46,11 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
 
         JButton bJoin = new JButton("Join");
         panel.add(bJoin);
-            bJoin.addActionListener(e -> {
-                String chosenRoomId = roomIdTextField.getText();
-                System.out.println("joining room "+chosenRoomId);
-                listener.join(chosenRoomId);
-            });
+        bJoin.addActionListener(e -> {
+            String chosenRoomId = roomIdTextField.getText();
+            System.out.println("joining room " + chosenRoomId);
+            listener.join(chosenRoomId);
+        });
         /*
             bJoin.setActionCommand("join");
             bJoin.addActionListener(this);
@@ -81,12 +81,13 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
         */
     }
 
-    public void setListener(LobbyGuiListener listener){
+    public void setListener(LobbyGuiListener listener) {
         this.listener = listener;
     }
 
-    public interface LobbyGuiListener{
+    public interface LobbyGuiListener {
         void join(String roomId);
+
         void host(int chosenNumberOfPlayers);
     }
 }

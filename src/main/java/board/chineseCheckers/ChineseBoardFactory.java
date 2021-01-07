@@ -7,6 +7,7 @@ public class ChineseBoardFactory {
 
     /**
      * Factory method
+     *
      * @param board board type (size)
      * @return new board of given type
      */

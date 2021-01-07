@@ -13,6 +13,7 @@ public class CornerMap extends HashMap<Field, Corner> {
 
     /**
      * Constructor
+     *
      * @param num number of players
      */
     public CornerMap(int num) {

@@ -15,7 +15,8 @@ import server.chineseCheckers.logic.LogicUnitCanSwap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;import java.net.ServerSocket;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -46,9 +47,10 @@ public class Game extends GameAbstract {
 
     /**
      * Constructor which checks if passed aruments are legal and initializes data structures
+     *
      * @param numOfPlayers number of players
-     * @param variant variant of rules
-     * @param boardType type of board
+     * @param variant      variant of rules
+     * @param boardType    type of board
      */
     public Game(int numOfPlayers, int variant, String boardType) {
         started = false;
@@ -148,6 +150,7 @@ public class Game extends GameAbstract {
 
     /**
      * Sets logic unit based on variant
+     *
      * @param variant variant of ruleset
      * @param corners corner map for {@link server.chineseCheckers.logic.LogicUnitAbstract Logic unit}
      */
@@ -225,6 +228,7 @@ public class Game extends GameAbstract {
 
         /**
          * Constructor which sets socket and communication buffers with client
+         *
          * @param player name of player
          * @param socket socket of client
          */
@@ -261,6 +265,7 @@ public class Game extends GameAbstract {
 
         /**
          * Check if player is still playing
+         *
          * @return false if player finished the game true otherwise
          */
         public boolean lives() {

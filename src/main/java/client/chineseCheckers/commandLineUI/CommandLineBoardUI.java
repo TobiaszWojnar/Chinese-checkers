@@ -8,24 +8,24 @@ import board.Field;
 public class CommandLineBoardUI {
     private final ChineseCheckersBoard board;
 
-    public CommandLineBoardUI(int numberOfPlayers, String boardType){
+    public CommandLineBoardUI(int numberOfPlayers, String boardType) {
         ChineseBoardFactory factory = new ChineseBoardFactory();
         board = factory.getBoard(boardType);
         board.prepareForPlayers(numberOfPlayers);
     }
 
-    public void show(){
+    public void show() {
 
-        for(Field[] row: board.getBoard()){
-            for(Field field: row) {
-                System.out.print(fieldToCharMapper(field)+" ");
+        for (Field[] row : board.getBoard()) {
+            for (Field field : row) {
+                System.out.print(fieldToCharMapper(field) + " ");
             }
             System.out.print('\n');
         }
     }
 
-    private char fieldToCharMapper(Field field){
-        if(field!=null) {
+    private char fieldToCharMapper(Field field) {
+        if (field != null) {
             switch (field) {
                 case Player1:
                     return 'A';

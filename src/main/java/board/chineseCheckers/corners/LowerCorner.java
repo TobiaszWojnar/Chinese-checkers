@@ -13,6 +13,7 @@ public class LowerCorner extends Corner {
 
     /**
      * Singleton instance getter
+     *
      * @return instance
      */
     public static LowerCorner getInstance() {
@@ -33,6 +34,7 @@ public class LowerCorner extends Corner {
 
     /**
      * Init method for different board sizes
+     *
      * @param n board size
      */
     public synchronized static void init(int n) {

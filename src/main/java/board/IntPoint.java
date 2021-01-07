@@ -16,6 +16,7 @@ public class IntPoint {
 
     /**
      * Constructor which sets coordinates to given values.
+     *
      * @param x x coordinate
      * @param y u coordinate
      */
@@ -26,6 +27,7 @@ public class IntPoint {
 
     /**
      * X coordinate getter
+     *
      * @return x coordinate
      */
     public int getX() {
@@ -34,6 +36,7 @@ public class IntPoint {
 
     /**
      * Y coordinate getter
+     *
      * @return y coordinate
      */
     public int getY() {

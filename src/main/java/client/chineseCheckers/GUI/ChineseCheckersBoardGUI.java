@@ -18,43 +18,43 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private final List<MyPair> fieldList = new LinkedList<>();
     private int angle;
 
-    public ChineseCheckersBoardGUI (ChineseCheckersBoard board, ColorManager colorManager, int initialAngle){
+    public ChineseCheckersBoardGUI(ChineseCheckersBoard board, ColorManager colorManager, int initialAngle) {
         this.colorManager = colorManager;
-        angle=initialAngle;
+        angle = initialAngle;
         boardUpdate(board);
 
         addMouseListener(this);
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
 
         g.setColor(colorManager.getBackgroundColor());
         System.out.println(g.getColor());
         g.fillRect(0, 0, getWidth(), getHeight());
         Graphics2D g2 = (Graphics2D) g;
-        for(MyPair p: fieldList){
+        for (MyPair p : fieldList) {
             g2.setColor(colorManager.getMappedColor(board.getField(p.getX(), p.getY())));
             g2.draw(p.getShape());
             g2.fill(p.getShape());
         }
     }
 
-    public void boardUpdate (ChineseCheckersBoard board){
-        this.board=board;
+    public void boardUpdate(ChineseCheckersBoard board) {
+        this.board = board;
 
-        double xOffset =  ((800 * 17) / (12 * (double)board.getHeight()));
-        double pawnSize =  (800 * 17) / (19 * (double)board.getHeight());
-        double ox = (xOffset + 3 *board.getN() * pawnSize * 0.6);
-        double oy =  2*board.getN() * pawnSize;
+        double xOffset = ((800 * 17) / (12 * (double) board.getHeight()));
+        double pawnSize = (800 * 17) / (19 * (double) board.getHeight());
+        double ox = (xOffset + 3 * board.getN() * pawnSize * 0.6);
+        double oy = 2 * board.getN() * pawnSize;
 
         fieldList.clear();
-        for(int y = 0; y<board.getHeight();y++){
-            for(int x = 0; x<board.getWidth();x++) {
-                if(board.isValidField(x,y)){
+        for (int y = 0; y < board.getHeight(); y++) {
+            for (int x = 0; x < board.getWidth(); x++) {
+                if (board.isValidField(x, y)) {
                     //TODO change values to change with board size
 
-                    double qx =  (ox + Math.cos(angle*Math.PI/180) * (xOffset + x * pawnSize * 0.6 - ox) - Math.sin(angle*Math.PI/180) * (y * pawnSize - oy));
-                    double qy =  (oy + Math.sin(angle*Math.PI/180) * (xOffset + x * pawnSize * 0.6 - ox) + Math.cos(angle*Math.PI/180) * (y * pawnSize - oy));
+                    double qx = (ox + Math.cos(angle * Math.PI / 180) * (xOffset + x * pawnSize * 0.6 - ox) - Math.sin(angle * Math.PI / 180) * (y * pawnSize - oy));
+                    double qy = (oy + Math.sin(angle * Math.PI / 180) * (xOffset + x * pawnSize * 0.6 - ox) + Math.cos(angle * Math.PI / 180) * (y * pawnSize - oy));
                     fieldList.add(new MyPair(
                             new Ellipse2D.Double(qx, qy, pawnSize, pawnSize),
                             new Point2D.Float(x, y)));
@@ -67,26 +67,30 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent mE) {
-        for(MyPair p: fieldList){
-            if(p.getShape().contains(mE.getPoint())) {
-                boardGuiListener.onClicked(p.getX(),p.getY());
+        for (MyPair p : fieldList) {
+            if (p.getShape().contains(mE.getPoint())) {
+                boardGuiListener.onClicked(p.getX(), p.getY());
             }
         }
     }
 
     @Override
-    public void mousePressed(MouseEvent mE) {}
+    public void mousePressed(MouseEvent mE) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent mE) {}
+    public void mouseReleased(MouseEvent mE) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent mE) {}
+    public void mouseEntered(MouseEvent mE) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent mE) {}
+    public void mouseExited(MouseEvent mE) {
+    }
 
-    public void setListener(BoardGuiListener boardGuiListener){
+    public void setListener(BoardGuiListener boardGuiListener) {
         this.boardGuiListener = boardGuiListener;
     }
 
@@ -111,13 +115,16 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         public Shape getShape() {
             return shape;
         }
+
         public Point2D getPoint() {
             return point;
         }
-        public int getX(){
+
+        public int getX() {
             return (int) point.getX();
         }
-        public int getY(){
+
+        public int getY() {
             return (int) point.getY();
         }
     }

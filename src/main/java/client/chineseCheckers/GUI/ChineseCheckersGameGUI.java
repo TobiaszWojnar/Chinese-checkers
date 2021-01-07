@@ -16,8 +16,8 @@ public class ChineseCheckersGameGUI extends JFrame {
 
     public ChineseCheckersGameGUI(
             int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer, int angle) {//TODO roomId?
-            //TODO show list of players with colors, change your number to 'You'
-        this.currentPlayer=currentPlayer;
+        //TODO show list of players with colors, change your number to 'You'
+        this.currentPlayer = currentPlayer;
 
         ColorManager colorManager = new ColorManager(numberOfPlayers);
 
@@ -63,27 +63,28 @@ public class ChineseCheckersGameGUI extends JFrame {
             }
         });
 
-        setSize(new Dimension(800,800));
+        setSize(new Dimension(800, 800));
         setResizable(false);
         setVisible(true);
     }
 
     /**
      * updates local board and repaints
+     *
      * @param board updated board
      */
-    public void updateBoard(ChineseCheckersBoard board){
+    public void updateBoard(ChineseCheckersBoard board) {
         boardGui.boardUpdate(board);
     }
 
     /**
      * Possible messages 'You lose', 'You win', 'It is a tie'
      */
-    public void showMessage(String message){
-        JOptionPane.showMessageDialog(this, message,"Info",JOptionPane.INFORMATION_MESSAGE);
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void setListener(GameGuiListener gameGuiListener){
+    public void setListener(GameGuiListener gameGuiListener) {
         this.gameGuiListener = gameGuiListener;
     }
 

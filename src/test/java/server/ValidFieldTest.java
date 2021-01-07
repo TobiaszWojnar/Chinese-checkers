@@ -17,12 +17,12 @@ public class ValidFieldTest {
 
         ChineseCheckersBoard testBoard = factory.getBoard("small");
         testBoard.prepareForPlayers(6);
-        assertFalse(testBoard.isValidField(18,4));
-        assertTrue(testBoard.isValidField(18,3));
+        assertFalse(testBoard.isValidField(18, 4));
+        assertTrue(testBoard.isValidField(18, 3));
 
         testBoard = factory.getBoard("big");
         testBoard.prepareForPlayers(6);
-        assertFalse(testBoard.isValidField(24,12));
-        assertTrue(testBoard.isValidField(23,12));
+        assertFalse(testBoard.isValidField(24, 12));
+        assertTrue(testBoard.isValidField(23, 12));
     }
 }

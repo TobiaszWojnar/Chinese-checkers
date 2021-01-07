@@ -25,7 +25,7 @@ public class IsWinnerTest {
         testBoard.setField(12,0,Field.Player2);
         testBoard.setField(11,1,Field.Player2);
         testBoard.setField(13,1,Field.Player2);
-        testBoard.setField(10,2,Field.Player2);
+        testBoard.setField(10, 2,Field.Player2);
         testBoard.setField(12,2,Field.Player2);
         testBoard.setField(14,2,Field.Player2);
         testBoard.setField(9,3,Field.Player2);

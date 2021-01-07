@@ -7,6 +7,7 @@ public class Protocol {
 
     /**
      * Constructor
+     *
      * @param out PrintWriter to write to
      */
     public Protocol(PrintWriter out) {
@@ -22,8 +23,9 @@ public class Protocol {
 
     /**
      * Informs client about game being started
+     *
      * @param currentplayer Player who has the first move
-     * @param boardType Board type (small, normal, big)
+     * @param boardType     Board type (small, normal, big)
      */
     public void gameStarted(String currentplayer, String boardType) {
         out.println("ALLCONNECTED_GAMESTARTED " + currentplayer + " " + boardType);
@@ -32,6 +34,7 @@ public class Protocol {
 
     /**
      * Informs client about highlighting possible moves for a pawn
+     *
      * @param x x cooridnate of the pawn
      * @param y y coordinate of the pawn
      */
@@ -43,6 +46,7 @@ public class Protocol {
 
     /**
      * Informs client about pawn being deselected
+     *
      * @param x x cooridnate of the pawn
      * @param y y coordinate of the pawn
      */
@@ -54,10 +58,11 @@ public class Protocol {
 
     /**
      * Informs client about move being made
-     * @param me client who is being informed
+     *
+     * @param me     client who is being informed
      * @param player player who made the move
-     * @param x x coordinate of the pawn
-     * @param y y coordinate of the pawn
+     * @param x      x coordinate of the pawn
+     * @param y      y coordinate of the pawn
      */
     public void moveMade(String me, String player, int x, int y) {
         out.println("MOVEMADE " + player + " " + x + " " + y);
@@ -67,6 +72,7 @@ public class Protocol {
 
     /**
      * Informs client about a winner
+     *
      * @param player winner
      */
     public void winner(String player) {
@@ -85,7 +91,8 @@ public class Protocol {
 
     /**
      * Sends welcome message to client on connection
-     * @param i number of player
+     *
+     * @param i            number of player
      * @param numOfPlayers number of players in game
      */
     public void welcome(int i, int numOfPlayers) {
@@ -95,6 +102,7 @@ public class Protocol {
 
     /**
      * Informs client about the end of a turn
+     *
      * @param currentPlayer player whose turn ended
      */
     public void turnEnded(String currentPlayer) {

@@ -21,7 +21,8 @@ public abstract class LogicUnitAbstract {
 
     /**
      * Constructor
-     * @param board ChineseCheckersBoard for which logic unit calculates and performs actions
+     *
+     * @param board   ChineseCheckersBoard for which logic unit calculates and performs actions
      * @param corners map of players to their destination corners
      */
     public LogicUnitAbstract(ChineseCheckersBoard board, CornerMap corners) {
@@ -35,7 +36,7 @@ public abstract class LogicUnitAbstract {
         offsets.add(new IntPoint(-2, 0));
         offsets.add(new IntPoint(2, 0));
         int n = board.getN();
-        visited = new boolean[6*n+1][4*n+1];
+        visited = new boolean[6 * n + 1][4 * n + 1];
     }
 
     protected void setPossible(int x, int y) {
@@ -73,8 +74,9 @@ public abstract class LogicUnitAbstract {
 
     /**
      * Highlights possible move for given pawn if the pawn belongs to correct player
-     * @param x x coordinate of the pawn
-     * @param y y coordinate of the pawn
+     *
+     * @param x      x coordinate of the pawn
+     * @param y      y coordinate of the pawn
      * @param player player for whom the moves are highlighted
      */
     public void highlightPossible(int x, int y, Field player) {
@@ -105,8 +107,9 @@ public abstract class LogicUnitAbstract {
 
     /**
      * Deselects the pawn and moves highlighted by {@link #highlightPossible(int, int, Field) highlightPossible} method
-     * @param x x coordinate of the pawn
-     * @param y y coordinate of the pawn
+     *
+     * @param x      x coordinate of the pawn
+     * @param y      y coordinate of the pawn
      * @param player player
      */
     public void deselect(int x, int y, Field player) {
@@ -121,11 +124,12 @@ public abstract class LogicUnitAbstract {
 
     /**
      * Moves pawn chosen by {@link #highlightPossible(int, int, Field) highlightPossible} method to given coordinates
-     * @param x x coordinate of destination
-     * @param y y coordinate of destination
+     *
+     * @param x        x coordinate of destination
+     * @param y        y coordinate of destination
      * @param chosen_x x coordinate of origin
      * @param chosen_y x coordinate of origin
-     * @param player player who makes the move
+     * @param player   player who makes the move
      */
     public void move(int x, int y, int chosen_x, int chosen_y, Field player) {
         board.setField(chosen_x, chosen_y, Field.Empty);
@@ -134,6 +138,7 @@ public abstract class LogicUnitAbstract {
 
     /**
      * Checks whether a player is a winner
+     *
      * @param player player to be checked
      * @return true if winner false otherwise
      */

@@ -10,13 +10,13 @@ public class ChineseCheckersLobbyClient {
         lobbyGUI.setListener(new ChineseCheckersLobbyGUI.LobbyGuiListener() {
             @Override
             public void join(String roomId) {
-                System.out.println("Join room "+roomId);
+                System.out.println("Join room " + roomId);
                 //TODO send request to server
             }
 
             @Override
             public void host(int chosenNumberOfPlayers) {
-                System.out.println("Host game for "+chosenNumberOfPlayers+" players");
+                System.out.println("Host game for " + chosenNumberOfPlayers + " players");
                 //TODO send request to server
             }
         });
