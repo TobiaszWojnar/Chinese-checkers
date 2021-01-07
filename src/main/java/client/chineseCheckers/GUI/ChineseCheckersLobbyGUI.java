@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-
+/**
+ * Lobby for creating games. In current version unused.
+ */
 public class ChineseCheckersLobbyGUI implements ActionListener {
 
     private final JTextField roomIdTextField = new JTextField("Room Id");
@@ -16,7 +18,9 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
 
     private LobbyGuiListener listener;
 
-
+    /**
+     * GUI
+     */
     public void LobbyWindow() {
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,13 +85,20 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
         */
     }
 
+    /**
+     * Setter enabling Lobby client to get updates.
+     * @param listener enabling Lobby client to get updates.
+     */
     public void setListener(LobbyGuiListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Interface currently not used.
+     */
     public interface LobbyGuiListener {
         void join(String roomId);
-
         void host(int chosenNumberOfPlayers);
+        void playRecorded(int gameId);
     }
 }

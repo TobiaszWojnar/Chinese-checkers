@@ -14,12 +14,6 @@ public abstract class ChineseCheckersBoard extends Board {
 
     protected int n;
 
-    /*public ChineseCheckersBoard(int numberOfPlayers) {
-        board = new Field[17][25];
-        cleanBoard();
-        prepareForPlayers(numberOfPlayers);
-    }*/
-
     /**
      * Checks if given field is valid
      *

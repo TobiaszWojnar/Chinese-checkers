@@ -5,15 +5,27 @@ import board.chineseCheckers.ChineseBoardFactory;
 import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;
 
+/**
+ * First Mocking GUI. Enabled to define interfaces and debug board.
+ */
 public class CommandLineBoardUI {
     private final ChineseCheckersBoard board;
 
+    /**
+     * Constructor creates board. Uses Factory design pattern
+     *
+     * @param numberOfPlayers should be 2,3,4 or 6
+     * @param boardType defines size
+     */
     public CommandLineBoardUI(int numberOfPlayers, String boardType) {
         ChineseBoardFactory factory = new ChineseBoardFactory();
         board = factory.getBoard(boardType);
         board.prepareForPlayers(numberOfPlayers);
     }
 
+    /**
+     * Displays on standard output board.
+     */
     public void show() {
 
         for (Field[] row : board.getBoard()) {
@@ -24,6 +36,12 @@ public class CommandLineBoardUI {
         }
     }
 
+    /**
+     * Maps field types to letters for #show() function
+     *
+     * @param field Specific field to be mapped
+     * @return character to be printed
+     */
     private char fieldToCharMapper(Field field) {
         if (field != null) {
             switch (field) {

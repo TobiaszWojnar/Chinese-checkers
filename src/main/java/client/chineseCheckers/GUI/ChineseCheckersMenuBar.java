@@ -5,11 +5,21 @@ import board.Field;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Menu bar enabling to skip, resign, change color and displaying current Player
+ */
 public class ChineseCheckersMenuBar extends JMenuBar {
     private String currentPlayer;
     private MenuBarListener listener;
     private final JMenuItem mCurrentPlayer;
 
+    /**
+     * Constructor created buttons and sets actions when clicked.
+     *
+     * @param colorManager contains colors of all players and board.
+     * @param numberOfPlayers numberOfPlayers in game
+     * @param currentPlayer currentPlayer
+     */
     public ChineseCheckersMenuBar(ColorManager colorManager, int numberOfPlayers, String currentPlayer) {
 
         this.currentPlayer = currentPlayer;
@@ -87,20 +97,28 @@ public class ChineseCheckersMenuBar extends JMenuBar {
 
     }
 
+    /**
+     * changes displaying text in menu bar
+     * @param currentPlayer currentPlayer
+     */
     public void setCurrentPlayer(String currentPlayer) {
         this.currentPlayer = currentPlayer;
         mCurrentPlayer.setText("Turn: " + currentPlayer);
     }
-
+    /**
+     * Setter of Listener enabling client to get updates.
+     * @param listener Listener enabling client to get updates
+     */
     public void setListener(MenuBarListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * 3 actions need to pe passed to board or server
+     */
     public interface MenuBarListener {
         void resign();
-
         void skip();
-
         void updateColors();
     }
 }

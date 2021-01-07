@@ -19,7 +19,6 @@ public class ChineseCheckersGameClient extends GameClient {
     private PrintWriter output;
     private Socket socket;
     private String player;
-    private int playerNumber;
     private String currentPlayer;
     private int numOfPlayers;
     private boolean highlighted;
@@ -70,37 +69,6 @@ public class ChineseCheckersGameClient extends GameClient {
         }
     }
 
-    private int getAngle(int player, int numOfPlayers) {
-        switch (numOfPlayers) {
-            case 2:
-                return 180 * (player % 2);
-            case 3:
-                switch (player) {
-                    case 1:
-                        return 180;
-                    case 2:
-                        return 60;
-                    case 3:
-                        return 300;
-                }
-            case 4:
-                switch (player) {
-                    case 1:
-                        return 240;
-                    case 2:
-                        return 120;
-                    case 3:
-                        return 60;
-                    case 4:
-                        return 300;
-                }
-            case 6:
-                return (240 - player * 60) % 360;
-            default:
-                return 0;
-        }
-    }
-
     public void setConnection(String serverAddress) throws IOException {
         // Setup networking
         socket = new Socket(serverAddress, 8081);
@@ -128,7 +96,6 @@ public class ChineseCheckersGameClient extends GameClient {
                 switch (words[0]) {
                     case "WELCOME":
                         player = words[1];
-                        playerNumber = Integer.parseInt(player.substring(player.length() - 1));
                         numOfPlayers = Integer.parseInt(words[2]);
                         break;
                     case "ALLCONNECTED_GAMESTARTED":
@@ -138,8 +105,8 @@ public class ChineseCheckersGameClient extends GameClient {
                             board.prepareForPlayers(numOfPlayers);
                             currentPlayer = words[1];
                             gameGUI = new ChineseCheckersGameGUI(numOfPlayers,
-                                    player, board, currentPlayer,
-                                    getAngle(playerNumber, numOfPlayers));
+                                    player, board, currentPlayer
+                            );
                             gameGUI.setListener(new Listener());
                             initialized = true;
                         }
