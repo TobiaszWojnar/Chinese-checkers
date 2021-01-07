@@ -1,5 +1,8 @@
 package client.model.UI;
 
+/**
+ * Model not implemented
+ */
 public abstract class GameUI {
     public abstract void updateBoard();
 
