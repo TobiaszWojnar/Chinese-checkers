@@ -15,9 +15,10 @@ Launching server with maven:
    mvn exec:java@server -Dplayers=[NumberOfPlayers] -Dvariant=[GameVariant] -Dboard=[BoardSize]
 ```
 Accepted arguments:
-* Dplayers: 2, 3, 4, 6
-* Dvariant: 1 
-* Dboard: small, normal, big
+* Dplayers: `2`, `3`, `4`, `6`
+* Dvariant: `1` 
+* Dboard: `small`, `normal`, `big`
+
 If one is not specified default is `3 1 normal`
 
 After launching server you should launch declared number of clients:
