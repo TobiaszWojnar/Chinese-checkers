@@ -21,10 +21,10 @@ Accepted arguments:
 
 If one is not specified default is `3 1 normal`
 
-After launching server you should launch declared number of clients:
+After launching server you should launch declared number of clients. FOllowing command launches one client:
 
 ```
-   mvn exec:java@client - uruchamia jednego klienta
+   mvn exec:java@client
 ```
 
 ### Requirements
