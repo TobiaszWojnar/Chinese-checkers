@@ -57,15 +57,20 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
      */
     public void paint(Graphics g) {
 
-        g.setColor(colorManager.getBackgroundColor());
-        System.out.println(g.getColor());
-        g.fillRect(0, 0, getWidth(), getHeight());
+        clearCanvas(g);
+
         Graphics2D g2 = (Graphics2D) g;
         for (MyPair p : fieldList) {
             g2.setColor(colorManager.getMappedColor(board.getField(p.getX(), p.getY())));
             g2.draw(p.getShape());
             g2.fill(p.getShape());
         }
+    }
+
+    private void clearCanvas(Graphics g) {
+        g.setColor(colorManager.getBackgroundColor());
+        System.out.println(g.getColor());
+        g.fillRect(0, 0, getWidth(), getHeight());
     }
 
     /**

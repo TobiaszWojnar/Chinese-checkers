@@ -90,6 +90,9 @@ public class ColorManager {
         return colorMap.get(Field.values()[indexInEnum]);
     }
 
+    public Color getMappedColor(String fieldName) {
+        return colorMap.get(Field.valueOf(fieldName));
+    }
     /**
      * Adds map
      * @param value field
