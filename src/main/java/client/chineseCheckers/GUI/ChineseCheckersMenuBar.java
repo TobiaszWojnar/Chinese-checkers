@@ -9,9 +9,10 @@ import java.awt.*;
  * Menu bar enabling to skip, resign, change color and displaying current Player
  */
 public class ChineseCheckersMenuBar extends JMenuBar {
-    private String currentPlayer;
+    //private String currentPlayer;
     private MenuBarListener listener;
     private final JMenuItem mCurrentPlayer;
+    private final ColorManager colorManager;
 
     /**
      * Constructor created buttons and sets actions when clicked.
@@ -21,8 +22,8 @@ public class ChineseCheckersMenuBar extends JMenuBar {
      * @param currentPlayer currentPlayer
      */
     public ChineseCheckersMenuBar(ColorManager colorManager, int numberOfPlayers, String currentPlayer) {
-
-        this.currentPlayer = currentPlayer;
+        this.colorManager=colorManager;
+        //this.currentPlayer = currentPlayer;
 
         JMenu mColor = new JMenu("Change colors");
         mColor.setMaximumSize(new Dimension(100, mColor.getPreferredSize().height));
@@ -96,8 +97,8 @@ public class ChineseCheckersMenuBar extends JMenuBar {
         add(mRotate);
         mRotate.addActionListener(e -> listener.rotate());
 
-        mCurrentPlayer = new JMenuItem("Turn: " + currentPlayer);
-        //mCurrentPlayer.setMaximumSize(new Dimension(100, mSkip.getPreferredSize().height));
+        mCurrentPlayer = new JMenuItem();
+        setCurrentPlayer(currentPlayer);
         add(mCurrentPlayer);
 
     }
@@ -107,7 +108,8 @@ public class ChineseCheckersMenuBar extends JMenuBar {
      * @param currentPlayer currentPlayer
      */
     public void setCurrentPlayer(String currentPlayer) {
-        this.currentPlayer = currentPlayer;
+        //this.currentPlayer = currentPlayer;
+        mCurrentPlayer.setForeground(colorManager.getMappedColor(currentPlayer));
         mCurrentPlayer.setText("Turn: " + currentPlayer);
     }
     /**
