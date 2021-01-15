@@ -86,7 +86,6 @@ public class ChineseCheckersGameGUI extends JFrame  {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //TODO
                 boardGui.update(getContentPane().getSize());
                 System.out.println(getContentPane().getSize().height+" "+getContentPane().getSize().width);
             }

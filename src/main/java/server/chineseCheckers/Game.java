@@ -46,7 +46,7 @@ public class Game extends GameAbstract {
     */
 
     /**
-     * Constructor which checks if passed aruments are legal and initializes data structures
+     * Constructor which checks if passed arguments are legal and initializes data structures
      *
      * @param numOfPlayers number of players
      * @param variant      variant of rules
@@ -151,7 +151,7 @@ public class Game extends GameAbstract {
     /**
      * Sets logic unit based on variant
      *
-     * @param variant variant of ruleset
+     * @param variant variant of rules
      * @param corners corner map for {@link server.chineseCheckers.logic.LogicUnitAbstract Logic unit}
      */
     private void setLogic(Integer variant, CornerMap corners) {
