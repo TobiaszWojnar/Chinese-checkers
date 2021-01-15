@@ -46,7 +46,7 @@
     <node x="1143.0" y="2022.0">board.chineseCheckers.corners.LowerRightCorner</node>
     <node x="2805.0" y="3361.0">server.chineseCheckers.Server</node>
     <node x="3773.802536231883" y="385.5">board.Board</node>
-    <node x="1334.0" y="3361.0">client.FunctionalityTests</node>
+    <node x="1334.0" y="3361.0">client.CommandLineUIFunctionalityTests</node>
     <node x="5215.875" y="1426.0">client.chineseCheckers.GUI.ChineseCheckersMenuBar</node>
     <node x="0.0" y="1947.0">server.chineseCheckers.Protocol</node>
     <node x="1880.0" y="3361.0">server.PlayerListTest</node>

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     private ChineseCheckersBoard board;
-    private final ColorManager colorManager;
+    private ColorManager colorManager;
     private BoardGuiListener boardGuiListener;
     private final List<MyPair> fieldList = new LinkedList<>();
     private int angle;
@@ -31,23 +31,18 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     public ChineseCheckersBoardGUI(ChineseCheckersBoard board, ColorManager colorManager, int initialAngle) {
         this.colorManager = colorManager;
         angle = initialAngle;
-        boardUpdate(board);
+        this.board=board;
 
         addMouseListener(this);
     }
 
     /**
      * Prepares board for displaying.
-     *
-     * @param board Contains information of current board situation and what fields are valid
+     *  @param board Contains information of current board situation and what fields are valid
      * @param colorManager specifies colors of fields and pawns
      */
     public ChineseCheckersBoardGUI(ChineseCheckersBoard board, ColorManager colorManager) {
-        this.colorManager = colorManager;
-        angle = 0;
-        boardUpdate(board);
-
-        addMouseListener(this);
+        new ChineseCheckersBoardGUI(board, colorManager, 0);
     }
 
     /**
@@ -56,8 +51,8 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
      * @param g Graphics
      */
     public void paint(Graphics g) {
-
-        clearCanvas(g);
+        g.setColor(colorManager.getBackgroundColor());
+        g.fillRect(0, 0, getWidth(), getHeight());
 
         Graphics2D g2 = (Graphics2D) g;
         for (MyPair p : fieldList) {
@@ -67,51 +62,66 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         }
     }
 
-    private void clearCanvas(Graphics g) {
-        g.setColor(colorManager.getBackgroundColor());
-        System.out.println(g.getColor());
-        g.fillRect(0, 0, getWidth(), getHeight());
-    }
 
-    /**
-     * Updates where pawns are and theirs size.
-     *
-     * @param board current board passed from GameGUI
-     */
-    public void boardUpdate(ChineseCheckersBoard board) {
-        boardUpdate(board, new Dimension(800,800));
-    }
-
-    /**
-     * Updates where pawns are and theirs size.
-     *
-     * @param board current board passed from GameGUI
-     * @param dimension current dimension of GameGUI
-     */
-    public void boardUpdate(ChineseCheckersBoard board, Dimension dimension) {
+    public void update(ChineseCheckersBoard board ) {
         this.board = board;
-        double smallerDimension = Math.min(dimension.getHeight(),dimension.getWidth());
+        recalculate();
+    }
 
-        double xOffset = ((smallerDimension * 17) / (12 * (double) board.getHeight()));
-        double pawnSize = (smallerDimension * 17) / (19 * (double) board.getHeight());
-        double ox = (xOffset + 3 * board.getN() * pawnSize * 0.6);
-        double oy = 2 * board.getN() * pawnSize;
+    /**
+     * Rotates board by 60 degrees
+     */
+    public void rotate() {
+        angle = (angle + 60) % 360;
+        recalculate();
+    }
+
+    public void update(Dimension dimension){
+        setSize(dimension);
+        recalculate();
+    }
+
+    public void recalculate(){
+
+        double smallerDimension = Math.min(getHeight(),getWidth());
+        double separationXFactor = 2/Math.sqrt(3);
+                //Math.sqrt(3);
+                //Math.sin(Math.toRadians(60))*2;
+
+        double pawnSize = (smallerDimension/((4*board.getN()+1)));
+
+
+        double marginX=(getWidth()-(3*board.getN()+1)*pawnSize*separationXFactor)/2;
+        double marginY=(getHeight()-(4*board.getN()+1)*pawnSize)/2;
+
+        double centerX=pawnSize*3*board.getN()*separationXFactor/2;
+        double centerY=pawnSize*2*board.getN();
+
 
         fieldList.clear();
         for (int y = 0; y < board.getHeight(); y++) {
             for (int x = 0; x < board.getWidth(); x++) {
                 if (board.isValidField(x, y)) {
-                    double xScalar = xOffset + x * pawnSize * 0.6 - ox;
-                    double qx = (ox + Math.cos(angle * Math.PI / 180) * (xScalar) - Math.sin(angle * Math.PI / 180) * (y * pawnSize - oy));
-                    double qy = (oy + Math.sin(angle * Math.PI / 180) * (xScalar) + Math.cos(angle * Math.PI / 180) * (y * pawnSize - oy));
+
+                    double v = (x * pawnSize * separationXFactor) / 2 - centerX;
+                    double rotatedX =  marginX + centerX + Math.cos(Math.toRadians(angle))* v
+                            - Math.sin(Math.toRadians(angle))*(y*pawnSize - centerY);
+                    double rotatedY = marginY + centerY + Math.sin(Math.toRadians(angle))* v
+                            + Math.cos(Math.toRadians(angle))*(y*pawnSize - centerY);
+
+                    //qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
+                    //qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
                     fieldList.add(new MyPair(
-                            new Ellipse2D.Double(qx, qy, pawnSize, pawnSize),
+                            new Ellipse2D.Double(rotatedX, rotatedY, pawnSize, pawnSize),
                             new Point2D.Float(x, y)));
                 }
             }
         }
         repaint();
     }
+
+
+
 
     /**
      * Checks is click was inside field or pawn.
@@ -120,6 +130,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent mE) {
+        System.out.println(mE.getX()+" "+mE.getY());
         for (MyPair p : fieldList) {
             if (p.getShape().contains(mE.getPoint())) {
                 boardGuiListener.onClicked(p.getX(), p.getY());
@@ -172,22 +183,6 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         this.boardGuiListener = boardGuiListener;
     }
 
-    /**
-     * Setter for changing board orientation.
-     *
-     * @param angle of rotation in degrees.
-     */
-    public void setAngle(int angle) {
-        this.angle=angle;
-    }
-
-    /**
-     * Rotates board by 60 degrees
-     */
-    public void rotate() {
-        angle = (angle + 60) % 360;
-        boardUpdate(board);
-    }
 
     /**
      * Listener enabling others to register clicks on board.
@@ -200,7 +195,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
      * Supportive class for painting board.
      * Enables separation of each field from its original location, like rotation.
      */
-    private static class MyPair {
+    protected static class MyPair {
         private final Shape shape;
         private final Point2D point;
 
