@@ -90,10 +90,9 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
 
         double pawnSize = (smallerDimension/((4*board.getN()+1)));
 
-        System.out.println(pawnSize);
 
-        double marginX=(getWidth()-smallerDimension)/2;
-        double marginY=(getHeight()-smallerDimension)/2;
+        double marginX=(getWidth()-(3*board.getN()+1)*pawnSize*separationXFactor)/2;
+        double marginY=(getHeight()-(4*board.getN()+1)*pawnSize)/2;
 
         double centerX=pawnSize*3*board.getN()*separationXFactor/2;
         double centerY=pawnSize*2*board.getN();
@@ -103,13 +102,12 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         for (int y = 0; y < board.getHeight(); y++) {
             for (int x = 0; x < board.getWidth(); x++) {
                 if (board.isValidField(x, y)) {
-//                    double rotatedX = (x*pawnSize*separationXFactor)/2+marginX;
-//                    double rotatedY = y*pawnSize + marginY;
-                    double v = (x * pawnSize * separationXFactor) / 2 + marginX - centerX;
-                    double rotatedX = centerX + Math.cos(Math.toRadians(angle))* v
-                            - Math.sin(Math.toRadians(angle))*(y*pawnSize + marginY - centerY);
-                    double rotatedY = centerY + Math.sin(Math.toRadians(angle))* v
-                            + Math.cos(Math.toRadians(angle))*(y*pawnSize + marginY - centerY);
+
+                    double v = (x * pawnSize * separationXFactor) / 2 - centerX;
+                    double rotatedX =  marginX + centerX + Math.cos(Math.toRadians(angle))* v
+                            - Math.sin(Math.toRadians(angle))*(y*pawnSize - centerY);
+                    double rotatedY = marginY + centerY + Math.sin(Math.toRadians(angle))* v
+                            + Math.cos(Math.toRadians(angle))*(y*pawnSize - centerY);
 
                     //qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
                     //qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
