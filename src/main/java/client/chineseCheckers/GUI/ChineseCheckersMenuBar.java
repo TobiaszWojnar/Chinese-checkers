@@ -9,7 +9,6 @@ import java.awt.*;
  * Menu bar enabling to skip, resign, change color and displaying current Player
  */
 public class ChineseCheckersMenuBar extends JMenuBar {
-    //private String currentPlayer;
     private MenuBarListener listener;
     private final JMenuItem mCurrentPlayer;
     private final ColorManager colorManager;
@@ -23,7 +22,6 @@ public class ChineseCheckersMenuBar extends JMenuBar {
      */
     public ChineseCheckersMenuBar(ColorManager colorManager, int numberOfPlayers, String currentPlayer) {
         this.colorManager=colorManager;
-        //this.currentPlayer = currentPlayer;
 
         JMenu mColor = new JMenu("Change colors");
         mColor.setMaximumSize(new Dimension(100, mColor.getPreferredSize().height));
@@ -83,7 +81,7 @@ public class ChineseCheckersMenuBar extends JMenuBar {
         mColor.add(mColorChosen);
 
         JMenuItem mResign = new JMenuItem("Resign");
-        mResign.setMaximumSize(new Dimension(100, mResign.getPreferredSize().height));
+        mResign.setMaximumSize(new Dimension(   100, mResign.getPreferredSize().height));
         add(mResign);
         mResign.addActionListener(e -> listener.resign());
 
@@ -108,7 +106,6 @@ public class ChineseCheckersMenuBar extends JMenuBar {
      * @param currentPlayer currentPlayer
      */
     public void setCurrentPlayer(String currentPlayer) {
-        //this.currentPlayer = currentPlayer;
         mCurrentPlayer.setForeground(colorManager.getMappedColor(currentPlayer));
         mCurrentPlayer.setText("Turn: " + currentPlayer);
     }
@@ -121,7 +118,7 @@ public class ChineseCheckersMenuBar extends JMenuBar {
     }
 
     /**
-     * 3 actions need to pe passed to board or server
+     * Resign and Skip action need to be passed to server, UpdateColor and Rotate only change GUI.
      */
     public interface MenuBarListener {
         void resign();

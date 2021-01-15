@@ -3,7 +3,7 @@ package client;
 import client.chineseCheckers.GUI.ChineseCheckersGameGUI;
 import client.chineseCheckers.commandLineUI.CommandLineBoardUI;
 
-public class FunctionalityTests {
+public class CommandLineUIFunctionalityTests {//TODO implement full functionality for commandline UI
     public static void main(String[] args) {
         CommandLineBoardUI testGui;
         //for(int i:new int[] {6}){

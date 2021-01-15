@@ -24,7 +24,7 @@
     <node x="1471.0" y="2680.0">server.chineseCheckers.Server</node>
     <node x="0.0" y="922.0">client.chineseCheckers.GUI.GameGuiListener</node>
     <node x="2445.618902439024" y="385.5">board.Board</node>
-    <node x="965.0" y="2680.0">client.FunctionalityTests</node>
+    <node x="965.0" y="2680.0">client.CommandLineUIFunctionalityTests</node>
     <node x="2116.9192073170725" y="1813.0">board.corners.LowerCorner</node>
     <node x="1274.9192073170727" y="1813.0">board.corners.UpperLeftCorner</node>
     <node x="3130.9730691056907" y="922.0">server.chineseCheckers.datastructures.CornerMap</node>

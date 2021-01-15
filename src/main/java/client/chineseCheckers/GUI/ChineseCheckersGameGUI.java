@@ -4,18 +4,18 @@ import board.chineseCheckers.ChineseCheckersBoard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
  * GUI of game connects all its components and communicate with client.
  */
-public class ChineseCheckersGameGUI extends JFrame {
+public class ChineseCheckersGameGUI extends JFrame  {
 
     private final ChineseCheckersBoardGUI boardGui;
     private GameGuiListener gameGuiListener;
     private final ChineseCheckersMenuBar menuBar;
-    private String currentPlayer;
 
     /**
      * Constructor gets all information about the game, starts all gui parts and listeners.
@@ -26,9 +26,7 @@ public class ChineseCheckersGameGUI extends JFrame {
      * @param currentPlayer   String like "PlayerX"
      */
     public ChineseCheckersGameGUI(
-            int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO roomId?
-        //TODO show list of players with colors, change your number to 'You'
-        this.currentPlayer = currentPlayer;
+            int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO game/room id?
 
         ColorManager colorManager = new ColorManager(numberOfPlayers);
 
@@ -81,8 +79,20 @@ public class ChineseCheckersGameGUI extends JFrame {
             }
         });
 
-        setSize(new Dimension(800, 800));
-        setResizable(false);
+        setMinimumSize(new Dimension(640, 640));
+        setPreferredSize(new Dimension(800, 800));
+        pack();
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                //TODO
+                boardGui.update(getContentPane().getSize());
+                System.out.println(getContentPane().getSize().height+" "+getContentPane().getSize().width);
+            }
+        });
+
+        setResizable(true);
         setVisible(true);
     }
 
@@ -92,7 +102,7 @@ public class ChineseCheckersGameGUI extends JFrame {
      * @param board updated board
      */
     public void updateBoard(ChineseCheckersBoard board) {
-        boardGui.boardUpdate(board);
+        boardGui.update(board);
     }
 
     /**
@@ -131,6 +141,7 @@ public class ChineseCheckersGameGUI extends JFrame {
                 return 0;
         }
     }
+
     /**
      * Possible messages 'You lose', 'You win', 'It is a tie'
      */
@@ -152,7 +163,6 @@ public class ChineseCheckersGameGUI extends JFrame {
      * @param currentPlayer name of player.
      */
     public void setCurrentPlayer(String currentPlayer) {
-        this.currentPlayer = currentPlayer;
         menuBar.setCurrentPlayer(currentPlayer);
     }
 }
