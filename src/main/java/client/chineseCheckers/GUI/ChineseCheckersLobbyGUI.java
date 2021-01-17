@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Lobby for creating games. In current version unused.
  */
-public class ChineseCheckersLobbyGUI implements ActionListener {
+public class ChineseCheckersLobbyGUI extends JFrame implements ActionListener {
 
     private final JTextField roomIdTextField = new JTextField("Room Id");
 
@@ -43,6 +43,7 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
         //bHost.setActionCommand("host");
         panel.add(bHost);
         bHost.addActionListener(e -> {
+
             String chosenNumberOfPlayers =
                     (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem());
             listener.host(chosenNumberOfPlayers, "1", "small");//TODO

@@ -2,6 +2,8 @@ package client.chineseCheckers;
 
 import client.chineseCheckers.GUI.ChineseCheckersLobbyGUI;
 
+import javax.swing.*;
+
 /**
  * Lobby client
  */
@@ -25,7 +27,12 @@ public class ChineseCheckersLobbyClient {
             @Override
             public void host(String numberOfPlayers, String ruleSet, String boardSize) {
                 System.out.println("Host game for " + numberOfPlayers + " players"); //TODO send request to server
-                server.chineseCheckers.Server.main(new String[] {numberOfPlayers, ruleSet, boardSize});
+                try {
+                    server.chineseCheckers.Server.main(new String[]{numberOfPlayers, ruleSet, boardSize});//TODO not work =(
+                }catch (Exception e){
+                    System.out.println("Unable to host new game");
+                    JOptionPane.showMessageDialog(lobbyGUI, "Unable to host new game", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
 
             @Override
