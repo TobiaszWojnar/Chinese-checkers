@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 
-public class ChineseCheckersGameClient extends GameClient { //TODO add 
+public class ChineseCheckersGameClient extends GameClient {
 
     private BufferedReader input;
     private PrintWriter output;
@@ -27,7 +28,7 @@ public class ChineseCheckersGameClient extends GameClient { //TODO add
 
     private ChineseCheckersGameGUI gameGUI;
 
-    private class Listener implements GameGuiListener {
+    private class Listener implements GameGuiListener {//TODO eventually change to sending JSON or XML
         @Override
         public void onClicked(int x, int y) {
             if (player.equals(currentPlayer)) {
@@ -126,6 +127,17 @@ public class ChineseCheckersGameClient extends GameClient { //TODO add
                         currentPlayer = words[1];
                         gameGUI.setCurrentPlayer(currentPlayer);
                         break;
+                    case "WINNER":
+                        String winner = words[1];
+                        gameGUI.showWinner(winner);
+                        break;
+                    case "REIGNED":
+                        String looser = words[1];
+                        gameGUI.showResigned(looser);
+                        break;
+                    case "MESSAGE":
+                        gameGUI.showMessage(String.join(" ", Arrays.copyOfRange(words,1,words.length)));
+                        break;
                     default:
                         break;
                 }
@@ -143,12 +155,12 @@ public class ChineseCheckersGameClient extends GameClient { //TODO add
     }
 
     public static void main(String[] args) {
-        ChineseCheckersGameClient player = new ChineseCheckersGameClient();
+        ChineseCheckersGameClient client = new ChineseCheckersGameClient();
         new Thread(() -> {
             System.out.println("Player started");
             try {
-                player.setConnection("localhost");
-                player.play();
+                client.setConnection("localhost");
+                client.play();
             } catch (Exception e) {
                 e.printStackTrace();
             }

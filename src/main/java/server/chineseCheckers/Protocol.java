@@ -20,6 +20,16 @@ public class Protocol {
         out.flush();
     }
 */
+    /**
+     * Sends welcome message to client on connection
+     *
+     * @param i            number of player
+     * @param numOfPlayers number of players in game
+     */
+    public void welcome(int i, int numOfPlayers) {
+        out.println("WELCOME " + "Player" + i + " " + numOfPlayers);
+        out.flush();
+    }
 
     /**
      * Informs client about game being started
@@ -69,37 +79,6 @@ public class Protocol {
         out.flush();
         System.out.println(me + ": MOVEMADE " + player + " " + x + " " + y);
     }
-
-    /**
-     * Informs client about a winner
-     *
-     * @param player winner
-     */
-    public void winner(String player) {
-        out.println("WINNER: " + player);
-        out.flush();
-        System.out.println("WINNER: " + player);
-    }
-
-    /**
-     * Informs client that it's their his turn
-     */
-    public void notYourTurn() {
-        out.println("NOT YOUR TURN");
-        out.flush();
-    }
-
-    /**
-     * Sends welcome message to client on connection
-     *
-     * @param i            number of player
-     * @param numOfPlayers number of players in game
-     */
-    public void welcome(int i, int numOfPlayers) {
-        out.println("WELCOME " + "Player" + i + " " + numOfPlayers);
-        out.flush();
-    }
-
     /**
      * Informs client about the end of a turn
      *
@@ -109,4 +88,35 @@ public class Protocol {
         out.println("TURNENDED " + currentPlayer);
         out.flush();
     }
+
+    /**
+     * Informs client about a winner
+     *
+     * @param player winner
+     */
+    public void winner(String player) {
+        out.println("WINNER " + player);
+        out.flush();
+        System.out.println("WINNER: " + player);
+    }
+
+    /**
+     * Informs client about a winner
+     *
+     * @param player winner
+     */
+    public void resigned(String player) {
+        out.println("REIGNED " + player);
+        out.flush();
+        System.out.println("REIGNED: " + player);
+    }
+
+    /**
+     * Informs client that it's their his turn
+     */
+    public void notYourTurn() {//TODO not used
+        out.println("NOT YOUR TURN");
+        out.flush();
+    }
+
 }
