@@ -345,6 +345,9 @@ public class Game extends GameAbstract {
                 } else if (command.startsWith("RESIGN")) {
                     String[] words = command.split(" ");
                     if (words[1].equals(currentPlayer.getPlayer())) {
+                        for (Player player : players.getList()) {
+                            player.protocol.resigned(currentPlayer.getPlayer());
+                        }
                         kill();
                         endTurn();
                     }
