@@ -21,7 +21,7 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
     /**
      * GUI
      */
-    public void LobbyWindow() {
+    public void LobbyWindow() {//TODO implement record //TODO when start or host close window
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setPreferredSize(new Dimension(400, 150));
@@ -43,9 +43,9 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
         //bHost.setActionCommand("host");
         panel.add(bHost);
         bHost.addActionListener(e -> {
-            int chosenNumberOfPlayers = Integer.parseInt(
-                    (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem()));
-            listener.host(chosenNumberOfPlayers);
+            String chosenNumberOfPlayers =
+                    (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem());
+            listener.host(chosenNumberOfPlayers, "1", "small");//TODO
         });
 
         JButton bJoin = new JButton("Join");
@@ -94,11 +94,11 @@ public class ChineseCheckersLobbyGUI implements ActionListener {
     }
 
     /**
-     * Interface currently not used.
+     * TODO
      */
     public interface LobbyGuiListener {
         void join(String roomId);
-        void host(int chosenNumberOfPlayers);
-        void playRecorded(int gameId);
+        void host(String numberOfPlayers, String ruleSet, String boardSize);
+        void playRecorded(String roomId);
     }
 }

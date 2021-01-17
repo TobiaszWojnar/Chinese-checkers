@@ -143,12 +143,12 @@ public class ChineseCheckersGameClient extends GameClient { //TODO add
     }
 
     public static void main(String[] args) {
-        ChineseCheckersGameClient player = new ChineseCheckersGameClient();
+        ChineseCheckersGameClient client = new ChineseCheckersGameClient();
         new Thread(() -> {
             System.out.println("Player started");
             try {
-                player.setConnection("localhost");
-                player.play();
+                client.setConnection("localhost");
+                client.play();
             } catch (Exception e) {
                 e.printStackTrace();
             }
