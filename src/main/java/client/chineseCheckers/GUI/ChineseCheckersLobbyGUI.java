@@ -2,26 +2,33 @@ package client.chineseCheckers.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Objects;
 
 /**
  * Lobby for creating games. In current version unused.
  */
-public class ChineseCheckersLobbyGUI extends JFrame implements ActionListener {
+public class ChineseCheckersLobbyGUI extends JFrame {
 
     private final JTextField roomIdTextField = new JTextField("Room Id");
 
-    private final String[] numberOfPlayers = new String[]{"2", "3", "4", "6"};
-    private final JComboBox<String> numberOfPlayersList = new JComboBox<>(numberOfPlayers);
+    private final String[] nrOfPlayers = new String[]{"2", "3", "4", "6"};
+    private final JComboBox<String> nrOfPlayersBox = new JComboBox<>(nrOfPlayers);
+
+    private final String[] ruleSet = new String[]{"standard"};
+    private final JComboBox<String> ruleSetBox = new JComboBox<>(ruleSet);
+
+    private final String[] boardSize = new String[]{"small","normal","big"};
+    private final JComboBox<String> boardSizeBox = new JComboBox<>(boardSize);
 
     private LobbyGuiListener listener;
 
     /**
      * GUI
      */
-    public void LobbyWindow() {//TODO implement record //TODO when start or host close window
+    public void LobbyWindow() {
+        //TODO implement record
+        //TODO when start or host close window
+        //TODO when one widow close all close; make new game new thread
         JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setPreferredSize(new Dimension(400, 150));
@@ -34,18 +41,16 @@ public class ChineseCheckersLobbyGUI extends JFrame implements ActionListener {
         l = new JLabel("To join a game enter room Id and click 'join'", JLabel.CENTER);
         panel.add(l);
 
-        panel.add(numberOfPlayersList);
+        panel.add(nrOfPlayersBox);
 
         l.setLabelFor(roomIdTextField);
         panel.add(roomIdTextField);
 
         JButton bHost = new JButton("Host");
-        //bHost.setActionCommand("host");
         panel.add(bHost);
         bHost.addActionListener(e -> {
-
             String chosenNumberOfPlayers =
-                    (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem());
+                    (String) Objects.requireNonNull(nrOfPlayersBox.getSelectedItem());
             listener.host(chosenNumberOfPlayers, "1", "small");//TODO
         });
 
@@ -56,35 +61,13 @@ public class ChineseCheckersLobbyGUI extends JFrame implements ActionListener {
             System.out.println("joining room " + chosenRoomId);
             listener.join(chosenRoomId);
         });
-        /*
-            bJoin.setActionCommand("join");
-            bJoin.addActionListener(this);
-        */
+
         frame.setContentPane(panel);
 
         frame.pack();
         frame.setVisible(true);
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        /*
-        if ("host".equals(actionEvent.getActionCommand())) {
-            int chosenNumberOfPlayers = Integer.parseInt(
-                    (String) Objects.requireNonNull(numberOfPlayersList.getSelectedItem()));
-            System.out.println("host for "+ chosenNumberOfPlayers);
-            //TODO send request through client
-        } else
-
-            if("join".equals(actionEvent.getActionCommand())){
-            String chosenRoomId = roomIdTextField.getText();
-            System.out.println("joining room "+chosenRoomId);
-            listener.join(chosenRoomId);
-            //TODO send request through client
-        }
-        */
-    }
 
     /**
      * Setter enabling Lobby client to get updates.
