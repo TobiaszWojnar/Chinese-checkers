@@ -16,18 +16,20 @@ public class ChineseCheckersGameGUI extends JFrame  {
     private final ChineseCheckersBoardGUI boardGui;
     private GameGuiListener gameGuiListener;
     private final ChineseCheckersMenuBar menuBar;
+    private String playerNumber;
 
     /**
      * Constructor gets all information about the game, starts all gui parts and listeners.
      *
-     * @param numberOfPlayers integer equals to 2,3,4 or 6
-     * @param playerNumber    String like "PlayerX"
-     * @param board           Board on which we play
-     * @param currentPlayer   String like "PlayerX"
+     * @param numberOfPlayers integer equals to 2,3,4 or 6.
+     * @param playerNumber    String like "PlayerX".
+     * @param board           Board on which we play.
+     * @param currentPlayer   String like "PlayerX".
      */
     public ChineseCheckersGameGUI(
             int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO game/room id?
 
+        this.playerNumber=playerNumber;
         ColorManager colorManager = new ColorManager(numberOfPlayers);
 
         System.out.println("Creating board gui");
@@ -49,6 +51,7 @@ public class ChineseCheckersGameGUI extends JFrame  {
             public void resign() {
                 gameGuiListener.onResigned();
                 System.out.println("To server I resign");
+                setTitle("Chinese Checkers Game. You are " + playerNumber + ". You resigned.");
             }
 
             @Override
@@ -86,7 +89,6 @@ public class ChineseCheckersGameGUI extends JFrame  {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //TODO
                 boardGui.update(getContentPane().getSize());
                 System.out.println(getContentPane().getSize().height+" "+getContentPane().getSize().width);
             }
@@ -143,12 +145,19 @@ public class ChineseCheckersGameGUI extends JFrame  {
     }
 
     /**
-     * Possible messages 'You lose', 'You win', 'It is a tie'
+     *
      */
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public void showWinner(String winner) {
+        JOptionPane.showMessageDialog(this, winner+" is the winner!!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void showResigned(String looser) {
+        JOptionPane.showMessageDialog(this, looser+" has resigned.", "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * Setter of Listener enabling client to get updates.
      * @param gameGuiListener Listener enabling client to get updates
@@ -165,4 +174,6 @@ public class ChineseCheckersGameGUI extends JFrame  {
     public void setCurrentPlayer(String currentPlayer) {
         menuBar.setCurrentPlayer(currentPlayer);
     }
+
+
 }

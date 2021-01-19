@@ -37,9 +37,9 @@
     <node x="3787.375" y="0.0">board.Field</node>
     <node x="613.5" y="1967.0">board.chineseCheckers.corners.UpperCorner</node>
     <node x="3321.0" y="746.0">board.chineseCheckers.ChineseCheckersBoard</node>
-    <node x="0.0" y="3440.0">client.chineseCheckers.GUI.ChineseCheckersLobbyGUI</node>
+    <node x="0.0" y="3440.0">client.chineseCheckers.GUI.LobbyGUITest</node>
     <node x="3719.0" y="3306.0">client.model.UI.LobbyUI</node>
-    <node x="63.0" y="3306.0">client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener</node>
+    <node x="63.0" y="3306.0">client.chineseCheckers.GUI.LobbyGUITest.LobbyGuiListener</node>
     <node x="4329.358695652174" y="870.5">client.chineseCheckers.GUI.ChineseCheckersBoardGUI.MyPair</node>
     <node x="4520.711503623189" y="2890.0">client.chineseCheckers.ChineseCheckersGameClient.Listener</node>
     <node x="3916.983695652174" y="1462.0">board.chineseCheckers.BigChineseBoard</node>
@@ -59,7 +59,7 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener" target="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI">
+    <edge source="client.chineseCheckers.GUI.LobbyGUITest.LobbyGuiListener" target="client.chineseCheckers.GUI.LobbyGUITest">
       <point x="52.0" y="42.0" />
       <point x="219.0" y="3415.0" />
       <point x="250.5" y="3415.0" />
@@ -315,7 +315,7 @@
       <point x="4613.858695652174" y="1747.0" />
       <point x="178.0" y="205.5" />
     </edge>
-    <edge source="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI" target="client.chineseCheckers.GUI.ChineseCheckersLobbyGUI.LobbyGuiListener">
+    <edge source="client.chineseCheckers.GUI.LobbyGUITest" target="client.chineseCheckers.GUI.LobbyGUITest.LobbyGuiListener">
       <point x="-83.5" y="-105.0" />
       <point x="83.5" y="3415.0" />
       <point x="115.0" y="3415.0" />

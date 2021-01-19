@@ -46,7 +46,7 @@ public class Game extends GameAbstract {
     */
 
     /**
-     * Constructor which checks if passed aruments are legal and initializes data structures
+     * Constructor which checks if passed arguments are legal and initializes data structures
      *
      * @param numOfPlayers number of players
      * @param variant      variant of rules
@@ -77,6 +77,7 @@ public class Game extends GameAbstract {
     /**
      * Creates socket of server and starts its thread
      */
+    @Override
     public void start() {
         if (!started) {
             started = true;
@@ -91,7 +92,8 @@ public class Game extends GameAbstract {
                 System.out.println("Server started!\n");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.exit(0);
+                //System.exit(0);//TODO zmieniłem na razieS
+                //Wywala java.net.BindException: Address already in use
             }
         }
     }
@@ -151,7 +153,7 @@ public class Game extends GameAbstract {
     /**
      * Sets logic unit based on variant
      *
-     * @param variant variant of ruleset
+     * @param variant variant of rules
      * @param corners corner map for {@link server.chineseCheckers.logic.LogicUnitAbstract Logic unit}
      */
     private void setLogic(Integer variant, CornerMap corners) {
@@ -345,6 +347,9 @@ public class Game extends GameAbstract {
                 } else if (command.startsWith("RESIGN")) {
                     String[] words = command.split(" ");
                     if (words[1].equals(currentPlayer.getPlayer())) {
+                        for (Player player : players.getList()) {
+                            player.protocol.resigned(currentPlayer.getPlayer());
+                        }
                         kill();
                         endTurn();
                     }
