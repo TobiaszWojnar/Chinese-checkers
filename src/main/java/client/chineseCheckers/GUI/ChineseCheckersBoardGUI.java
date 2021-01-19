@@ -24,9 +24,9 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
     /**
      * Prepares board for displaying.
      *
-     * @param board Contains information of current board situation and what fields are valid
-     * @param colorManager specifies colors of fields and pawns
-     * @param initialAngle of board rotation in degrees
+     * @param board Contains information of current board situation and what fields are valid.
+     * @param colorManager specifies colors of fields and pawns.
+     * @param initialAngle of board rotation in degrees.
      */
     public ChineseCheckersBoardGUI(ChineseCheckersBoard board, ColorManager colorManager, int initialAngle) {
         this.colorManager = colorManager;
@@ -38,8 +38,9 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
 
     /**
      * Prepares board for displaying.
-     *  @param board Contains information of current board situation and what fields are valid
-     * @param colorManager specifies colors of fields and pawns
+     *
+     * @param board Contains information of current board situation and what fields are valid.
+     * @param colorManager specifies colors of fields and pawns.
      */
     public ChineseCheckersBoardGUI(ChineseCheckersBoard board, ColorManager colorManager) {
         new ChineseCheckersBoardGUI(board, colorManager, 0);
@@ -50,6 +51,7 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
      *
      * @param g Graphics
      */
+    @Override
     public void paint(Graphics g) {
         g.setColor(colorManager.getBackgroundColor());
         g.fillRect(0, 0, getWidth(), getHeight());

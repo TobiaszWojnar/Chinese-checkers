@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Arrays;
 
+
 public class ChineseCheckersGameClient extends GameClient {
 
     private BufferedReader input;

@@ -77,6 +77,7 @@ public class Game extends GameAbstract {
     /**
      * Creates socket of server and starts its thread
      */
+    @Override
     public void start() {
         if (!started) {
             started = true;
@@ -91,7 +92,8 @@ public class Game extends GameAbstract {
                 System.out.println("Server started!\n");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.exit(0);
+                //System.exit(0);//TODO zmieniłem na razieS
+                //Wywala java.net.BindException: Address already in use
             }
         }
     }

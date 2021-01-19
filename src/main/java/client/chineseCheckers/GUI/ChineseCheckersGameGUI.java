@@ -21,10 +21,10 @@ public class ChineseCheckersGameGUI extends JFrame  {
     /**
      * Constructor gets all information about the game, starts all gui parts and listeners.
      *
-     * @param numberOfPlayers integer equals to 2,3,4 or 6
-     * @param playerNumber    String like "PlayerX"
-     * @param board           Board on which we play
-     * @param currentPlayer   String like "PlayerX"
+     * @param numberOfPlayers integer equals to 2,3,4 or 6.
+     * @param playerNumber    String like "PlayerX".
+     * @param board           Board on which we play.
+     * @param currentPlayer   String like "PlayerX".
      */
     public ChineseCheckersGameGUI(
             int numberOfPlayers, String playerNumber, ChineseCheckersBoard board, String currentPlayer) {//TODO game/room id?
