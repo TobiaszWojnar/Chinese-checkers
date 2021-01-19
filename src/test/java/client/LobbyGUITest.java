@@ -27,7 +27,7 @@ public class LobbyGUITest extends JFrame {
     /**
      * GUI
      */
-    public void LobbyWindow() {//TODO https://stackoverflow.com/questions/43007625/align-jbuttons-in-center-of-nested-jpanel-boxlayout
+    public void LobbyWindow() {
         JFrame frame = new JFrame("Chinese Checkers Lobby");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);

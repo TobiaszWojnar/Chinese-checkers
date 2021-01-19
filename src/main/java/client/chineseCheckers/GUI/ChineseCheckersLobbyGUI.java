@@ -9,10 +9,11 @@ import java.util.Objects;
  */
 public class ChineseCheckersLobbyGUI extends JFrame {
 
-    private final JTextField roomIdTextField = new JTextField("Room Id");
+    private final JTextField joinGameIdField;
 
-    private final String[] nrOfPlayers = new String[]{"2", "3", "4", "6"};
-    private final JComboBox<String> nrOfPlayersBox = new JComboBox<>(nrOfPlayers);
+    private final JTextField replayGameIdField;
+
+    private final JComboBox<String> nrOfPlayersBox;
 
     private final String[] ruleSet = new String[]{"standard"};
     private final JComboBox<String> ruleSetBox = new JComboBox<>(ruleSet);
@@ -22,50 +23,88 @@ public class ChineseCheckersLobbyGUI extends JFrame {
 
     private LobbyGuiListener listener;
 
+    public ChineseCheckersLobbyGUI(){
+        joinGameIdField = new JTextField("Game Id");
+        replayGameIdField = new JTextField("Game Id");
+        String[] nrOfPlayers = new String[]{"2", "3", "4", "6"};
+        nrOfPlayersBox = new JComboBox<>(nrOfPlayers);
+    }
+
     /**
      * GUI
      */
-    public void LobbyWindow() {
-        //TODO implement record
-        //TODO when start or host close window
-        //TODO when one widow close all close; make new game new thread
-        JFrame frame = new JFrame("Chinese Checkers Menu Lobby");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setPreferredSize(new Dimension(400, 150));
-        frame.setResizable(false);
-        JPanel panel = new JPanel(new GridLayout(3, 2));
+    public void createAndShowGUI(){
+        setTitle("Chinese Checkers Lobby");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        JLabel l = new JLabel("To host a game choose number of players and click 'host'", JLabel.CENTER);
-        panel.add(l);
+        JPanel pane = new JPanel(new GridLayout(3, 2));
+        add(pane);
 
-        l = new JLabel("To join a game enter room Id and click 'join'", JLabel.CENTER);
-        panel.add(l);
+        JPanel wrapperRule = new JPanel(new GridLayout(2, 1));
+        wrapperRule.add(new JLabel("Rule set"));
+        wrapperRule.add(ruleSetBox);
 
-        panel.add(nrOfPlayersBox);
+        JPanel wrapperNumber = new JPanel(new GridLayout(2, 1));
+        wrapperNumber.add(new JLabel("Nr of players"));
+        wrapperNumber.add(nrOfPlayersBox);
 
-        l.setLabelFor(roomIdTextField);
-        panel.add(roomIdTextField);
+        JPanel wrapperSize = new JPanel(new GridLayout(2, 1));
+        wrapperSize.add(new JLabel("Board size"));
+        wrapperSize.add(boardSizeBox);
+
+        JPanel wrapper = new JPanel();
+        wrapper.add(wrapperRule);
+        wrapper.add(wrapperNumber);
+        wrapper.add(wrapperSize);
+
+        pane.add(wrapper);
 
         JButton bHost = new JButton("Host");
-        panel.add(bHost);
+        JPanel bHostWrapper = new JPanel();
+        bHostWrapper.add(bHost);
+        pane.add(bHostWrapper);
         bHost.addActionListener(e -> {
-            String chosenNumberOfPlayers =
+            String chosenRuleSet = (String) Objects.requireNonNull(ruleSetBox.getSelectedItem());
+            String chosenNrOfPlayers =
                     (String) Objects.requireNonNull(nrOfPlayersBox.getSelectedItem());
-            listener.host(chosenNumberOfPlayers, "1", "small");//TODO
+            String chosenBoardSize = (String) Objects.requireNonNull(boardSizeBox.getSelectedItem());
+            listener.host(chosenNrOfPlayers, chosenRuleSet, chosenBoardSize);//TODO
+            System.out.println("listener.host("+chosenNrOfPlayers+",\"1\",boardSizeBox);");
         });
 
+
+        JPanel joinWrapper = new JPanel();
+        joinGameIdField.setColumns(15);
+        joinWrapper.add(joinGameIdField);
+        pane.add(joinWrapper);
+
         JButton bJoin = new JButton("Join");
-        panel.add(bJoin);
+        JPanel bJoinWrapper = new JPanel();
+        bJoinWrapper.add(bJoin);
+        pane.add(bJoinWrapper);
         bJoin.addActionListener(e -> {
-            String chosenRoomId = roomIdTextField.getText();
+            String chosenRoomId = joinGameIdField.getText();
             System.out.println("joining room " + chosenRoomId);
             listener.join(chosenRoomId);
         });
 
-        frame.setContentPane(panel);
+        JPanel replayWrapper = new JPanel();
+        replayGameIdField.setColumns(15);
+        replayWrapper.add(replayGameIdField);
+        pane.add(replayWrapper);
+        JButton bReplay = new JButton("Replay");
+        JPanel bReplayWrapper = new JPanel();
+        bReplayWrapper.add(bReplay);
+        pane.add(bReplayWrapper);
+        bReplay.addActionListener(e -> {
+            String chosenRoomId = replayGameIdField.getText();
+            System.out.println("replay room " + chosenRoomId);
+            listener.replay(chosenRoomId);
+        });
 
-        frame.pack();
-        frame.setVisible(true);
+        pack();
+        setVisible(true);
     }
 
 
@@ -83,6 +122,6 @@ public class ChineseCheckersLobbyGUI extends JFrame {
     public interface LobbyGuiListener {
         void join(String roomId);
         void host(String numberOfPlayers, String ruleSet, String boardSize);
-        void playRecorded(String roomId);
+        void replay(String roomId);
     }
 }
