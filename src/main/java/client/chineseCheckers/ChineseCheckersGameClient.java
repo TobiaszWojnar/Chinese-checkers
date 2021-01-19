@@ -12,10 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 
-/**
- * Comment
- */
+
 public class ChineseCheckersGameClient extends GameClient {
 
     private BufferedReader input;
@@ -30,7 +29,7 @@ public class ChineseCheckersGameClient extends GameClient {
 
     private ChineseCheckersGameGUI gameGUI;
 
-    private class Listener implements GameGuiListener {
+    private class Listener implements GameGuiListener {//TODO eventually change to sending JSON or XML
         @Override
         public void onClicked(int x, int y) {
             if (player.equals(currentPlayer)) {
@@ -128,6 +127,17 @@ public class ChineseCheckersGameClient extends GameClient {
                     case "TURNENDED":
                         currentPlayer = words[1];
                         gameGUI.setCurrentPlayer(currentPlayer);
+                        break;
+                    case "WINNER":
+                        String winner = words[1];
+                        gameGUI.showWinner(winner);
+                        break;
+                    case "REIGNED":
+                        String looser = words[1];
+                        gameGUI.showResigned(looser);
+                        break;
+                    case "MESSAGE":
+                        gameGUI.showMessage(String.join(" ", Arrays.copyOfRange(words,1,words.length)));
                         break;
                     default:
                         break;

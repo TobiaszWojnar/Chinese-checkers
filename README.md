@@ -64,7 +64,7 @@ In total **(190 p.)**
 
 ### What We Learned
 ##### Tobiasz
-*
+* Using Event log in InteliJ
 *
 
 ##### Ignacy

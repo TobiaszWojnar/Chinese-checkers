@@ -89,16 +89,13 @@ public class ChineseCheckersBoardGUI extends JPanel implements MouseListener {
         double separationXFactor = 2/Math.sqrt(3);
                 //Math.sqrt(3);
                 //Math.sin(Math.toRadians(60))*2;
-
         double pawnSize = (smallerDimension/((4*board.getN()+1)));
-
 
         double marginX=(getWidth()-(3*board.getN()+1)*pawnSize*separationXFactor)/2;
         double marginY=(getHeight()-(4*board.getN()+1)*pawnSize)/2;
 
         double centerX=pawnSize*3*board.getN()*separationXFactor/2;
         double centerY=pawnSize*2*board.getN();
-
 
         fieldList.clear();
         for (int y = 0; y < board.getHeight(); y++) {
