@@ -73,14 +73,14 @@
 					<execution>
 						<id>server</id>
 						<configuration>
-							<mainClass>server.chineseCheckers.Server</mainClass>
+							<mainClass>game.server.chineseCheckers.Server</mainClass>
 							<commandlineArgs>${players} ${variant} ${board}</commandlineArgs>
 						</configuration>
 					</execution>
 					<execution>
 						<id>client</id>
 						<configuration>
-							<mainClass>client.chineseCheckers.ChineseCheckersGameClient</mainClass>
+							<mainClass>game.client.chineseCheckers.ChineseCheckersGameClient</mainClass>
 						</configuration>
 					</execution>
 				</executions>

@@ -61,7 +61,7 @@ public class ChineseCheckersGameClient extends GameClient {
         @Override
         public void onResigned() {
             System.out.println("Sending RESIGN");
-            sendMessage("RESIGN " + player);
+            sendMessage("RESIGN " + player);//TODO if you resign and it is your turn you not resigned but GUI title change
         }
 
         @Override
