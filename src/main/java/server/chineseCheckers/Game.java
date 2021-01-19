@@ -77,6 +77,7 @@ public class Game extends GameAbstract {
     /**
      * Creates socket of server and starts its thread
      */
+    @Override
     public void start() {
         if (!started) {
             started = true;

@@ -1,6 +1,5 @@
 package client.chineseCheckers.commandLineUI;
 
-import board.Board;
 import board.chineseCheckers.ChineseBoardFactory;
 import board.chineseCheckers.ChineseCheckersBoard;
 import board.Field;

@@ -1,6 +1,5 @@
 package server.chineseCheckers.logic;
 
-import board.Board;
 import board.Field;
 import board.chineseCheckers.ChineseCheckersBoard;
 import server.chineseCheckers.datastructures.CornerMap;

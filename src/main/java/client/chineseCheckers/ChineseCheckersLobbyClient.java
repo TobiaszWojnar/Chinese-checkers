@@ -8,6 +8,7 @@ import javax.swing.*;
  * Lobby client
  */
 public class ChineseCheckersLobbyClient {
+
     /**
      * Main method creates GUI
      *

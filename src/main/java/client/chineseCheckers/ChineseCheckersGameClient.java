@@ -13,7 +13,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ChineseCheckersGameClient extends GameClient { //TODO add 
+/**
+ * Comment
+ */
+public class ChineseCheckersGameClient extends GameClient {
 
     private BufferedReader input;
     private PrintWriter output;

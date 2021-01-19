@@ -15,13 +15,13 @@ public class ChineseBoardFactory {
         if (board == null) {
             return null;
         }
-        if (board.equalsIgnoreCase("small")) {
+        if ("small".equalsIgnoreCase(board)) {
             return new SmallChineseBoard();
         }
-        if (board.equalsIgnoreCase("normal")) {
+        if ("normal".equalsIgnoreCase(board)) {
             return new NormalChineseBoard();
         }
-        if (board.equalsIgnoreCase("big")) {
+        if ("big".equalsIgnoreCase(board)) {
             return new BigChineseBoard();
         }
         return null;
