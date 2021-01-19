@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Lobby client
  */
-public class ChineseCheckersLobbyClient {
+public class ChineseCheckersLobbyClient { //TODO add window "waiting for all players"
 
     /**
      * Main method creates GUI
