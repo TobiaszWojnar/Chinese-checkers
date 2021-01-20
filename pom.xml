@@ -12,7 +12,7 @@
     <artifactId>tic-tac-toe</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tic-tac-toe</name>
-    <description>Tic tac toe game</description>
+    <description>Tic tac toe gameInstance</description>
 
     <properties>
         <java.version>11</java.version>

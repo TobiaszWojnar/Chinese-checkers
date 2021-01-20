@@ -1,18 +1,16 @@
 package com.javamaster.model;
 
+import com.javamaster.model.chineseCheckers.datastructures.PlayerList;
 import lombok.Data;
 
 @Data
 public class Game {
 
     private String gameId;
-    private Player player1;//TODO list
-    private Player player2;
+    private PlayerList players;
     private GameStatus status;
-    private int[][] board;
-    private TicToe winner;//TODO field
-    //TODO skipped
-    //TODO resigned
-    //TODO ruleSet
-
+    private Field[][] board;
+    private Player winner;
+    private Player resigned;
+    private Player skipped;
 }

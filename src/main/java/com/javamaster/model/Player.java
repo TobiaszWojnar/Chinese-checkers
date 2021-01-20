@@ -6,4 +6,5 @@ import lombok.Data;
 public class Player {
 
     private String login;
+    private boolean alive;
 }

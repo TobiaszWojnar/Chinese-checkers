@@ -6,6 +6,7 @@ import com.javamaster.exception.InvalidParamException;
 import com.javamaster.exception.NotFoundException;
 import com.javamaster.model.Game;
 import com.javamaster.model.GamePlay;
+import com.javamaster.model.NewGame;
 import com.javamaster.model.Player;
 import com.javamaster.service.GameService;
 import lombok.AllArgsConstructor;
@@ -27,9 +28,9 @@ public class GameController {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     @PostMapping("/start")
-    public ResponseEntity<Game> start(@RequestBody Player player) {//TODO new structure NewGame
-        log.info("start game request: {}", player);
-        return ResponseEntity.ok(gameService.createGame(player));
+    public ResponseEntity<Game> start(@RequestBody NewGame newGame) {//TODO new structure NewGame
+        log.info("start game request: {}", newGame);
+        return ResponseEntity.ok(gameService.createGame(newGame));
     }
 
     @PostMapping("/connect")

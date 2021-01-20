@@ -3,14 +3,16 @@ package com.javamaster.service;
 import com.javamaster.exception.InvalidGameException;
 import com.javamaster.exception.InvalidParamException;
 import com.javamaster.exception.NotFoundException;
-import com.javamaster.model.Game;
-import com.javamaster.model.GamePlay;
-import com.javamaster.model.Player;
-import com.javamaster.model.TicToe;
+import com.javamaster.model.*;
+import com.javamaster.model.board.IntPoint;
+import com.javamaster.model.chineseCheckers.GameInstance;
+import com.javamaster.model.chineseCheckers.datastructures.PlayerList;
+import com.javamaster.storage.GameInstanceStorage;
 import com.javamaster.storage.GameStorage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
 import java.util.UUID;
 
 import static com.javamaster.model.GameStatus.*;
@@ -19,41 +21,41 @@ import static com.javamaster.model.GameStatus.*;
 @AllArgsConstructor
 public class GameService {
 
-    public Game createGame(Player player) {
+    public Game createGame(NewGame newGame) {
         Game game = new Game();
-        game.setBoard(new int[3][3]);
+        GameInstance gameInstance = new GameInstance(newGame.getNumOfPlayers(),
+                newGame.getRuleset(), newGame.getBoardType());
+        game.setBoard(gameInstance.getBoard().getBoard());
         game.setGameId(UUID.randomUUID().toString());
-        game.setPlayer1(player);
+        gameInstance.setGameId(UUID.randomUUID().toString());
+        game.setPlayers(new PlayerList(newGame.getNumOfPlayers()));
+        game.getPlayers().add(newGame.getPlayer());
+        gameInstance.addPlayer(newGame.getPlayer());
         game.setStatus(NEW);
         GameStorage.getInstance().setGame(game);
+        GameInstanceStorage.getInstance().setGameInstance(gameInstance);
         return game;
     }
 
-    public Game connectToGame(Player player2, String gameId) throws InvalidParamException, InvalidGameException {
+    public Game connectToGame(Player newPlayer, String gameId) throws InvalidParamException {
         if (!GameStorage.getInstance().getGames().containsKey(gameId)) {
             throw new InvalidParamException("Game with provided id doesn't exist");
         }
         Game game = GameStorage.getInstance().getGames().get(gameId);
+        GameInstance gameInstance = GameInstanceStorage.getInstance().getGames().get(gameId);
 
-        if (game.getPlayer2() != null) {
-            throw new InvalidGameException("Game is not valid anymore");
+
+        game.getPlayers().add(newPlayer);
+        gameInstance.addPlayer(newPlayer);
+        if (game.getPlayers().full()) {
+            game.setStatus(IN_PROGRESS);
+            gameInstance.setCurrentPlayer(new Random().nextInt(gameInstance.getNumOfPlayers()));
         }
-
-        game.setPlayer2(player2);
-        game.setStatus(IN_PROGRESS);
         GameStorage.getInstance().setGame(game);
+        GameInstanceStorage.getInstance().setGameInstance(gameInstance);
         return game;
     }
 
-    public Game connectToRandomGame(Player player2) throws NotFoundException {
-        Game game = GameStorage.getInstance().getGames().values().stream()
-                .filter(it -> it.getStatus().equals(NEW))
-                .findFirst().orElseThrow(() -> new NotFoundException("Game not found"));
-        game.setPlayer2(player2);
-        game.setStatus(IN_PROGRESS);
-        GameStorage.getInstance().setGame(game);
-        return game;
-    }
 
     public Game gamePlay(GamePlay gamePlay) throws NotFoundException, InvalidGameException {
         if (!GameStorage.getInstance().getGames().containsKey(gamePlay.getGameId())) {
@@ -61,48 +63,77 @@ public class GameService {
         }
 
         Game game = GameStorage.getInstance().getGames().get(gamePlay.getGameId());
+        GameInstance gameInstance = GameInstanceStorage.getInstance().getGames().get(gamePlay.getGameId());
         if (game.getStatus().equals(FINISHED)) {
             throw new InvalidGameException("Game is already finished");
         }
 
-        int[][] board = game.getBoard();
-        board[gamePlay.getCoordinateX()][gamePlay.getCoordinateY()] = gamePlay.getType().getValue();
-
-        Boolean xWinner = checkWinner(game.getBoard(), TicToe.X);
-        Boolean oWinner = checkWinner(game.getBoard(), TicToe.O);
-
-        if (xWinner) {
-            game.setWinner(TicToe.X);
-        } else if (oWinner) {
-            game.setWinner(TicToe.O);
+        switch (gamePlay.getMessage()) {
+            case "SELECT":
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    int x = gamePlay.getCoordinateX();
+                    int y = gamePlay.getCoordinateY();
+                    gameInstance.setChosen(new IntPoint(x, y));
+                    gameInstance.getLogic().highlightPossible(x, y,
+                            Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
+                    game.setBoard(gameInstance.getBoard().getBoard());
+                }
+                break;
+            case "DESELECT":
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    int x = gamePlay.getCoordinateX();
+                    int y = gamePlay.getCoordinateY();
+                    gameInstance.getLogic().deselect(x, y,
+                            Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
+                    gameInstance.setChosen(null);
+                    game.setBoard(gameInstance.getBoard().getBoard());
+                }
+                break;
+            case "MOVE":
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    int x = gamePlay.getCoordinateX();
+                    int y = gamePlay.getCoordinateY();
+                    gameInstance.getLogic().move(x, y, gameInstance.getChosen().getX(),
+                            gameInstance.getChosen().getY(),
+                            Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
+                    gameInstance.setChosen(null);
+                    boolean winner = gameInstance.checkIfWinner();
+                    if (winner) {
+                        game.setWinner(game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()));
+                        game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()).setAlive(false);
+                    }
+                    gameInstance.endTurn();
+                    game.setBoard(gameInstance.getBoard().getBoard());
+                }
+                break;
+            case "ENDTURN":
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    gameInstance.endTurn();
+                }
+            case "SKIP":
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    if (gameInstance.getChosen() != null) {
+                        gameInstance.getLogic().deselect(gameInstance.getChosen().getX(),
+                                gameInstance.getChosen().getY(),
+                                Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
+                        gameInstance.setChosen(null);
+                        game.setBoard(gameInstance.getBoard().getBoard());
+                    }
+                    gameInstance.endTurn();
+                }
+                break;
+            case "RESIGN":
+            case "CLOSE":
+                game.setResigned(game.getPlayers().getMap().get(gamePlay.getType().getValue()));
+                gameInstance.kill(gamePlay.getType().getValue());
+                game.getPlayers().getMap().get(gamePlay.getType().getValue()).setAlive(false);
+                if (gamePlay.getType().getValue() == gameInstance.getCurrentPlayer()) {
+                    gameInstance.endTurn();
+                }
+                break;
         }
 
         GameStorage.getInstance().setGame(game);
         return game;
-    }
-
-    private Boolean checkWinner(int[][] board, TicToe ticToe) {
-        int[] boardArray = new int[9];
-        int counterIndex = 0;
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                boardArray[counterIndex] = board[i][j];
-                counterIndex++;
-            }
-        }
-
-        int[][] winCombinations = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
-        for (int i = 0; i < winCombinations.length; i++) {
-            int counter = 0;
-            for (int j = 0; j < winCombinations[i].length; j++) {
-                if (boardArray[winCombinations[i][j]] == ticToe.getValue()) {
-                    counter++;
-                    if (counter == 3) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }
