@@ -6,10 +6,13 @@ import lombok.Data;
 public class Game {
 
     private String gameId;
-    private Player player1;
+    private Player player1;//TODO list
     private Player player2;
     private GameStatus status;
     private int[][] board;
-    private TicToe winner;
+    private TicToe winner;//TODO field
+    //TODO skipped
+    //TODO resigned
+    //TODO ruleSet
 
 }

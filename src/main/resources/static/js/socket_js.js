@@ -19,7 +19,7 @@ function connectToSocket(gameId) {
 }
 
 function create_game() {
-    let login = document.getElementById("login").value;
+    let login = document.getElementById("login").value;//TODO  pozostałe pola
     if (login == null || login === '') {
         alert("Please enter login");
     } else {
@@ -28,13 +28,16 @@ function create_game() {
             type: 'POST',
             dataType: "json",
             contentType: "application/json",
-            data: JSON.stringify({
+            data: JSON.stringify({//TODO JSON1
                 "login": login
+                //"nrOfPlayers": login
+                //"boardSize": login
+                //"ruleSet": login
             }),
             success: function (data) {
                 gameId = data.gameId;
-                playerType = 'X';
-                reset();
+                playerType = 'X';//TODO Player1
+                reset();//TODO setBoard
                 connectToSocket(gameId);
                 alert("Your created a game. Game id is: " + data.gameId);
                 gameOn = true;
@@ -47,7 +50,7 @@ function create_game() {
 }
 
 
-function connectToRandom() {
+function connectToRandom() {//TODO na razie nie używamy
     let login = document.getElementById("login").value;
     if (login == null || login === '') {
         alert("Please enter login");
@@ -63,7 +66,7 @@ function connectToRandom() {
             success: function (data) {
                 gameId = data.gameId;
                 playerType = 'O';
-                reset();
+                reset();//TODO paintBoard
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
             },
@@ -96,8 +99,8 @@ function connectToSpecificGame() {
             }),
             success: function (data) {
                 gameId = data.gameId;
-                playerType = 'O';
-                reset();
+                playerType = 'O';//TODO data.player
+                reset();//displayResponse
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
             },

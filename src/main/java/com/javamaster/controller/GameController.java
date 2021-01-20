@@ -27,7 +27,7 @@ public class GameController {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     @PostMapping("/start")
-    public ResponseEntity<Game> start(@RequestBody Player player) {
+    public ResponseEntity<Game> start(@RequestBody Player player) {//TODO new structure NewGame
         log.info("start game request: {}", player);
         return ResponseEntity.ok(gameService.createGame(player));
     }
@@ -35,11 +35,11 @@ public class GameController {
     @PostMapping("/connect")
     public ResponseEntity<Game> connect(@RequestBody ConnectRequest request) throws InvalidParamException, InvalidGameException {
         log.info("connect request: {}", request);
-        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));
+        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));//TODO
     }
 
     @PostMapping("/connect/random")
-    public ResponseEntity<Game> connectRandom(@RequestBody Player player) throws NotFoundException {
+    public ResponseEntity<Game> connectRandom(@RequestBody Player player) throws NotFoundException {//TODO wyjeb
         log.info("connect random {}", player);
         return ResponseEntity.ok(gameService.connectToRandomGame(player));
     }
