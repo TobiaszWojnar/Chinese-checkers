@@ -65,7 +65,7 @@ function connectToRandom() {//TODO na razie nie używamy
             }),
             success: function (data) {
                 gameId = data.gameId;
-                playerType = 'O';
+                playerType = 'O';//TODO generate board (list of buttons)
                 reset();//TODO paintBoard
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
