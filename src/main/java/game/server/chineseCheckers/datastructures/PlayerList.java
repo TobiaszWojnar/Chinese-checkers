@@ -15,7 +15,7 @@ public class PlayerList {
     private final int numOfPlayers;
 
     /**
-     * Construcor
+     * Constructor
      *
      * @param num number of players
      */
