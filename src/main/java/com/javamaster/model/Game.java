@@ -13,4 +13,5 @@ public class Game {
     private Player winner;
     private Player resigned;
     private Player skipped;
+    private Field current;
 }

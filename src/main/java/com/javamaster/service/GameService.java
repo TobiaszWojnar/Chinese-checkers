@@ -77,6 +77,7 @@ public class GameService {
                 p.setLogin(player.getLogin());
                 playersDAO.save(p);
                 players.add(p);
+                game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
             }
             Games games = new Games();
             games.setGame_id(gameId);
@@ -181,7 +182,7 @@ public class GameService {
                 }
                 break;
         }
-
+        game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
         GameStorage.getInstance().setGame(game);
         return game;
     }
