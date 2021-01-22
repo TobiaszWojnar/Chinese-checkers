@@ -38,7 +38,7 @@ public class PlayerList {
     }
 
     public boolean full() {
-        return index == numOfPlayers;
+        return index == numOfPlayers + 1;
     }
 
     /**

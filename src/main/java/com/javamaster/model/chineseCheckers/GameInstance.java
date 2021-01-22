@@ -25,6 +25,17 @@ public class GameInstance {
     private LogicUnitAbstract logic;
     private final PlayerList players;//TODO replace that one with one from Game everywhere
     private IntPoint chosen;
+    private final int variant;
+    private final String boardType;
+    private int moveCount;
+
+    public void incMoveCount() {
+        moveCount = moveCount + 1;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
+    }
 
     public ChineseCheckersBoard getBoard() {
         return board;
@@ -42,6 +53,13 @@ public class GameInstance {
         return logic;
     }
 
+    public int getVariant() {
+        return variant;
+    }
+
+    public String getBoardType() {
+        return boardType;
+    }
 
     public int getNumOfPlayers() {
         return numOfPlayers;
@@ -92,6 +110,9 @@ public class GameInstance {
         CornerMap corners = new CornerMap(numOfPlayers);
         setLogic(ruleset, corners);
         players = new PlayerList(numOfPlayers);
+        this.variant = ruleset;
+        this.boardType = boardType;
+        moveCount = 0;
     }
 
     /**
