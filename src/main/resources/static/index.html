@@ -15,32 +15,57 @@
     <!--    end libs for stomp and sockjs-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
+
 <body>
-<body>
-<div class="text-center" id="box">
+<div class="text-center" id="content-wrapper">
     <header>
-        <h1>Play Tic Tac Toe</h1>
+        <h1>Chinese Checkers game</h1>
     </header>
-    <input id="login" placeholder="Place a login here">
-    <button onclick="create_game()">Create a new game</button>
-    <button onclick="connectToRandom()">Connect to random game</button>
-    <input id="game_id" placeholder="Paste game id">
-    <button>Connect by game id</button>
 
-    <!--\\TODO skip -->
+    <!--------------------------LOBBY-------------------------->
+    <div class="text-center" id="lobby-wrapper">
+        <input id="login" placeholder="Place a login here">
+        <label for="rule_set">Choose a rule set:</label>
+        <select name="rule_set" id="rule_set">
+            <option value="1">standard</option>
+        </select>
 
+        <label for="nr_of_players">Choose a number of players:</label>
+        <select name="nr_of_players" id="nr_of_players">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+        </select>
+
+        <label for="board_size">Choose board size:</label>
+        <select name="board_size" id="board_size">
+            <option value="small">small</option>
+            <option value="normal">normal</option>
+            <option value="big">big</option>
+        </select>
+
+        <button onclick="create_game()">Create a new game</button>
+        <button onclick="connect_to_random()">Connect to random game</button>
+
+        <input id="game_id" placeholder="Paste game id">
+        <button onclick="connect_by_id()">Connect by game id</button>
+        <button onclick="replay()">Replay game by id</button>
+    </div>
+
+    <!--------------------------Messages-------------------------->
     <div id="message"></div>
-    <ul id="gameBoard"><!--\\TODO -->
-        <li class="field" id="0_0"></li>
-        <li class="field" id="0_1"></li>
-        <li class="field" id="0_2"></li>
-        <li class="field" id="1_0"></li>
-        <li class="field" id="1_1"></li>
-        <li class="field" id="1_2"></li>
-        <li class="field" id="2_0"></li>
-        <li class="field" id="2_1"></li>
-        <li class="field" id="2_2"></li>
-    </ul>
+
+    <!--------------------------GAME-------------------------->
+    <div id="game_wrapper">
+        <button onclick="resign()">Resign</button>
+        <button onclick="skip()">Skip</button>
+        <ul id="board_wrapper"><!--\\TODO skip-->
+
+        </ul>
+
+    </div>
+
     <div class="clearfix"></div>
     <footer>
         <span>You are playing with <span id="oponentLogin"></span></span>
@@ -48,6 +73,5 @@
 </div>
 <script src="js/script.js"></script>
 <script src="js/socket_js.js"></script>
-</body>
 </body>
 </html>

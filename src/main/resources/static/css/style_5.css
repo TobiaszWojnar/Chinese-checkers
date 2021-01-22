@@ -7,7 +7,7 @@ background: #151720;
 }
 
 #wrapper {
-    width: 727px;
+    width: 840px;
     overflow: auto;
     margin: 0px auto;
     background: #222;
@@ -15,7 +15,7 @@ background: #151720;
     border-radius: 20px;
 }
 #gameBoard {
-    width: 710px;
+    width: 820px;
 }
 
 
@@ -23,8 +23,8 @@ background: #151720;
     float: left;
     margin: 0px;
     margin-left: -15px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
     background: #555;
     padding: 0;
