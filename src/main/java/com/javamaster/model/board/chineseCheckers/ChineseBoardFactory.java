@@ -24,6 +24,9 @@ public class ChineseBoardFactory {
         if ("big".equalsIgnoreCase(board)) {
             return new BigChineseBoard();
         }
+        if ("tiny".equalsIgnoreCase(board)) {
+            return new TinyChineseBoard();
+        }
         return null;
     }
 }
