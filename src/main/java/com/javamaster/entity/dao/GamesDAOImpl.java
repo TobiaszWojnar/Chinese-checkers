@@ -43,4 +43,14 @@ public class GamesDAOImpl implements GamesDAO {
         return games;
     }
 
+    public Games getGame(String gameId) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("SELECT * FROM games WHERE game_id = :gameId")
+                .addEntity(Games.class)
+                .setParameter("gameId", gameId);
+        Games game = (Games) query.uniqueResult();
+        session.close();
+        return game;
+    }
+
 }

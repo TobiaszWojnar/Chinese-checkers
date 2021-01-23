@@ -4,10 +4,7 @@ import com.javamaster.controller.dto.ConnectRequest;
 import com.javamaster.exception.InvalidGameException;
 import com.javamaster.exception.InvalidParamException;
 import com.javamaster.exception.NotFoundException;
-import com.javamaster.model.Game;
-import com.javamaster.model.GamePlay;
-import com.javamaster.model.NewGame;
-import com.javamaster.model.Player;
+import com.javamaster.model.*;
 import com.javamaster.service.GameService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +43,20 @@ public class GameController {
         log.info("gameplay: {}", request);
         Game game = gameService.gamePlay(request);
         simpMessagingTemplate.convertAndSend("/topic/game-progress/" + game.getGameId(), game);
+        return ResponseEntity.ok(game);
+    }
+
+    @PostMapping("/startreplay")
+    public ResponseEntity<Game> startreplay(@RequestBody String gameId) {
+        log.info("start replay request: {}", gameId);
+        return ResponseEntity.ok(gameService.startReplay(gameId));
+    }
+
+    @PostMapping("/replay")
+    public ResponseEntity<Game> replay(@RequestBody Replay replay) {
+        log.info("replay: {}", replay);
+        Game game = gameService.replay(replay.getGameId(), replay.isForward());
+        simpMessagingTemplate.convertAndSend("/topic/replay-progress/" + replay.getGameId(), game);
         return ResponseEntity.ok(game);
     }
 }

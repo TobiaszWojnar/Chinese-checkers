@@ -3,6 +3,7 @@ package com.javamaster.service;
 import com.javamaster.entity.Games;
 import com.javamaster.entity.Moves;
 import com.javamaster.entity.Players;
+import com.javamaster.entity.dao.GamesDAO;
 import com.javamaster.entity.dao.GamesDAOImpl;
 import com.javamaster.entity.dao.MovesDAOImpl;
 import com.javamaster.entity.dao.PlayersDAOImpl;
@@ -12,18 +13,17 @@ import com.javamaster.exception.NotFoundException;
 import com.javamaster.model.*;
 import com.javamaster.model.board.IntPoint;
 import com.javamaster.model.chineseCheckers.GameInstance;
+import com.javamaster.model.chineseCheckers.ReplayInstance;
 import com.javamaster.model.chineseCheckers.datastructures.PlayerList;
 import com.javamaster.storage.GameInstanceStorage;
 import com.javamaster.storage.GameStorage;
+import com.javamaster.storage.ReplayInstanceStorage;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static com.javamaster.model.GameStatus.*;
 
@@ -134,11 +134,11 @@ public class GameService {
                     gameInstance.getLogic().move(x, y, gameInstance.getChosen().getX(),
                             gameInstance.getChosen().getY(),
                             Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
-
+                    gameInstance.incMoveCount();
                     Moves move = new Moves();
                     move.setGame(game.getGameId());
                     move.setMove_id(gameInstance.getMoveCount());
-                    move.setPlayer(playersDAO.getPlayer_id(gamePlay.getLogin()));
+                    move.setPlayer(gameInstance.getCurrentPlayer());
                     move.setFrom_x(gameInstance.getChosen().getX());
                     move.setFrom_y(gameInstance.getChosen().getY());
                     move.setTo_x(x);
@@ -184,6 +184,40 @@ public class GameService {
         }
         game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
         GameStorage.getInstance().setGame(game);
+        return game;
+    }
+
+    public Game startReplay(String gameId) {
+        Games games = gamesDAO.getGame(gameId);
+        List<Moves> moves = movesDAO.list(gameId);
+        Game game = new Game();
+        game.setGameId(gameId);
+        List<String> logins = playersDAO.getPlayerLogins(gameId);
+        PlayerList players = new PlayerList(games.getNumOfPlayers());
+        for (String login : logins) {
+            Player player = new Player();
+            player.setLogin(login);
+            player.setAlive(true);
+            players.add(player);
+        }
+        ReplayInstance replayInstance = new ReplayInstance(gameId,
+                games.getNumOfPlayers(), games.getVariant(),
+                games.getBoardType(), players, moves);
+        game.setBoard(replayInstance.getBoard().getBoard());
+        game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
+        game.setPlayers(players);
+        ReplayInstanceStorage.getInstance().setReplay(replayInstance);
+        return game;
+    }
+
+    public Game replay(String gameId, boolean forward) {
+        ReplayInstance replayInstance = ReplayInstanceStorage.getInstance().getReplays().get(gameId);
+        Game game = new Game();
+        replayInstance.move(forward);
+        game.setPlayers(replayInstance.getPlayers());
+        game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
+        game.setBoard(replayInstance.getBoard().getBoard());
+        game.setGameId(gameId);
         return game;
     }
 }
