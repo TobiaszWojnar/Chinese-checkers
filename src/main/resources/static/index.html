@@ -58,18 +58,23 @@
 
     <!--------------------------GAME-------------------------->
     <div id="game_wrapper">
-        <button onclick="resign()">Resign</button>
-        <button onclick="skip()">Skip</button>
-        <ul id="board_wrapper"><!--\\TODO skip-->
-
-        </ul>
-
+        <div id="game_buttons_wrapper">
+            <button onclick="resign()">Resign</button>
+            <button onclick="skip()">Skip</button>
+        </div>
+        <div id="replay_buttons_wrapper">
+            <button onclick="previous()">Previous</button>
+            <button onclick="next()">Next</button>
+        </div>
+        <ul id="board_wrapper" style="padding-left: 0"><script src="js/board.js"></script></ul>
     </div>
 
-    <div class="clearfix"></div>
-    <footer>
-        <span>You are playing with <span id="oponentLogin"></span></span>
+    <div class="clearfix"></div><!--\\TODO what does it do-->
+
+    <footer><!--\\TODO do I need it-->
+        <span>You are playing with <span id="opponentLogin"></span></span>
     </footer>
+
 </div>
 <script src="js/script.js"></script>
 <script src="js/socket_js.js"></script>

@@ -1,13 +1,14 @@
 package com.javamaster;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TicTacToeApplication {
+public class ChineseCheckersApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TicTacToeApplication.class, args);
+        SpringApplication.run(ChineseCheckersApplication.class, args);
     }
 
 }

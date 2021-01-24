@@ -1,7 +1,24 @@
 var board = [];//TODO
 var turn = "";
-var isYourTurn = false;
+var currentPlayer;
 
+//TODO
+ /*
+    if isYourTurn
+        if youSelected
+            if clickedField == highlighted
+                move
+            if clickedField == chosen
+                deselect
+            else
+                ignore
+        else
+            if clickedField == yourId
+                select
+*/
+/*
+//TODO na buttonach
+*/
 $(".field").click(function () {//TODO add is valid
     var slot = $(this).attr('id');
     //TODO if your move
@@ -28,11 +45,59 @@ function move(playerNr, x, y) {//type = player //change name {type, x, y, messag
             "playerNr": playerNr,
             "x": x,
             "y": y,
-            "message": "moved",
-            "gameId": gameId
+            "message": "MOVE",
+            "gameId": gameId,
+            "login": login
         }),
         success: function (data) {
+            processResponse(data);
             isYourTurn = false;
+            displayResponse(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function select(playerNr, x, y) {
+    $.ajax({
+        url: url + "/game/gameplay",
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "playerNr": playerNr,
+            "x": x,
+            "y": y,
+            "message": "SELECT",
+            "gameId": gameId,
+            "login": login
+        }),
+        success: function (data) {
+            displayResponse(data);//TODO if data.status = finished; show data.winner tylko ona będzie miała wiele
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function deselect(playerNr, x, y) {
+    $.ajax({
+        url: url + "/game/gameplay",
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "playerNr": playerNr,
+            "x": x,
+            "y": y,
+            "message": "DESELECT",
+            "gameId": gameId,
+            "login": login
+        }),
+        success: function (data) {
             displayResponse(data);//TODO if data.status = finished; show data.winner tylko ona będzie miała wiele
         },
         error: function (error) {
@@ -51,11 +116,11 @@ function skip(){
             "playerNr": playerNr,
             "x": "",
             "y": "",
-            "message": "skip",
-            "gameId": gameId
+            "message": "SKIP",
+            "gameId": gameId,
+            "login": login
         }),
         success: function (data) {
-            isYourTurn = false;
             displayResponse(data);//TODO if data.status = finished; show data.winner tylko ona będzie miała wiele
         },
         error: function (error) {
@@ -73,17 +138,21 @@ function resign(){
             "playerNr": playerNr,
             "x": "",
             "y": "",
-            "message": "resign",
-            "gameId": gameId
+            "message": "RESIGN",
+            "gameId": gameId,
+            "login": login
         }),
         success: function (data) {
-            isYourTurn = false;//TODO isYourTurn isYourTurn
-            displayResponse(data);//TODO if data.status = finished; show data.winner tylko ona będzie miała wiele
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
         }
     })
+}
+function processResponse(data){//TODO if data.status = finished; show data.winner tylko ona będzie miała wiele
+
+
 }
 
 function displayResponse(data) {

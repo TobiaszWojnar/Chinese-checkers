@@ -1,33 +1,33 @@
 body {
 background: #151720;
 }
+#content-wrapper{}
+#lobby-wrapper{}
+#message{}
+#game_wrapper{}
+#game_buttons_wrapper{}
+#replay_buttons_wrapper{}
+/* This is ul so it has padding */
+#board_wrapper{
 
-.clearfix {
-    clear: both;
 }
-
-#wrapper {
-    width: 727px;
-    overflow: auto;
-    margin: 0px auto;
-    background: #222;
-    padding-bottom: 0px;
-    border-radius: 20px;
-}
-#gameBoard {
-    width: 710px;
-}
-
-
-.field {
+.valid_field {
     float: left;
-    margin: 0px;
-    margin-left: -15px;
-    height: 50px;
-    width: 50px;
-    border-radius: 20px;
-    background: #555;
+    border-radius: 50px;
     padding: 0;
     list-style-type: none;
     text-align: center;
+}
+.not_valid_field {
+    float: left;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+.HoverClass:hover {
+    cursor: grab;
+    background: red; /*//TODO why not work */
+}
+.clearfix {
+    clear: both;
 }

@@ -38,7 +38,7 @@ function create_game() {
                 "nrOfPlayers": nr_of_players,
                 "boardSize": board_size
             }),
-            success: function (data) {
+            success: function (data) {//TODO taki jak zawsze
                 gameId = data.gameId;
                 playerId = data.;//TODO Player1
                 reset();//TODO setBoard
@@ -128,11 +128,19 @@ function replay() {
         data: JSON.stringify({
             "gameId": gameId
         }),
-        success: function (data) {
-
+        success: function (data) {//TODO ma mieć dwa
+            //dostaje listę ruchów
+            //i aktualną planszę
+            /*
+            data
+            */
         },
         error: function (error) {
             console.log(error);
         }
     })
 }
+/*
+forward
+
+*/

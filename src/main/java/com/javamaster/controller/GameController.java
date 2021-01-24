@@ -6,17 +6,20 @@ import com.javamaster.exception.InvalidParamException;
 import com.javamaster.exception.NotFoundException;
 import com.javamaster.model.Game;
 import com.javamaster.model.GamePlay;
+import com.javamaster.model.NewGame;
 import com.javamaster.model.Player;
 import com.javamaster.service.GameService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Controller
 @RestController
 @Slf4j
 @AllArgsConstructor
@@ -27,21 +30,15 @@ public class GameController {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     @PostMapping("/start")
-    public ResponseEntity<Game> start(@RequestBody Player player) {//TODO new structure NewGame
-        log.info("start game request: {}", player);
-        return ResponseEntity.ok(gameService.createGame(player));
+    public ResponseEntity<Game> start(@RequestBody NewGame newGame) {
+        log.info("start game request: {}", newGame);
+        return ResponseEntity.ok(gameService.createGame(newGame));
     }
 
     @PostMapping("/connect")
     public ResponseEntity<Game> connect(@RequestBody ConnectRequest request) throws InvalidParamException, InvalidGameException {
         log.info("connect request: {}", request);
-        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));//TODO
-    }
-
-    @PostMapping("/connect/random")
-    public ResponseEntity<Game> connectRandom(@RequestBody Player player) throws NotFoundException {//TODO wyjeb
-        log.info("connect random {}", player);
-        return ResponseEntity.ok(gameService.connectToRandomGame(player));
+        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));
     }
 
     @PostMapping("/gameplay")
