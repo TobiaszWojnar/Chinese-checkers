@@ -3,6 +3,8 @@ package com.javamaster.model;
 import com.javamaster.model.chineseCheckers.datastructures.PlayerList;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Game {
 
@@ -10,7 +12,7 @@ public class Game {
     private PlayerList players;
     private GameStatus status;
     private Field[][] board;
-    private Player winner;
+    private List<Player> winners;
     private Player resigned;
     private Player skipped;
     private Field current;

@@ -37,6 +37,16 @@ public class PlayerList {
         }
     }
 
+    public boolean last() {
+        int i = 0;
+        for (Player player : players.values()) {
+            if (player.isAlive()) {
+                i++;
+            }
+        }
+        return i == 1;
+    }
+
     public boolean full() {
         return index == numOfPlayers + 1;
     }

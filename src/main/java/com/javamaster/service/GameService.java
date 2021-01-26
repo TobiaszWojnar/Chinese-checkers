@@ -149,10 +149,15 @@ public class GameService {
                     gameInstance.setChosen(null);
                     boolean winner = gameInstance.checkIfWinner();
                     if (winner) {
-                        game.setWinner(game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()));
+                        game.getWinners().add(game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()));
                         game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()).setAlive(false);
                     }
                     gameInstance.endTurn();
+                    if (game.getPlayers().last()) {
+                        game.getWinners().add(game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()));
+                        game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()).setAlive(false);
+                        game.setStatus(FINISHED);
+                    }
                     game.setBoard(gameInstance.getBoard().getBoard());
                 }
                 break;
@@ -170,6 +175,11 @@ public class GameService {
                         game.setBoard(gameInstance.getBoard().getBoard());
                     }
                     gameInstance.endTurn();
+                    if (game.getPlayers().last()) {
+                        game.getWinners().add(game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()));
+                        game.getPlayers().getMap().get(gameInstance.getCurrentPlayer()).setAlive(false);
+                        game.setStatus(FINISHED);
+                    }
                 }
                 break;
             case "RESIGN":
