@@ -1,43 +1,48 @@
 let boardColor = "#151720";
 let emptyFieldColor = "#555555";
-let colors = ["#555555","red","blue","yellow","green","orange","pink","lightblue","lightpink"];
+let colors = ["#555555","#e54b6c","#94bce3","#E8D595","#78d49b","#f28358","#a16da8","#EEECF4","#c8b6af"];
 
 
-let n=4
-makeBoard(n);
+// let n=2
+// makeBoard(n);
 
+let board;
+   //  board[1][1]=1;
+   //  board[5][2]=2;
+   //  board[5][3]=3;
+   //  board[5][4]=4;
+   //  board[5][5]=5;
+   //  board[5][6]=6;
+   //  board[5][7]=7;
+   //  board[5][8]=8;
+   // //board[6][5]=3;
 
-let board = createEmptyBoard(n);
-   board[5][5]=4;
-   //board[6][5]=3;
+// repaint(board,colors,board_size);
 
-repaint(board,colors,n);//TODO why not work
-
-function makeBoard(n){
-    let pawnSize = 85-n*10;
-    for (let y = 0; y < 4*n+1; y++) {
-        for (let x = 0; x < 6*n+1; x++) {
-            if((x+y-n)%2===0){
-                makePawn(x,y,pawnSize,n);
+function makeBoard(board_size){
+    let pawnSize = 85-board_size*10;
+    for (let y = 0; y < 4*board_size+1; y++) {
+        for (let x = 0; x < 6*board_size+1; x++) {
+            if((x+y-board_size)%2===0){
+                makePawn(x,y,pawnSize,board_size);
             }else if(x===0){
                 makeHalfPawn(x,y,pawnSize);
             }
         }
     }
-
     function makePawn(x,y,pawnSize,n) {
         const node = document.createElement("li");
         node.setAttribute("id",y+"_"+x);
         node.style.height = `${pawnSize}px`;
         node.style.width = `${pawnSize}px`;
         node.style.margin = `0 ${pawnSize*(Math.sqrt(2.5)-1)}px 0 0`;
-        if(isValidField(x,y,n) === true){//TODO color based on
-            node.setAttribute("class","valid_field HoverClass");
-            node.style.backgroundColor = `${colors[0]}`;//`${colors[board[y][x]]}`;
+        if(isValidField(x,y,n) === true){
+            node.setAttribute("class","valid_field HoverClass");//
+            node.style.backgroundColor = `${colors[0]}`;
 
         }else{
             node.setAttribute("class","not_valid_field");
-            node.style.background = `${boardColor}`;
+            node.style.visibility = "hidden";
         }
         document.getElementById("board_wrapper").appendChild(node);
     }
@@ -53,9 +58,11 @@ function makeBoard(n){
         document.getElementById("board_wrapper").appendChild(node);
     }
 
+    document.getElementById("board_wrapper").style.height = `${pawnSize*(2*board_size+1)}px`;
+    document.getElementById("board_wrapper").style.width = `${pawnSize*Math.sqrt(2.5)*(3*board_size+1)+5}px`;
 
-    document.getElementById("board_wrapper").style.height = `${pawnSize*(2*n+1)}px`;
-    document.getElementById("board_wrapper").style.width = `${pawnSize*Math.sqrt(2.5)*(3*n+1)+5}px`;
+    board = createEmptyBoard(board_size);
+    repaint(board,colors,board_size);
 }
 
 
@@ -76,23 +83,19 @@ function isValidField(x,y,n){
 }
 
 function createEmptyBoard(n){
-    let newBoard = [];
-    let row = [];
-    for (let i = 0; i < 6*n+1;i++){
-        row.push(0);
-    }
-    for (let i = 0; i < 4*n+1;i++){
-        newBoard.push(row);
+    let newBoard = new Array(4*n+1);
+    for(let i = 0 ; i < newBoard.length; i++){
+        newBoard[i] = new Array(6*n+1).fill(0);
     }
     return newBoard;
 }
 
 function repaint(board,colors,n){
     for(let y = 0; y<board.length;y++){
-        for(let x = 0; x<board[0].length;x++){
+        for(let x = 0; x<board[y].length;x++){
             if(isValidField(x,y,n)===true) {
                 let tempColor = board[y][x];
-                console.log(x+" "+y+" "+tempColor);
+                //console.log(x+" "+y+" "+tempColor);
                 document.getElementById(y + "_" + x).style.background = `${colors[tempColor]}`;
             }
         }

@@ -1,39 +1,40 @@
-var board = [];//TODO
-var turn = "";
-var currentPlayer;
+let turn = "";
+let currentPlayer;
+let isYourTurn = false;
+let youSelected = false;
+let yourPlayerNr;
 
-//TODO
- /*
-    if isYourTurn
-        if youSelected
-            if clickedField == highlighted
-                move
-            if clickedField == chosen
-                deselect
-            else
-                ignore
-        else
-            if clickedField == yourId
-                select
-*/
-/*
-//TODO na buttonach
-*/
-$(".field").click(function () {//TODO add is valid
-    var slot = $(this).attr('id');
-    //TODO if your move
-    //TODO if is valid field
-    move(playerNr, id.split("_")[0], id.split("_")[1]);
-});
+function prepareGameToPlay(board_size){
 
-function playerTurn(turn, id) {//TODO to jest próba wybrania,
-    if (isYourTurn) {
-        var spotTaken = $("#" + id).text();
-        if (spotTaken === "#") {
-            move(playerNr, id.split("_")[0], id.split("_")[1]);
+    document.getElementById("lobby_wrapper").style.display = "none";
+    document.getElementById("board_wrapper").style.display = "inline-block";//TODO why not see?
+    document.getElementById("game_buttons_wrapper").style.display = "inline-block";
+    makeBoard(board_size);
+    repaint(board,colors,board_size);
+    document.getElementById("content-wrapper").style.height = "1000px";
+    document.getElementById("content-wrapper").style.display = "block";
+}
+
+
+$(".valid_field").click(function () {
+
+    let touchedField = $(this).attr('id');
+
+    console.log("touchedField why not work");
+    if(isYourTurn){
+        let fieldValue = board[touchedField.split("_")[0]][touchedField.split("_")[1]];
+        if(youSelected) {
+            if(fieldValue===7) {//highlighted or possible
+                move(yourPlayerNr,touchedField.split("_")[1],touchedField.split("_")[0]);
+            } else if (fieldValue===8){//chosen
+                deselect(yourPlayerNr,touchedField.split("_")[1],touchedField.split("_")[0]);
+            }
+            //else ignore
+        } else if(fieldValue === yourPlayerNr){
+            select(yourPlayerNr,touchedField.split("_")[1],touchedField.split("_")[0]);
         }
     }
-}
+});
 
 function move(playerNr, x, y) {//type = player //change name {type, x, y, message}
     $.ajax({

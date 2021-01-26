@@ -23,7 +23,7 @@
     </header>
 
     <!--------------------------LOBBY-------------------------->
-    <div class="text-center" id="lobby-wrapper">
+    <div class="text-center" id="lobby_wrapper">
         <input id="login" placeholder="Place a login here">
         <label for="rule_set">Choose a rule set:</label>
         <select name="rule_set" id="rule_set">
@@ -39,10 +39,10 @@
         </select>
 
         <label for="board_size">Choose board size:</label>
-        <select name="board_size" id="board_size">
-            <option value="small">small</option>
-            <option value="normal">normal</option>
-            <option value="big">big</option>
+        <select name="board_size" id="board_size"><!--\\TODO make -->
+            <option value="3">small</option>
+            <option value="4">normal</option>
+            <option value="5">big</option>
         </select>
 
         <button onclick="create_game()">Create a new game</button>
@@ -71,12 +71,12 @@
 
     <div class="clearfix"></div><!--\\TODO what does it do-->
 
-    <footer><!--\\TODO do I need it-->
-        <span>You are playing with <span id="opponentLogin"></span></span>
-    </footer>
+    <!--    <footer>&lt;!&ndash;\\TODO do I need it&ndash;&gt;-->
+    <!--        <span>You are playing with <span id="opponentLogin"></span></span>-->
+    <!--    </footer>-->
 
 </div>
-<script src="js/script.js"></script>
+<script src="js/gameLogic.js"></script>
 <script src="js/socket_js.js"></script>
 </body>
 </html>

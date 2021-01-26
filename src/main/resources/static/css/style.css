@@ -1,15 +1,44 @@
 body {
-background: #151720;
+    background: #262830;
 }
-#content-wrapper{}
-#lobby-wrapper{}
+h1 {
+    margin: 10px;
+    text-align: center;
+    color: lightgrey;
+}
+label{
+    color: lightgrey;
+}
+input{
+    margin: 10px 100px;
+}
+
+#content-wrapper{
+    width: 1000px;
+
+    margin: 50px auto;
+    padding: 20px;
+    background: #151720;
+    border-radius: 50px;
+}
+#lobby_wrapper{
+    width: 500px;
+    margin: 10px auto;
+}
 #message{}
-#game_wrapper{}
-#game_buttons_wrapper{}
-#replay_buttons_wrapper{}
+#game_wrapper{
+    margin: 10px auto;
+}
+#game_buttons_wrapper{
+    display: none;
+}
+#replay_buttons_wrapper{
+    display: none;
+}
 /* This is ul so it has padding */
 #board_wrapper{
-
+    margin: 10px auto;
+    /* display: none; */
 }
 .valid_field {
     float: left;
@@ -26,7 +55,7 @@ background: #151720;
 }
 .HoverClass:hover {
     cursor: grab;
-    background: red; /*//TODO why not work */
+    background: red !important;
 }
 .clearfix {
     clear: both;
