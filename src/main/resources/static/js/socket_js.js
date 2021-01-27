@@ -47,7 +47,7 @@ function create_game() {
             success: function (data) {
                 gameId = data.gameId;
                 playerId = data.player;
-                processResponse(data);                              //TODO
+                processResponse(data);
                 connectToSocket(gameId);
                 alert("You created a game. Game id is: " + gameId);
             },
@@ -103,7 +103,7 @@ function connect_by_id() {
             }),
             success: function (data) {
                 gameId = data.gameId;
-                playerId = data.player;//TODO
+                playerId = data.player;
                 board_size = (data.board.length-1)/4;
                 prepareGameToPlay(board_size);
                 processResponse(data);

@@ -54,50 +54,36 @@
         <button onclick="replay()">Replay game by id</button>
     </div>
 
-    <!--------------------------Messages-------------------------->
-    <div id="message"></div>
-
     <!--------------------------GAME-------------------------->
     <div id="game_wrapper">
         <div id="game_buttons_wrapper">
-            <button onclick="resign()">Resign</button>
-            <button onclick="skip()">Skip</button>
+            <button onclick="resignClicked()">Resign</button>
+            <button onclick="skipClicked()">Skip</button>
         </div>
         <div id="replay_buttons_wrapper">
             <button onclick="previous()">Previous</button>
             <button onclick="forward()">Next</button>
         </div>
+
         <div id="game_info">
             <div id="players_wrapper">
                 List of winners:
                 <ol id="players_List">
-                    <li>The two divs are</li>
-                    <li>The two divs are</li>
-                    <li>The two divs are</li>
                 </ol>
             </div>
             <div id="winners_wrapper">
                 List of winners:
-                <ol id="Winners_List">
-                    <li>The two divs are</li>
-                    <li>The two divs are</li>
-                    <li>The two divs are</li>
+                <ol id="winners_List">
                 </ol>
             </div>
             <div id="extra_game_info">
-                Additional info
+                Additional info:
             </div>
         </div>
+    </div>
         <ul id="board_wrapper" style="padding-left: 0"><script src="js/board.js"></script></ul>
     </div>
 
-    <div class="clearfix"></div><!--\\TODO what does it do-->
-
-    <!--    <footer>&lt;!&ndash;\\TODO do I need it&ndash;&gt;-->
-    <!--        <span>You are playing with <span id="opponentLogin"></span></span>-->
-    <!--    </footer>-->
-
-</div>
 <script src="js/gameLogic.js"></script>
 <script src="js/socket_js.js"></script>
 <script src="js/responseToServer.js"></script>
