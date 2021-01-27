@@ -29,6 +29,21 @@ input{
 #game_wrapper{
     margin: 10px auto;
 }
+#players_wrapper {
+    display: inline-block;
+    width: 200px;
+    color: lightgrey;
+}
+#winners_wrapper {
+    display: inline-block;
+    width: 200px;
+    color: lightgrey;
+}
+#extra_game_info {
+    display: inline-block;
+    width: 200px;
+    color: lightgrey;
+}
 #game_buttons_wrapper{
     display: none;
 }

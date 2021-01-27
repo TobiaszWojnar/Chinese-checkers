@@ -6,6 +6,6 @@ import lombok.Data;
 public class NewGame {
     private Player player;
     private int numOfPlayers;
-    private int ruleset;
+    private int ruleSet;
     private String boardType;
 }
