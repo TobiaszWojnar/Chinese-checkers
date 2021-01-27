@@ -22,7 +22,7 @@ public class PlayerList {
     public PlayerList(int num) {
         players = new HashMap<>();
         this.numOfPlayers = num;
-        index = 1;
+        index = 0;
     }
 
     /**
@@ -32,9 +32,13 @@ public class PlayerList {
      */
     public void add(Player player) {
         if (index <= numOfPlayers) {
-            players.put(index, player);
             index++;
+            players.put(index, player);
         }
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public boolean last() {
@@ -48,7 +52,7 @@ public class PlayerList {
     }
 
     public boolean full() {
-        return index == numOfPlayers + 1;
+        return index == numOfPlayers;
     }
 
     /**

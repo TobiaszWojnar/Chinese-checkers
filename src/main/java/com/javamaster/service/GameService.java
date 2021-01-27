@@ -52,6 +52,8 @@ public class GameService {
         game.getPlayers().add(newGame.getPlayer());
         gameInstance.addPlayer(newGame.getPlayer());
         game.setStatus(NEW);
+        game.setPlayer(Field.Player1);
+        game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
         GameStorage.getInstance().setGame(game);
         GameInstanceStorage.getInstance().setGameInstance(gameInstance);
         return game;
@@ -67,6 +69,8 @@ public class GameService {
 
         newPlayer.setAlive(true);
         game.getPlayers().add(newPlayer);
+        game.setPlayer(Field.valueOf("Player" + game.getPlayers().getIndex()));
+        game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
         gameInstance.addPlayer(newPlayer);
         if (game.getPlayers().full()) {
             game.setStatus(IN_PROGRESS);
@@ -192,6 +196,7 @@ public class GameService {
                 }
                 break;
         }
+        game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
         game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
         GameStorage.getInstance().setGame(game);
         return game;

@@ -9,7 +9,9 @@ import java.util.List;
 public class Game {
 
     private String gameId;
+    private Field player;
     private PlayerList players;
+    private List<Player> playerList;
     private GameStatus status;
     private Field[][] board;
     private List<Player> winners;
