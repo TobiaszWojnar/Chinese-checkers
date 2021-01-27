@@ -42,6 +42,7 @@ public class GameService {
         newGame.getPlayer().setAlive(true);
         GameInstance gameInstance = new GameInstance(newGame.getNumOfPlayers(),
                 newGame.getRuleSet(), newGame.getBoardType());
+        gameInstance.setCurrentPlayer(new Random().nextInt(gameInstance.getNumOfPlayers()) + 1);
         game.setBoard(gameInstance.getBoard().getBoard());
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
@@ -52,6 +53,7 @@ public class GameService {
         gameInstance.addPlayer(newGame.getPlayer());
         game.setStatus(NEW);
         game.setPlayer(Field.Player1);
+        game.setCurrent(Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
         game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
         GameStorage.getInstance().setGame(game);
         GameInstanceStorage.getInstance().setGameInstance(gameInstance);
@@ -71,16 +73,16 @@ public class GameService {
         game.setPlayer(Field.valueOf("Player" + game.getPlayers().getIndex()));
         game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
         gameInstance.addPlayer(newPlayer);
+        game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
+        game.setWinners(new ArrayList<>());
         if (game.getPlayers().full()) {
             game.setStatus(IN_PROGRESS);
-            gameInstance.setCurrentPlayer(new Random().nextInt(gameInstance.getNumOfPlayers()) + 1);
             Set<Players> players = new HashSet<>();
             for (Player player : game.getPlayers().getMap().values()) {
                 Players p = new Players();
                 p.setLogin(player.getLogin());
                 playersDAO.save(p);
                 players.add(p);
-                game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
             }
             Games games = new Games();
             games.setGame_id(gameId);
@@ -198,7 +200,7 @@ public class GameService {
                 break;
         }
         game.setPlayerList(new ArrayList<>(game.getPlayers().getMap().values()));
-        game.setCurrent(Field.valueOf("Player"+gameInstance.getCurrentPlayer()));
+        game.setCurrent(Field.valueOf("Player" + gameInstance.getCurrentPlayer()));
         GameStorage.getInstance().setGame(game);
         return game;
     }
@@ -220,7 +222,7 @@ public class GameService {
                 games.getNumOfPlayers(), games.getVariant(),
                 games.getBoardType(), players, moves);
         game.setBoard(replayInstance.getBoard().getBoard());
-        game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
+        //game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
         game.setPlayers(players);
         ReplayInstanceStorage.getInstance().setReplay(replayInstance);
         return game;
@@ -231,7 +233,7 @@ public class GameService {
         Game game = new Game();
         replayInstance.move(forward);
         game.setPlayers(replayInstance.getPlayers());
-        game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
+        //game.setCurrent(Field.valueOf("Player" + replayInstance.getCurrentPlayer()));
         game.setBoard(replayInstance.getBoard().getBoard());
         game.setGameId(gameId);
         return game;

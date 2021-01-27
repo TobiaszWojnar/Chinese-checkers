@@ -12,15 +12,15 @@ function move(x, y) {
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({
-            "playerNr": playerId,
-            "x": x,
-            "y": y,
+            "type": playerId,
+            "coordinateX": x,
+            "coordinateY": y,
             "message": "MOVE",
             "gameId": gameId,
             "login": login
         }),
         success: function (data) {
-            processResponse(JSON.parse(data));
+            processResponse(data);
             isYourTurn = false;
             youSelected = false;
         },
@@ -44,16 +44,16 @@ function select(x, y) {
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({
-            "playerNr": playerId,
-            "x": x,
-            "y": y,
+            "type": playerId,
+            "coordinateX": x,
+            "coordinateY": y,
             "message": "SELECT",
             "gameId": gameId,
             "login": login
         }),
         success: function (data) {
             youSelected = true;
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
@@ -75,16 +75,16 @@ function deselect(x, y) {
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({
-            "playerNr": playerId,
-            "x": x,
-            "y": y,
+            "type": playerId,
+            "coordinateX": x,
+            "coordinateY": y,
             "message": "DESELECT",
             "gameId": gameId,
             "login": login
         }),
         success: function (data) {
             youSelected = false;
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
@@ -103,9 +103,9 @@ function skip(){
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({
-            "playerNr": playerId,
-            "x": "",
-            "y": "",
+            "type": playerId,
+            "coordinateX": "",
+            "coordinateY": "",
             "message": "SKIP",
             "gameId": gameId,
             "login": login
@@ -113,7 +113,7 @@ function skip(){
         success: function (data) {
             isYourTurn = false;
             youSelected = false;
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
@@ -132,9 +132,9 @@ function resign(){
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({
-            "playerNr": playerId,
-            "x": "",
-            "y": "",
+            "type": playerId,
+            "coordinateX": "",
+            "coordinateY": "",
             "message": "RESIGN",
             "gameId": gameId,
             "login": login
@@ -142,7 +142,7 @@ function resign(){
         success: function (data) {
             isYourTurn = false;
             youSelected = false;
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
@@ -162,7 +162,7 @@ function previous(){
             "forward": false
         }),
         success: function (data) {
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);
@@ -182,7 +182,7 @@ function forward(){
             "forward": true,
         }),
         success: function (data) {
-            processResponse(JSON.parse(data));
+            processResponse(data);
         },
         error: function (error) {
             console.log(error);

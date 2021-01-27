@@ -148,7 +148,7 @@ public class GameInstance {
     }*/
 
     public void endTurn() {
-        currentPlayer = (currentPlayer + 1) % (numOfPlayers + 1);
+        currentPlayer = currentPlayer % numOfPlayers + 1;
     }
 
     public boolean checkIfWinner() {

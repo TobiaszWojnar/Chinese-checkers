@@ -31,9 +31,10 @@ public class MovesDAOImpl implements MovesDAO {
     @SuppressWarnings("unchecked")
     public List<Moves> list(String game) {
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("SELECT * FROM moves WHERE game = :game");
-        query.setParameter("game",game);
-        List<Moves> moves = query.list();
+        Query query = session.createSQLQuery("SELECT * FROM moves WHERE game = :game")
+                .addEntity(Moves.class)
+                .setParameter("game",game);
+        List<Moves> moves = (List<Moves>) query.list();
         session.close();
         return moves;
     }

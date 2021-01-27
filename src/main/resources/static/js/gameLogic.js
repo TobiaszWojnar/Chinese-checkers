@@ -13,6 +13,16 @@ function prepareGameToPlay(board_size){
     document.getElementById("content-wrapper").style.display = "block";
 }
 
+function prepareReplay(board_size){
+    document.getElementById("lobby_wrapper").style.display = "none";
+    document.getElementById("board_wrapper").style.display = "inline-block";
+    document.getElementById("replay_buttons_wrapper").style.display = "inline-block";
+
+    makeBoard(board_size);
+    document.getElementById("content-wrapper").style.height = "1000px";
+    document.getElementById("content-wrapper").style.display = "block";
+}
+
 function fieldClicked(id){
     let y = id.split("_")[0];
     let x = id.split("_")[1];
@@ -36,7 +46,9 @@ function fieldClicked(id){
 function processResponse(data){
     board = data.board;
     currentPlayer = data.current;//TODO Will this work
-    isYourTurn = (currentPlayer === playerId);
+    if (currentPlayer === playerId) {
+        isYourTurn = true;
+    }
     let gameInfo = "Players in game:"+preparePlayerList(data.PlayerList)+
         "Winners:"+preparePlayerList(data.winners);
     document.getElementById("game_info").innerHTML = `${gameInfo}`;

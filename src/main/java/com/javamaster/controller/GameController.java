@@ -46,10 +46,10 @@ public class GameController {
         return ResponseEntity.ok(game);
     }
 
-    @PostMapping("/startreplay")
-    public ResponseEntity<Game> startreplay(@RequestBody String gameId) {
-        log.info("start replay request: {}", gameId);
-        return ResponseEntity.ok(gameService.startReplay(gameId));
+    @PostMapping("/connect/replay")
+    public ResponseEntity<Game> startreplay(@RequestBody NewReplay newReplay) {
+        log.info("start replay request: {}", newReplay);
+        return ResponseEntity.ok(gameService.startReplay(newReplay.getGameId()));
     }
 
     @PostMapping("/replay")

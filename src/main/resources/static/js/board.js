@@ -52,9 +52,8 @@ function makeBoard(board_size){
             node.setAttribute("class","valid_field HoverClass");
             node.onclick = function() {
                 fieldClicked(y+"_"+x);
-                console.log("whatever");
             }
-            node.style.backgroundColor = colorMap.get("Empty");
+            node.style.background = colorMap.get("Empty");
 
         }else{
             node.setAttribute("class", "not_valid_field");
@@ -135,8 +134,12 @@ function repaint(){
         for(let x = 0; x<board[y].length;x++){
             if(isValidField(x,y,board_size)===true) {
                 let tempColor = board[y][x];
-                document.getElementById(y + "_" + x).style.background = `${colorMap.get(tempColor)}`;
+                document.getElementById(y + "_" + x).style.background = colorMap.get(tempColor);
             }
         }
     }
+}
+
+function setField(x,y,field) {
+    board[y][x] = field;
 }

@@ -4,8 +4,8 @@ import com.javamaster.model.Field;
 
 public class TinyChineseBoard extends ChineseCheckersBoard {
     public TinyChineseBoard() {
-        board = new Field[13][19];
+        board = new Field[9][13];
         cleanBoard();
-        n = 3;
+        n = 2;
     }
 }

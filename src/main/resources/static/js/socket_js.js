@@ -24,7 +24,8 @@ function create_game() {
     let rule_set = document.getElementById("rule_set").value;
     let nr_of_players = document.getElementById("nr_of_players").value;
     let e_board_size = document.getElementById("board_size");
-    board_size = e_board_size.options[e_board_size.selectedIndex].text;
+    board_size = e_board_size.options[e_board_size.selectedIndex].value;
+    let board_type = e_board_size.options[e_board_size.selectedIndex].text;
 
     if (login == null || login === '') {
         alert("Please enter login");
@@ -41,7 +42,7 @@ function create_game() {
                 },
                 "ruleSet": rule_set,
                 "numOfPlayers": nr_of_players,
-                "boardType": board_size
+                "boardType": board_type
             }),
             success: function (data) {
                 gameId = data.gameId;
@@ -103,7 +104,7 @@ function connect_by_id() {
             success: function (data) {
                 gameId = data.gameId;
                 playerId = data.player;//TODO
-                board_size = (data.board.length-1)/6;
+                board_size = (data.board.length-1)/4;
                 prepareGameToPlay(board_size);
                 processResponse(data);
                 connectToSocket(gameId);
@@ -149,8 +150,10 @@ function replay() {
             "gameId": gameId
         }),
         success: function (data) {//TODO ma mieć dwa
+            board_size = (data.board.length-1)/4;
+            prepareReplay(board_size);
+            processResponse(data);
             connectToSocketReplay(gameId, login);
-            prepareGameToPlay(board_size);
             //dostaje listę ruchów
             //i aktualną planszę
             /*

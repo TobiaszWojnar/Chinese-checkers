@@ -11,7 +11,7 @@ import java.util.List;
 public class ReplayInstance {
     private final String gameId;
     private final ChineseCheckersBoard board;
-    private int currentPlayer;
+    //private int currentPlayer;
     private final PlayerList players;
     private int moveCount;
     private final List<Moves> moves;
@@ -25,7 +25,7 @@ public class ReplayInstance {
         this.players = players;
         moveCount = 0;
         this.moves = moves;
-        this.currentPlayer = moves.get(0).getPlayer();
+        //this.currentPlayer = moves.get(0).getPlayer();
     }
 
     public void move(boolean forward) {
@@ -34,19 +34,19 @@ public class ReplayInstance {
             if (forward) {
                 Moves move = moves.get(moveCount);
                 board.setField(move.getTo_x(), move.getTo_y(),
-                        Field.valueOf("Player" + currentPlayer));
+                        Field.valueOf("Player" + move.getPlayer()));
                 board.setField(move.getFrom_x(), move.getFrom_y(),
                         Field.Empty);
                 moveCount++;
-                currentPlayer = moves.get(moveCount).getPlayer();
+                //currentPlayer = moves.get(moveCount).getPlayer();
             } else if (moveCount >= 1) {
                 moveCount--;
                 Moves move = moves.get(moveCount);
-                currentPlayer = move.getPlayer();
+                //currentPlayer = move.getPlayer();
                 board.setField(move.getTo_x(), move.getTo_y(),
                         Field.Empty);
                 board.setField(move.getFrom_x(), move.getFrom_y(),
-                        Field.valueOf("Player" + currentPlayer));
+                        Field.valueOf("Player" + move.getPlayer()));
             }
         }
     }
@@ -55,9 +55,11 @@ public class ReplayInstance {
         return gameId;
     }
 
+/*
     public int getCurrentPlayer() {
         return currentPlayer;
     }
+*/
 
     public PlayerList getPlayers() {
         return players;
