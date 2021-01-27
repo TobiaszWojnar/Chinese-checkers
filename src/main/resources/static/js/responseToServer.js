@@ -149,3 +149,41 @@ function resign(){
         }
     })
 }
+
+function previous(){
+    $.ajax({
+        url: url + "/game/replay",
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "gameId": gameId,
+            "forward": false
+        }),
+        success: function (data) {
+            processResponse(JSON.parse(data));
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function forward(){
+    $.ajax({
+        url: url + "/game/replay",
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "gameId": gameId,
+            "forward": true,
+        }),
+        success: function (data) {
+            processResponse(JSON.parse(data));
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}

@@ -83,7 +83,7 @@ function connect_by_id() {
     if (login == null || login === '') {
         alert("Please enter login");
     } else {
-        let gameId = document.getElementById("game_id").value;
+        gameId = document.getElementById("game_id").value;
         if (gameId == null || gameId === '') {
             alert("Please enter game id");
         }
@@ -113,10 +113,30 @@ function connect_by_id() {
     }
 }
 
+function connectToSocketReplay(gameId, login) {
+
+    console.log("connecting to the game");
+    let socket = new SockJS(url + "/startreplay");
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log("connected to the frame: " + frame);
+        stompClient.subscribe("/topic/replay-progress/" + gameId + "/"+login, function (response) {
+            let data = JSON.parse(response.body);
+            console.log(data);
+            processResponse(data);
+        })
+    })
+}
+
 function replay() {
-    let gameId = document.getElementById("game_id").value;
-    if (gameId == null || gameId === '') {
-        alert("Please enter game id");
+    login = document.getElementById("login").value;
+    if (login == null || login === '') {
+        alert("Please enter login");
+    } else {
+        gameId = document.getElementById("game_id").value;
+        if (gameId == null || gameId === '') {
+            alert("Please enter game id");
+        }
     }
     $.ajax({
         url: url + "/game/connect/replay",//TODO
@@ -127,6 +147,7 @@ function replay() {
             "gameId": gameId
         }),
         success: function (data) {//TODO ma mieć dwa
+            connectToSocketReplay(gameId, login)
             //dostaje listę ruchów
             //i aktualną planszę
             /*
