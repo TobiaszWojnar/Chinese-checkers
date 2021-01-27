@@ -36,15 +36,17 @@ function create_game() {
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify({
-                "login": login,
+                "player": {
+                    "login": login
+                },
                 "ruleSet": rule_set,
-                "nrOfPlayers": nr_of_players,
-                "boardSize": board_size
+                "numOfPlayers": nr_of_players,
+                "boardType": board_size
             }),
             success: function (data) {
-                gameId = JSON.parse(data).gameId;
-                playerId = `Player${JSON.parse(data).PlayerList.indexOf(login)+1}`;
-                processResponse(JSON.parse(data));                              //TODO
+                gameId = data.gameId;
+                playerId = data.player;
+                processResponse(data);                              //TODO
                 connectToSocket(gameId);
                 alert("You created a game. Game id is: " + gameId);
             },
@@ -99,11 +101,11 @@ function connect_by_id() {
                 "gameId": gameId
             }),
             success: function (data) {
-                let parsedGameData = JSON.parse(data);
-                gameId = parsedGameData.gameId;
-                playerId = `Player${parsedGameData.PlayerList.indexOf(login)+1}`;//TODO
-                board_size = (parsedGameData.board.length-1)/6;
-                processResponse(parsedGameData);
+                gameId = data.gameId;
+                playerId = data.player;//TODO
+                board_size = (data.board.length-1)/6;
+                prepareGameToPlay(board_size);
+                processResponse(data);
                 connectToSocket(gameId);
             },
             error: function (error) {
@@ -116,11 +118,11 @@ function connect_by_id() {
 function connectToSocketReplay(gameId, login) {
 
     console.log("connecting to the game");
-    let socket = new SockJS(url + "/startreplay");
+    let socket = new SockJS(url + "/replay");
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log("connected to the frame: " + frame);
-        stompClient.subscribe("/topic/replay-progress/" + gameId + "/"+login, function (response) {
+        stompClient.subscribe("/topic/replay-progress/" + gameId + "/" + login, function (response) {
             let data = JSON.parse(response.body);
             console.log(data);
             processResponse(data);
@@ -147,7 +149,8 @@ function replay() {
             "gameId": gameId
         }),
         success: function (data) {//TODO ma mieć dwa
-            connectToSocketReplay(gameId, login)
+            connectToSocketReplay(gameId, login);
+            prepareGameToPlay(board_size);
             //dostaje listę ruchów
             //i aktualną planszę
             /*

@@ -20,9 +20,9 @@ function fieldClicked(id){
     if(isYourTurn){
         let fieldValue = board[y][x];
         if(youSelected) {
-            if(fieldValue=="Possible") {
-                move(playerId,x,y);
-            } else if (fieldValue=="Chosen"){
+            if(fieldValue === "Possible") {
+                move(x, y);
+            } else if (fieldValue === "Chosen"){
                 deselect(x,y);
             }
             //else ignore
@@ -36,15 +36,17 @@ function fieldClicked(id){
 function processResponse(data){
     board = data.board;
     currentPlayer = data.current;//TODO Will this work
+    isYourTurn = (currentPlayer === playerId);
     let gameInfo = "Players in game:"+preparePlayerList(data.PlayerList)+
         "Winners:"+preparePlayerList(data.winners);
     document.getElementById("game_info").innerHTML = `${gameInfo}`;
-    if(data.resigned != ""){
+    if(data.resigned != null){
         alert("Player "+data.resigned+" has resigned");
     }
-    if(data.skipped != ""){
+    if(data.skipped != null){
         alert("Player "+data.skipped+" has skipped");
     }
+    repaint();
 
 }
 function preparePlayerList(listOfPlayer){

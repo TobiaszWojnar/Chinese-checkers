@@ -14,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <!--    end libs for stomp and sockjs-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"> </script>
 </head>
 
 <body>
@@ -41,6 +40,7 @@
 
         <label for="board_size">Choose board size:</label>
         <select name="board_size" id="board_size"><!--\\TODO make -->
+            <option value="2">tiny</option>
             <option value="3">small</option>
             <option value="4">normal</option>
             <option value="5">big</option>
@@ -65,7 +65,7 @@
         </div>
         <div id="replay_buttons_wrapper">
             <button onclick="previous()">Previous</button>
-            <button onclick="next()">Next</button>
+            <button onclick="forward()">Next</button>
         </div>
         <div id="game_info">
             <div id="players_wrapper">

@@ -5,7 +5,6 @@ import com.javamaster.model.Field;
 import com.javamaster.model.board.chineseCheckers.ChineseBoardFactory;
 import com.javamaster.model.board.chineseCheckers.ChineseCheckersBoard;
 import com.javamaster.model.chineseCheckers.datastructures.PlayerList;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 

@@ -56,7 +56,8 @@ public class GameController {
     public ResponseEntity<Game> replay(@RequestBody Replay replay) {
         log.info("replay: {}", replay);
         Game game = gameService.replay(replay.getGameId(), replay.isForward());
-        simpMessagingTemplate.convertAndSend("/topic/replay-progress/" + replay.getGameId(), game);
+        simpMessagingTemplate.convertAndSend("/topic/replay-progress/" + replay.getGameId()
+                + "/" + replay.getLogin(), game);
         return ResponseEntity.ok(game);
     }
 }

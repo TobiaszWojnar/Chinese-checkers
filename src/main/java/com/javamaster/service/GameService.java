@@ -3,7 +3,6 @@ package com.javamaster.service;
 import com.javamaster.entity.Games;
 import com.javamaster.entity.Moves;
 import com.javamaster.entity.Players;
-import com.javamaster.entity.dao.GamesDAO;
 import com.javamaster.entity.dao.GamesDAOImpl;
 import com.javamaster.entity.dao.MovesDAOImpl;
 import com.javamaster.entity.dao.PlayersDAOImpl;
@@ -66,7 +65,7 @@ public class GameService {
         Game game = GameStorage.getInstance().getGames().get(gameId);
         GameInstance gameInstance = GameInstanceStorage.getInstance().getGames().get(gameId);
 
-
+        System.out.println(1);
         newPlayer.setAlive(true);
         game.getPlayers().add(newPlayer);
         game.setPlayer(Field.valueOf("Player" + game.getPlayers().getIndex()));
@@ -93,8 +92,10 @@ public class GameService {
             games.setPlayers(players);
             gamesDAO.save(games);
         }
+        System.out.println(2);
         GameStorage.getInstance().setGame(game);
         GameInstanceStorage.getInstance().setGameInstance(gameInstance);
+        System.out.println(3);
         return game;
     }
 

@@ -158,6 +158,7 @@ function previous(){
         contentType: "application/json",
         data: JSON.stringify({
             "gameId": gameId,
+            "login": login,
             "forward": false
         }),
         success: function (data) {
@@ -177,6 +178,7 @@ function forward(){
         contentType: "application/json",
         data: JSON.stringify({
             "gameId": gameId,
+            "login": login,
             "forward": true,
         }),
         success: function (data) {

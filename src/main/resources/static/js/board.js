@@ -52,6 +52,7 @@ function makeBoard(board_size){
             node.setAttribute("class","valid_field HoverClass");
             node.onclick = function() {
                 fieldClicked(y+"_"+x);
+                console.log("whatever");
             }
             node.style.backgroundColor = colorMap.get("Empty");
 
