@@ -27,7 +27,7 @@ public class GameController {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     @PostMapping("/start")
-    public ResponseEntity<Game> start(@RequestBody NewGame newGame) {//TODO new structure NewGame
+    public ResponseEntity<Game> start(@RequestBody NewGame newGame) {
         log.info("start game request: {}", newGame);
         return ResponseEntity.ok(gameService.createGame(newGame));
     }
@@ -35,7 +35,7 @@ public class GameController {
     @PostMapping("/connect")
     public ResponseEntity<Game> connect(@RequestBody ConnectRequest request) throws InvalidParamException, InvalidGameException {
         log.info("connect request: {}", request);
-        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));//TODO
+        return ResponseEntity.ok(gameService.connectToGame(request.getPlayer(), request.getGameId()));
     }
 
     @PostMapping("/gameplay")

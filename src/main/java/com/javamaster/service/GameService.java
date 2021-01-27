@@ -42,7 +42,7 @@ public class GameService {
         Game game = new Game();
         newGame.getPlayer().setAlive(true);
         GameInstance gameInstance = new GameInstance(newGame.getNumOfPlayers(),
-                newGame.getRuleset(), newGame.getBoardType());
+                newGame.getRuleSet(), newGame.getBoardType());
         game.setBoard(gameInstance.getBoard().getBoard());
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
